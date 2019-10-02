@@ -5,5 +5,9 @@ public interface MainControllerInterface {
     void attach(MainControllerObserver observer);
 
     void detach(MainControllerObserver observer);
+    
+    void closeWindow();
+    
+    void gameInfo();
 
 }

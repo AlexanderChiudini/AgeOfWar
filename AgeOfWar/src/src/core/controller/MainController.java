@@ -30,5 +30,29 @@ public class MainController implements MainControllerInterface {
     public void detach(MainControllerObserver observer) {
         this.observers.remove(observer);
     }
+    
+    @Override
+    public void closeWindow(){
+        notifyCloseWindow();
+        System.exit(0);
+    }
+
+    @Override
+    public void gameInfo() {
+        notifyGameInfo();
+    }
+    
+    private void notifyCloseWindow() {
+        for(MainControllerObserver obs : this.observers){
+            obs.systemWillBeClosed();
+        }
+    }
+
+    private void notifyGameInfo() {
+        for(MainControllerObserver obs : this.observers){
+            obs.showGameInfo();
+        }
+    }
+
 
 }
