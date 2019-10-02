@@ -8,6 +8,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import src.core.controller.MainController;
+import src.core.controller.MainControllerInterface;
 import src.utils.BackgroundPanel;
 
 @SuppressWarnings("serial")
@@ -18,8 +20,11 @@ public class GameInformationPanel extends BackgroundPanel{
     private static final int B_HEIGHT = 30;
     private JButton backButton;
     
+    private MainControllerInterface mainController;
+    
     public GameInformationPanel() {
         super(IMAGEPATH);
+        mainController = MainController.getInstance();
         init();
     }
 
@@ -31,23 +36,21 @@ public class GameInformationPanel extends BackgroundPanel{
     }
 
     private void defineProperties() {
-//        setLayout(new GridLayout(1,16));
+        // nothing
     }
 
     private void initComponents() {
         backButton = createButton("Menu Principal", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Menu Principal");
+                mainController.goToMainMenu();
             }
         });
-System.out.println("teste");
     }
 
     private void addComponents() {
         int y = 0;
         add(backButton,createButtonConstraints(y++));
-System.out.println("teste add");
     }
     
     private JButton createButton(String name, ActionListener actionListener) {

@@ -4,4 +4,6 @@ public interface MainControllerObserver {
     
     void systemWillBeClosed();
     void showGameInfo();
+    void developerInfo();
+    void returnToMainMenu();
 }

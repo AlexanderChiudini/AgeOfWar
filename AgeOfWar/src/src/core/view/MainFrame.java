@@ -92,4 +92,24 @@ public class MainFrame extends JFrame implements MainControllerObserver {
     public void showGameInfo() {
         openInternalFrame(gameInformation);
     }
+
+    @Override
+    public void developerInfo() {
+        Alerts.getInformationAlert("Este sistema foi desenvolvido para a disciplina de Padrões de Projeto (PPR55) pela supervisão do Professor Adilson Vahldick\n"
+                + "\n\n"
+                + "Desenvolvedor : Alexander Ristow Childini\n"
+                + "Desenvolvedor : Lucas Eduardo Nogueira\n"
+                + "\n"
+                + "Somos acadêmicos do curso de Engenharia de Software (ESO)\n"
+                + "controlado pelo Departamento de Engenharia de Software (DESO)\n"
+                + "no Centro de Educação Superior do Alto Vale do Itajaí\n"
+                + "\n\n"
+                + "                                                                                                                                                                                                                       21/11/2019"
+                , "Desenvolvedores");
+    }
+
+    @Override
+    public void returnToMainMenu() {
+        openInternalFrame(mainMenu);
+    }
 }
