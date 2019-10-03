@@ -7,6 +7,8 @@ public class MainController implements MainControllerInterface {
 
     private static MainController instance;
     private List<MainControllerObserver> observers;
+    private String player1;
+    private String player2;
 
     public static MainControllerInterface getInstance() {
         if (instance == null) {
