@@ -9,5 +9,8 @@ public interface MainControllerInterface {
     void closeWindow();
     
     void gameInfo();
+    
+    void developers();
 
+    void goToMainMenu();
 }

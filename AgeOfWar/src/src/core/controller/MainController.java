@@ -42,6 +42,16 @@ public class MainController implements MainControllerInterface {
         notifyGameInfo();
     }
     
+    @Override
+    public void goToMainMenu() {
+        notifyReturnMainMenu();
+    }
+    
+    @Override
+    public void developers() {
+        notifyDeveloperInfo();
+    }
+    
     private void notifyCloseWindow() {
         for(MainControllerObserver obs : this.observers){
             obs.systemWillBeClosed();
@@ -54,5 +64,17 @@ public class MainController implements MainControllerInterface {
         }
     }
 
+
+    private void notifyDeveloperInfo(){
+        for(MainControllerObserver obs : this.observers){
+            obs.developerInfo();
+        }
+    }
+    
+    private void notifyReturnMainMenu(){
+        for(MainControllerObserver obs : this.observers){
+            obs.returnToMainMenu();
+        }
+    }
 
 }

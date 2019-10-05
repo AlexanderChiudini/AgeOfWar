@@ -7,40 +7,40 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class BackgroundPanel extends JPanel{
-    
-    private static List<String> createdImagesNames = new ArrayList<>();
-	private static List<ImageIcon> createdIcons = new ArrayList<>();
+public class BackgroundPanel extends JPanel {
 
-    private static Image image;
+    private List<String> createdImagesNames = new ArrayList<>();
+    private List<ImageIcon> createdIcons = new ArrayList<>();
 
-    public BackgroundPanel(String imagePath){
+    private Image image;
+
+    public BackgroundPanel(String imagePath) {
         image = createImage(imagePath);
     }
 
-    private Image createImage(String imagePath){
+    private Image createImage(String imagePath) {
         return createBackgroundImage(imagePath).getImage();
     }
-    
-    private ImageIcon createBackgroundImage(String imagePath){
+
+    private ImageIcon createBackgroundImage(String imagePath) {
         int imageIndex = createdImagesNames.indexOf(imagePath);
-		if(imageIndex >= 0) {
-			return createdIcons.get(imageIndex);
-		} else {
-	    	ImageIcon imageIcon = new ImageIcon(imagePath);
-	        createdImagesNames.add(imagePath);
-	        createdIcons.add(imageIcon);
-	        return imageIcon;
-		}
+        if (imageIndex >= 0) {
+            return createdIcons.get(imageIndex);
+        } else {
+            ImageIcon imageIcon = new ImageIcon(imagePath);
+            createdImagesNames.add(imagePath);
+            createdIcons.add(imageIcon);
+            return imageIcon;
+        }
     }
-    
+
     @Override
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         super.paintComponent(g);
         g.drawImage(getImage(), getX(), getY(), null);
     }
 
-    public static Image getImage() {
+    public Image getImage() {
         return image;
     }
 }
