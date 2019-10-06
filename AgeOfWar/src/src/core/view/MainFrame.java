@@ -97,7 +97,7 @@ public class MainFrame extends JFrame implements MainControllerObserver {
     public void developerInfo() {
         Alerts.getInformationAlert("Este sistema foi desenvolvido para a disciplina de Padrões de Projeto (PPR55) pela supervisão do Professor Adilson Vahldick\n"
                 + "\n\n"
-                + "Desenvolvedor : Alexander Ristow Childini\n"
+                + "Desenvolvedor : Alexander Felipe Chiudini Ristow\n"
                 + "Desenvolvedor : Lucas Eduardo Nogueira\n"
                 + "\n"
                 + "Somos acadêmicos do curso de Engenharia de Software (ESO)\n"
