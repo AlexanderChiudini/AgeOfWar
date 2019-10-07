@@ -1,46 +1,30 @@
 package src.utils;
 
 import java.awt.Graphics;
-import java.awt.Image;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class BackgroundPanel extends JPanel {
 
-    private List<String> createdImagesNames = new ArrayList<>();
-    private List<ImageIcon> createdIcons = new ArrayList<>();
-
-    private Image image;
-
-    public BackgroundPanel(String imagePath) {
-        image = createImage(imagePath);
+    private ImageIcon img;
+    
+    public BackgroundPanel(String imagePath){
+       img = new ImageIcon(imagePath);
     }
-
-    private Image createImage(String imagePath) {
-        return createBackgroundImage(imagePath).getImage();
-    }
-
-    private ImageIcon createBackgroundImage(String imagePath) {
-        int imageIndex = createdImagesNames.indexOf(imagePath);
-        if (imageIndex >= 0) {
-            return createdIcons.get(imageIndex);
-        } else {
-            ImageIcon imageIcon = new ImageIcon(imagePath);
-            createdImagesNames.add(imagePath);
-            createdIcons.add(imageIcon);
-            return imageIcon;
-        }
-    }
-
+    
     @Override
-    public void paint(Graphics g) {
+    public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.drawImage(getImage(), getX(), getY(), null);
+        
+        g.drawImage(img.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+        
     }
-
-    public Image getImage() {
-        return image;
+    
+    public void setImg(ImageIcon img){
+        this.img = img;
+    }
+    
+    public ImageIcon getImg(){
+        return this.img;
     }
 }
