@@ -11,6 +11,14 @@ package src.game.controller;
  */
 public interface GameControllerInterface {
     
+    void attach(GameControllerObservers obs);
+    
     void gameStart(String player1,String player2);
+    
+    void nextCardsBoard();
+
+    void prevCardsBoard();
+
+    void setClaLabel(String claName);
     
 }

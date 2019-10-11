@@ -32,6 +32,7 @@ public class MainFrame extends JFrame implements MainControllerObserver {
     private MainControllerInterface mainController;
 
     private MainFrame() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainController = MainController.getInstance();
         mainController.attach(this);
         init();

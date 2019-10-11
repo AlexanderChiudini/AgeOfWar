@@ -41,9 +41,9 @@ public class ClanMori implements Clan {
     @Override
     public List<Castle> getCastle() {
         Castle castle = null;
-        castle = new CastleTakahashi(2, "Takahashi", castle.getBattleLine(), "");
+        castle = new CastleTakahashi(2, "Takahashi", castle.getBattleLine(), "",castle.getCastleFigure());
         castles.add(castle);
-        castle = new CastleGassantoda(2, "Gassantoda", castle.getBattleLine(), "");
+        castle = new CastleGassantoda(2, "Gassantoda", castle.getBattleLine(), "",castle.getCastleFigure());
         castles.add(castle);
         return castles;
     }

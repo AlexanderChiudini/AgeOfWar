@@ -41,7 +41,7 @@ public class ClanShimazu implements Clan {
     @Override
     public List<Castle> getCastle() {
         Castle castle = null;
-        castle = new CastleKumamoto(3, "Kumamoto", castle.getBattleLine(), "");
+        castle = new CastleKumamoto(3, "Kumamoto", castle.getBattleLine(), "",castle.getCastleFigure());
         castles.add(castle);
         return castles;
     }

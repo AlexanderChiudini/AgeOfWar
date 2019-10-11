@@ -41,9 +41,9 @@ public class ClanUesugi implements Clan {
     @Override
     public List<Castle> getCastle() {
         Castle castle = null;
-        castle = new CastleKitanosho(3, "Kitanosho", castle.getBattleLine(), "");
+        castle = new CastleKitanosho(3, "Kitanosho", castle.getBattleLine(), "",castle.getCastleFigure());
         castles.add(castle);
-        castle = new CastleKasugayama(4, "Kasugayama", castle.getBattleLine(), "");
+        castle = new CastleKasugayama(4, "Kasugayama", castle.getBattleLine(), "",castle.getCastleFigure());
         castles.add(castle);
         return castles;
     }

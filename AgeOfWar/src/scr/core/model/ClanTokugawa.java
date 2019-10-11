@@ -41,11 +41,11 @@ public class ClanTokugawa implements Clan {
     @Override
     public List<Castle> getCastle() {
         Castle castle = null;
-        castle = new CastleInuyama(1, "Inuyama", castle.getBattleLine(), "");
+        castle = new CastleInuyama(1, "Inuyama", castle.getBattleLine(), "",castle.getCastleFigure());
         castles.add(castle);
-        castle = new CastleKiyosu(2, "Kiyosu", castle.getBattleLine(), "");
+        castle = new CastleKiyosu(2, "Kiyosu", castle.getBattleLine(), "",castle.getCastleFigure());
         castles.add(castle);
-        castle = new CastleEdo(3, "Kiyosu", castle.getBattleLine(), "");
+        castle = new CastleEdo(3, "Kiyosu", castle.getBattleLine(), "",castle.getCastleFigure());
         castles.add(castle);
         return castles;
     }

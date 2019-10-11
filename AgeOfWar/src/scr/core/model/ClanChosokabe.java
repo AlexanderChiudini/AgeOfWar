@@ -41,9 +41,9 @@ public class ClanChosokabe implements Clan {
     @Override
     public List<Castle> getCastle() {
         Castle castle = null;
-        castle = new CastleMarugame(1, "Marugame", castle.getBattleLine(), "");
+        castle = new CastleMarugame(1, "Marugame", castle.getBattleLine(), "", castle.getCastleFigure());
         castles.add(castle);
-        castle = new CastleMatsuyama(2, "Matsuyama", castle.getBattleLine(), "");
+        castle = new CastleMatsuyama(2, "Matsuyama", castle.getBattleLine(), "", castle.getCastleFigure());
         castles.add(castle);
         return castles;
     }

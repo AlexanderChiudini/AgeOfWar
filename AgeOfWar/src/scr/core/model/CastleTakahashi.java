@@ -6,14 +6,20 @@ import java.util.List;
 public class CastleTakahashi extends Castle {
     
     private List<String> battleLine = new ArrayList<>();
+    private List<String> castleFigures = new ArrayList<>();
     
-    public CastleTakahashi(int points, String name, List<String> normalBattleLine, String daimyoBattleLine) {
-        super(points, name, normalBattleLine, daimyoBattleLine);
+    public CastleTakahashi(int points, String name, List<String> normalBattleLine, String daimyoBattleLine, List<String> castleFigures) {
+        super(points, name, normalBattleLine, daimyoBattleLine, castleFigures);
     }
     
     @Override
     public List<String> getBattleLine() {
         return battleLine;
+    }
+    
+    @Override
+    public List<String> getCastleFigure(){
+        return castleFigures;
     }
 
     public void setBattleLine() {
@@ -26,5 +32,11 @@ public class CastleTakahashi extends Castle {
         battleLine.add("infantry");
         battleLine.add("infantry");
         battleLine.add("infantry");
+    }
+    
+    public void setCastleFigures(){
+        castleFigures.add("image/cartas/cla_mori/carta_mori_takahashi.png");
+        castleFigures.add("image/cartas/cla_mori/carta_mori_castelo.png");
+        castleFigures.add("image/cartas/cla_mori/carta_mori_cla.png");
     }
 }
