@@ -9,7 +9,8 @@ public class Castle {
     private String castleName; // nome do castelo
     private List<List<String>> battleLine = new ArrayList<>(); // array contendo os elementos da linha de batalha (infantaria, cavalaria, ...)
     private String daimyoBattleLine; // linha de batalha Daimyo
-    
+    private List<String> castleFigures; // array contendo as imagens do castelo
+
     private List<String> line = new ArrayList<>();
 
     private static Castle instance;
@@ -67,5 +68,13 @@ public class Castle {
     
     public void addArchery(int posicao, List<String> archery) {
         this.battleLine.set(posicao, archery);
+    }
+
+    public String getCastleFigureById(int i) {
+        return castleFigures.get(i);
+    }
+    
+    public List<String> getCastleFigure(){
+        return castleFigures;
     }
 }

@@ -13,4 +13,14 @@ public interface MainControllerInterface {
     void developers();
 
     void goToMainMenu();
+    
+    void changePlayers();
+
+    void playersInformation();
+    
+    void setPlayer1(String name);
+    
+    void setPlayer2(String name);
+
+    void gameStart();
 }

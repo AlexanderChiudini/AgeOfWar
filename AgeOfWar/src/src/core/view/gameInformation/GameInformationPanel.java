@@ -2,9 +2,6 @@ package src.core.view.gameInformation;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -50,7 +47,7 @@ public class GameInformationPanel extends BackgroundPanel{
 
     private void addComponents() {
         int y = 0;
-        add(backButton,createButtonConstraints(y++));
+        add(backButton);
     }
     
     private JButton createButton(String name, ActionListener actionListener) {
@@ -59,15 +56,6 @@ public class GameInformationPanel extends BackgroundPanel{
         button.setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
         button.addActionListener(actionListener);
         return button;
-    }
-    
-    private GridBagConstraints createButtonConstraints(int y) {
-        GridBagConstraints cons = new GridBagConstraints();
-        cons.gridy = y;
-        cons.anchor = GridBagConstraints.EAST;
-        cons.fill = GridBagConstraints.VERTICAL;
-        cons.insets = new Insets(5, 0, 5, 0);
-        return cons;
     }
     
 }

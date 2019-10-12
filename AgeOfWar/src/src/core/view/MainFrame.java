@@ -6,12 +6,16 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 import src.core.controller.MainController;
 import src.core.controller.MainControllerInterface;
 import src.core.controller.MainControllerObserver;
+import src.core.view.frame.PlayerSelectionInternalFrame;
 import src.core.view.frames.GameInformationInternalFrame;
 
 import src.core.view.frames.MainMenuInternalFrame;
+import src.game.controller.GameControllerInterface;
+import src.game.view.GameFrame;
 import src.utils.Alerts;
 
 @SuppressWarnings("serial")
@@ -23,10 +27,12 @@ public class MainFrame extends JFrame implements MainControllerObserver {
     private JDesktopPane desktop;
     private JInternalFrame mainMenu;
     private GameInformationInternalFrame gameInformation;
+    private PlayerSelectionInternalFrame playerSelection;
 
     private MainControllerInterface mainController;
 
     private MainFrame() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainController = MainController.getInstance();
         mainController.attach(this);
         init();
@@ -53,14 +59,16 @@ public class MainFrame extends JFrame implements MainControllerObserver {
 
     private void initComponents() {
         desktop = new JDesktopPane();
-        gameInformation = new GameInformationInternalFrame();
         mainMenu = new MainMenuInternalFrame();
+        gameInformation = new GameInformationInternalFrame();
+        playerSelection = new PlayerSelectionInternalFrame();
     }
 
     private void addComponents() {
         setContentPane(desktop);
         desktop.add(mainMenu);
         desktop.add(gameInformation);
+        desktop.add(playerSelection);
     }
 
     private void openInternalFrame(JInternalFrame frame) {
@@ -111,5 +119,25 @@ public class MainFrame extends JFrame implements MainControllerObserver {
     @Override
     public void returnToMainMenu() {
         openInternalFrame(mainMenu);
+    }
+    
+    @Override
+    public void playerSelection() {
+        openInternalFrame(playerSelection);
+    }
+
+    @Override
+    public void playerInfo() {
+        mainController.setPlayer1(playerSelection.getPlayer1Name());
+        mainController.setPlayer2(playerSelection.getPlayer2Name());
+
+        mainController.gameStart();
+    }
+
+    @Override
+    public void loadingGame(GameControllerInterface gameController) {
+        GameFrame gameFrame = new GameFrame(gameController);
+        gameFrame.setVisible(true);
+        setVisible(false);
     }
 }

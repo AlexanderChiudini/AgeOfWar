@@ -42,7 +42,7 @@ public class MenuActionPanel extends JPanel {
         buttonList.add(createButton("Novo Jogo", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Novo Jogo");
+                mainController.changePlayers();
             }
         }));
         buttonList.add(createButton("Quem Somos", new ActionListener() {
