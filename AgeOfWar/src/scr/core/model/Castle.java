@@ -1,30 +1,26 @@
 package scr.core.model;
-
+ 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Castle {
+public class Castle {
 
     private int castlePoints; // pontos do castelo
     private String castleName; // nome do castelo
-    private List<String> battleLine; // array contendo os elementos da linha de batalha (infantaria, cavalaria, ...)
+    private List<List<String>> battleLine = new ArrayList<>(); // array contendo os elementos da linha de batalha (infantaria, cavalaria, ...)
     private String daimyoBattleLine; // linha de batalha Daimyo
     
-    /**
-     * 
-     * Cria um castelo com seus parâmetros
-     * 
-     * @param points            Define o número de pontos para o castelo
-     * @param name              Define o nome do castelo
-     * @param normalBattleLine  Define a linha de batalha do castelo
-     * @param daimyoBattleLine  Define o linha de batalha Daimyo
-     */
-    public Castle(int points, String name, List<String> normalBattleLine, String daimyoBattleLine) {
-        this.castleName = name;
-        this.castlePoints = points;
-        this.battleLine = normalBattleLine;
-        this.daimyoBattleLine = daimyoBattleLine;
-    }
+    private List<String> line = new ArrayList<>();
 
+    private static Castle instance;
+    
+    public static synchronized Castle getInstance() {
+        if(instance == null) {
+            instance = new Castle();
+        }
+        return instance;
+    }
+    
     public int getCastlePoints() {
         return castlePoints;
     }
@@ -33,11 +29,43 @@ public abstract class Castle {
         return castleName;
     }
 
-    public List<String> getBattleLine() {
+    public List<List<String>> getBattleLine() {
         return battleLine;
     }
 
     public String getDaimyoBattleLine() {
         return daimyoBattleLine;
+    }
+
+    public void setCastlePoints(int castlePoints) {
+        this.castlePoints = castlePoints;
+    }
+
+    public void setCastleName(String castleName) {
+        this.castleName = castleName;
+    }
+
+    public void setBattleLine(List<List<String>> battleLine) {
+        this.battleLine = battleLine;
+    }
+
+    public void setDaimyoBattleLine(String daimyoBattleLine) {
+        this.daimyoBattleLine = daimyoBattleLine;
+    }
+    
+    public void addDaimyo(int posicao, List<String> daimyo) {
+        this.battleLine.set(posicao, daimyo);
+    }
+    
+    public void addCavalry(int posicao, List<String> cavalry) {
+        this.battleLine.set(posicao, cavalry);
+    }
+    
+    public void addSword(int posicao, List<String> sword) {
+        this.battleLine.set(posicao, sword);
+    }
+    
+    public void addArchery(int posicao, List<String> archery) {
+        this.battleLine.set(posicao, archery);
     }
 }
