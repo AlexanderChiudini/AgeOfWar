@@ -10,6 +10,7 @@ public class Castle {
     private List<List<String>> battleLine = new ArrayList<>(); // array contendo os elementos da linha de batalha (infantaria, cavalaria, ...)
     private String daimyoBattleLine; // linha de batalha Daimyo
     private List<String> castleFigures; // array contendo as imagens do castelo
+    private boolean isConquered;
 
     private List<String> line = new ArrayList<>();
 
@@ -76,5 +77,13 @@ public class Castle {
     
     public List<String> getCastleFigure(){
         return castleFigures;
+    }
+
+    public boolean isIsConquered() {
+        return isConquered;
+    }
+
+    public void setIsConquered(boolean isConquered) {
+        this.isConquered = isConquered;
     }
 }

@@ -9,6 +9,7 @@ public class Clan {
     private ImageIcon clanIcon;
     private int clanPoints;
     private List<Castle> castles;
+    private boolean isConquered;
 
     public String getName() {
         return clanName;
@@ -40,5 +41,37 @@ public class Clan {
 
     public void setCastles(List<Castle> castles) {
         this.castles = castles;
+    }
+
+    public String getClanName() {
+        return clanName;
+    }
+
+    public void setClanName(String clanName) {
+        this.clanName = clanName;
+    }
+
+    public ImageIcon getClanIcon() {
+        return clanIcon;
+    }
+
+    public void setClanIcon(ImageIcon clanIcon) {
+        this.clanIcon = clanIcon;
+    }
+
+    public int getClanPoints() {
+        return clanPoints;
+    }
+
+    public void setClanPoints(int clanPoints) {
+        this.clanPoints = clanPoints;
+    }
+
+    public boolean isIsConquered() {
+        return isConquered;
+    }
+
+    public void setIsConquered(boolean isConquered) {
+        this.isConquered = isConquered;
     }
 }

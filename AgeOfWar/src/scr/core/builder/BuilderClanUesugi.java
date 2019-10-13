@@ -67,4 +67,9 @@ public class BuilderClanUesugi extends AbstractBuilderClan {
     public Clan getClan() {
         return this.clan;
     }
+    
+    @Override
+    public Castle getCastle(int posicao) {
+        return this.castles.get(posicao);
+    }
 }
