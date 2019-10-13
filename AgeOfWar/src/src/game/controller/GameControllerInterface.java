@@ -20,5 +20,7 @@ public interface GameControllerInterface {
     void prevCardsBoard();
 
     void setClaLabel(String claName);
+
+    void rollingDice();
     
 }

@@ -4,7 +4,9 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.List;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import src.game.controller.GameControllerInterface;
 import src.game.controller.GameControllerObservers;
@@ -21,6 +23,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
     private CardsBoardPanel uesugiBoard;
     private CardsBoardPanel odaBoard;
     private DiceBoardPanel diceBoard;
+    private PlayerBoardPanel playerBoard;
     
     public GameBoardPanel(GameControllerInterface gameController){
         this.gameController = gameController;
@@ -53,6 +56,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
         odaBoard    = new CardsBoardPanel("image/mar_japones.jpg","oda",gameController);
         
         diceBoard = new DiceBoardPanel(gameController);
+        playerBoard = new PlayerBoardPanel();
     }
 
     private void addComponents() {
@@ -64,6 +68,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
         cardsBoard.add(odaBoard);
         add(cardsBoard);
         add(diceBoard);
+        add(playerBoard);
     }
 
     @Override
@@ -90,6 +95,11 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
                 gameController.setClaLabel(((CardsBoardPanel)comp).getClaName());
             }
         }
+    }
+
+    @Override
+    public void diceListImg(List<ImageIcon> diceImg) {
+        diceBoard.drawDiceResult(diceImg);
     }
     
 }

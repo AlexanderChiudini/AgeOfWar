@@ -1,17 +1,31 @@
 package scr.core.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 
-public abstract class Dice implements Cloneable {
+public class Dice {
 
-    private ImageIcon dado;
+    private ImageIcon dado; //imagem do dado
+    private List<String> battleLine = new ArrayList();
     
-    public Dice(ImageIcon dado) {
-        this.dado = dado;
+    public Dice(String imagePath) {
+        this.dado = new ImageIcon(imagePath);
     }
     
-    @Override
-    public Dice clone() throws CloneNotSupportedException {
-        return (Dice) super.clone();
+    public void addBattleLine(String crowd){
+        battleLine.add(crowd);
+    }
+    
+    public List<String> getBattleLine(){
+        return battleLine;
+    }
+    
+    public ImageIcon getDado(){
+        return dado;
+    }
+
+    private ImageIcon createdImageIcon(String imagePath) {
+        return new ImageIcon(imagePath);
     }
 }

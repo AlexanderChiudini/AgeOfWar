@@ -2,6 +2,7 @@ package scr.core.model;
  
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 
 public class Castle {
 
@@ -11,6 +12,7 @@ public class Castle {
     private String daimyoBattleLine; // linha de batalha Daimyo
     private List<String> castleFigures; // array contendo as imagens do castelo
     private boolean isConquered;
+    private List<ImageIcon> castleFigures; // array contendo as imagens do castelo
 
     private List<String> line = new ArrayList<>();
 
@@ -71,11 +73,11 @@ public class Castle {
         this.battleLine.set(posicao, archery);
     }
 
-    public String getCastleFigureById(int i) {
+    public ImageIcon getCastleFigureById(int i) {
         return castleFigures.get(i);
     }
     
-    public List<String> getCastleFigure(){
+    public List<ImageIcon> getCastleFigure(){
         return castleFigures;
     }
 
