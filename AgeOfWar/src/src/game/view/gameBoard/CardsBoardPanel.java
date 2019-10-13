@@ -10,8 +10,8 @@ import src.utils.BackgroundPanel;
 public class CardsBoardPanel extends BackgroundPanel {
 
     private String claName;
-    private final int LINE = 2;
-    private final int COLS = 2;
+    private final int LINE = 1;
+    private final int COLS = 4;
     private GameControllerInterface gameController;
     
     
@@ -31,7 +31,6 @@ public class CardsBoardPanel extends BackgroundPanel {
     }
     
     public String getClaName(){
-        System.out.println(claName);
         return claName;
     }
 }

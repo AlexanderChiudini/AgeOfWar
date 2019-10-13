@@ -5,6 +5,9 @@
  */
 package src.game.controller;
 
+import java.util.List;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author lucas
@@ -18,4 +21,6 @@ public interface GameControllerObservers {
     void currentBoard();
 
     void claLabel(String claName);
+
+    void diceListImg(List<ImageIcon> diceImg);
 }
