@@ -4,6 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.ImageIcon;
+import scr.core.builder.BuilderClanChosokabe;
+import scr.core.builder.BuilderClanMori;
+import scr.core.builder.BuilderClanOda;
+import scr.core.builder.BuilderClanShimazu;
+import scr.core.builder.BuilderClanTokugawa;
+import scr.core.builder.BuilderClanUesugi;
+import scr.core.builder.Director;
+import scr.core.factory.ClassicClan;
+import scr.core.model.Castle;
+import scr.core.model.Clan;
 import scr.core.model.Dice;
 
 public class GameController implements GameControllerInterface {
@@ -13,6 +23,13 @@ public class GameController implements GameControllerInterface {
     private List<Dice> rollingDiceList;
     private Random draft;
     private int diceChanges = 7;
+    private Clan chosokabeClan;
+    private Clan moriClan;
+    private Clan shimazuClan;
+    private Clan tokugawaClan;
+    private Clan uesugiClan;
+    private Clan odaClan;
+    private ClassicClan classicClan;
 
     public GameController() {
         init();
@@ -23,11 +40,13 @@ public class GameController implements GameControllerInterface {
         diceList = new ArrayList<>();
         rollingDiceList = new ArrayList<>();
         draft = new Random();
+        classicClan = ClassicClan.getInstance();
     }
 
     @Override
     public void gameStart(String player1, String player2) {
         createDiceList();
+        initComponents();
     }
 
     @Override
@@ -116,5 +135,82 @@ public class GameController implements GameControllerInterface {
         dice.addBattleLine("sword");
         dice.addBattleLine("sword");
         diceList.add(dice);
+    }
+
+    private void initComponents() {
+        chosokabeClan = classicClan.createClan();
+        BuilderClanChosokabe builderChosokabe = new BuilderClanChosokabe();
+        Director director = new Director(builderChosokabe);
+        director.construir();
+        chosokabeClan = builderChosokabe.getClan();
+        
+        moriClan = classicClan.createClan();
+        BuilderClanMori builderMori = new BuilderClanMori();
+        director = new Director(builderMori);
+        director.construir();
+        moriClan = builderMori.getClan();
+        
+        shimazuClan = classicClan.createClan();
+        BuilderClanShimazu builderShimazu = new BuilderClanShimazu();
+        director = new Director(builderShimazu);
+        director.construir();
+        shimazuClan = builderShimazu.getClan();
+        
+        tokugawaClan = classicClan.createClan();
+        BuilderClanTokugawa builderTokugawa = new BuilderClanTokugawa();
+        director = new Director(builderTokugawa);
+        director.construir();
+        tokugawaClan = builderTokugawa.getClan();
+        
+        uesugiClan = classicClan.createClan();
+        BuilderClanUesugi builderUesugi = new BuilderClanUesugi();
+        director = new Director(builderUesugi);
+        director.construir();
+        uesugiClan = builderUesugi.getClan();
+        
+        odaClan = classicClan.createClan();
+        BuilderClanOda builderOda = new BuilderClanOda();
+        director = new Director(builderOda);
+        director.construir();
+        odaClan = builderOda.getClan();
+    }
+    
+    @Override
+    public List<ImageIcon> imageClanCastles(String clanName,int status){
+        List<ImageIcon> imageList = new ArrayList<>();
+        switch(clanName){
+            case "chosokabe":
+                for(Castle castle : chosokabeClan.getCastles()){
+                    imageList.add(castle.getCastleFigureById(status));
+                }
+                break;
+            case "mori":
+                for(Castle castle : moriClan.getCastles()){
+                    imageList.add(castle.getCastleFigureById(status));
+                }
+                break;
+            case "shimazu":
+                for(Castle castle : shimazuClan.getCastles()){
+                    imageList.add(castle.getCastleFigureById(status));
+                }
+                break;
+            case "tokugawa":
+                for(Castle castle : tokugawaClan.getCastles()){
+                    imageList.add(castle.getCastleFigureById(status));
+                }
+                break;
+            case "uesugi":
+                for(Castle castle : uesugiClan.getCastles()){
+                    imageList.add(castle.getCastleFigureById(status));
+                }
+                break;
+            case "oda":
+                for(Castle castle : odaClan.getCastles()){
+                    imageList.add(castle.getCastleFigureById(status));
+                }
+                break;
+        }
+        
+        return imageList;
     }
 }

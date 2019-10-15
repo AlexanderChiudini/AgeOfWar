@@ -5,6 +5,9 @@
  */
 package src.game.controller;
 
+import java.util.List;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author lucas
@@ -22,5 +25,7 @@ public interface GameControllerInterface {
     void setClaLabel(String claName);
 
     void rollingDice();
+    
+    List<ImageIcon> imageClanCastles(String name, int status);
     
 }
