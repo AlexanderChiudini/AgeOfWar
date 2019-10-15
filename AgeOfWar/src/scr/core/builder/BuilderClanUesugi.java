@@ -20,6 +20,7 @@ public class BuilderClanUesugi extends AbstractBuilderClan {
     @Override
     public void createClan() {
         clan.setName("Uesugi");
+        clan.setIsConquered(false);
         clan.setPoints(8);
         ImageIcon icon = null; //definir a imagem do clã
         clan.setIcon(icon);
@@ -29,27 +30,15 @@ public class BuilderClanUesugi extends AbstractBuilderClan {
     @Override
     public void createCastles() {
         Castle castle = new ClassicCastle().getInstance().createCastle();
-        
-        List<String> cavalry = new ArrayList<>();
-        cavalry.add("cavalry");
-
-        List<String> daimyo = new ArrayList<>();
-        daimyo.add("daimyo");
-
-        List<String> sword = new ArrayList<>();
-        sword.add("infantry");
-
-        List<String> archery = new ArrayList<>();
-        archery.add("archery");
 
         castle.setCastleName("Kitanosho");
         castle.setCastlePoints(3);
         castle.setDaimyoBattleLine("especialDaimyo");
-        castle.addDaimyo(0, daimyo);
-        castle.addArchery(1, archery);
-        castle.addCavalry(1, cavalry);
+        castle.addList(0, "daimyo");
+        castle.addList(1, "archery");
+        castle.addList(1, "cavalry");
         for (int i=0; i<=5; i++) {
-            castle.addSword(2, sword);
+            castle.addList(2, "sword");
         }
 
         castle = new ClassicCastle().getInstance().createCastle();
@@ -57,10 +46,10 @@ public class BuilderClanUesugi extends AbstractBuilderClan {
         castle.setCastleName("Kasukayama");
         castle.setCastlePoints(4);
         castle.setDaimyoBattleLine("especialDaimyo");
-        castle.addArchery(0, archery);
-        castle.addArchery(0, archery);
-        castle.addCavalry(1, cavalry);
-        castle.addCavalry(1, cavalry);
+        castle.addList(0, "archery");
+        castle.addList(0, "archery");
+        castle.addList(1, "cavalry");
+        castle.addList(1, "cavalry");
     }
 
     @Override
@@ -69,7 +58,12 @@ public class BuilderClanUesugi extends AbstractBuilderClan {
     }
     
     @Override
-    public Castle getCastle(int posicao) {
-        return this.castles.get(posicao);
+    public Castle getCastle(int position) {
+        return this.castles.get(position);
+    }
+    
+    @Override
+    public Castle getCastle() {
+        return (Castle) this.castles;
     }
 }

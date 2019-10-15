@@ -10,7 +10,6 @@ public class Castle {
     private String castleName; // nome do castelo
     private List<List<String>> battleLine = new ArrayList<>(); // array contendo os elementos da linha de batalha (infantaria, cavalaria, ...)
     private String daimyoBattleLine; // linha de batalha Daimyo
-    private List<String> castleFigures; // array contendo as imagens do castelo
     private boolean isConquered;
     private List<ImageIcon> castleFigures; // array contendo as imagens do castelo
 
@@ -57,20 +56,12 @@ public class Castle {
         this.daimyoBattleLine = daimyoBattleLine;
     }
     
-    public void addDaimyo(int posicao, List<String> daimyo) {
-        this.battleLine.set(posicao, daimyo);
-    }
-    
-    public void addCavalry(int posicao, List<String> cavalry) {
-        this.battleLine.set(posicao, cavalry);
-    }
-    
-    public void addSword(int posicao, List<String> sword) {
-        this.battleLine.set(posicao, sword);
-    }
-    
-    public void addArchery(int posicao, List<String> archery) {
-        this.battleLine.set(posicao, archery);
+    public void addList(int posicao, String daimyo) {
+        if(this.battleLine.size()== posicao){
+            this.battleLine.add(new ArrayList<>());
+        }
+        
+        this.battleLine.get(posicao).add(daimyo);
     }
 
     public ImageIcon getCastleFigureById(int i) {

@@ -20,6 +20,7 @@ public class BuilderClanMori extends AbstractBuilderClan {
     @Override
     public void createClan() {
         clan.setName("Mori");
+        clan.setIsConquered(false);
         clan.setPoints(5);
         ImageIcon icon = null; //definir a imagem do clã
         clan.setIcon(icon);
@@ -29,35 +30,26 @@ public class BuilderClanMori extends AbstractBuilderClan {
     @Override
     public void createCastles() {
         Castle castle = new ClassicCastle().getInstance().createCastle();
-        
-        List<String> cavalry = new ArrayList<>();
-        cavalry.add("cavalry");
-
-        List<String> daimyo = new ArrayList<>();
-        daimyo.add("daimyo");
-
-        List<String> sword = new ArrayList<>();
-        sword.add("infantry");
 
         castle.setCastleName("Takahashi");
         castle.setCastlePoints(2);
         castle.setDaimyoBattleLine("especialDaimyo");
-        castle.addCavalry(0, cavalry);
-        castle.addCavalry(0, cavalry);
+        castle.addList(0, "cavalry");
+        castle.addList(0, "cavalry");
         for (int i=0; i<=4; i++) {
-            castle.addSword(1, sword);
+            castle.addList(1, "sword");
         }
-        castle.addSword(2, sword);
-        castle.addSword(2, sword);
+        castle.addList(2, "sword");
+        castle.addList(2, "sword");
         
         castle = new ClassicCastle().getInstance().createCastle();
         
         castle.setCastleName("Gassantoda");
         castle.setCastlePoints(2);
         castle.setDaimyoBattleLine("especialDaimyo");
-        castle.addDaimyo(0, daimyo);
+        castle.addList(0, "daimyo");
         for (int i=0; i<=7; i++) {
-            castle.addSword(1, sword);
+            castle.addList(1, "sword");
         }
     }
 
@@ -67,7 +59,12 @@ public class BuilderClanMori extends AbstractBuilderClan {
     }
     
     @Override
-    public Castle getCastle(int posicao) {
-        return this.castles.get(posicao);
+    public Castle getCastle(int position) {
+        return this.castles.get(position);
+    }
+    
+    @Override
+    public Castle getCastle() {
+        return (Castle) this.castles;
     }
 }

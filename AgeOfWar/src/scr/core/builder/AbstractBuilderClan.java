@@ -13,5 +13,7 @@ public abstract class AbstractBuilderClan {
     
     public abstract void createCastles();
     
-    public abstract Castle getCastle(int posicao);
+    public abstract Castle getCastle(int position);
+    
+    public abstract Castle getCastle();
 }

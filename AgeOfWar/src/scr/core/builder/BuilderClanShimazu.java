@@ -20,6 +20,7 @@ public class BuilderClanShimazu extends AbstractBuilderClan {
     @Override
     public void createClan() {
         clan.setName("Shimazu");
+        clan.setIsConquered(false);
         clan.setPoints(3);
         ImageIcon icon = null; //definir a imagem do clã
         clan.setIcon(icon);
@@ -29,27 +30,15 @@ public class BuilderClanShimazu extends AbstractBuilderClan {
     @Override
     public void createCastles() {
         Castle castle = new ClassicCastle().getInstance().createCastle();
-        
-        List<String> cavalry = new ArrayList<>();
-        cavalry.add("cavalry");
-
-        List<String> daimyo = new ArrayList<>();
-        daimyo.add("daimyo");
-
-        List<String> sword = new ArrayList<>();
-        sword.add("infantry");
-
-        List<String> archery = new ArrayList<>();
-        archery.add("archery");
 
         castle.setCastleName("Kumamoto");
         castle.setCastlePoints(3);
-        castle.addDaimyo(0, daimyo);
-        castle.addDaimyo(0, daimyo);
-        castle.addCavalry(1, archery);
-        castle.addCavalry(2, cavalry);
+        castle.addList(0, "daimyo");
+        castle.addList(0, "daimyo");
+        castle.addList(1, "archery");
+        castle.addList(2, "cavalry");
         for (int i=0; i<=3; i++) {
-            castle.addSword(3, sword);
+            castle.addList(3, "sword");
         }
     }
 
@@ -59,7 +48,12 @@ public class BuilderClanShimazu extends AbstractBuilderClan {
     }
     
     @Override
-    public Castle getCastle(int posicao) {
-        return this.castles.get(posicao);
+    public Castle getCastle(int position) {
+        return this.castles.get(position);
+    }
+    
+    @Override
+    public Castle getCastle() {
+        return (Castle) this.castles;
     }
 }
