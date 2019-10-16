@@ -49,12 +49,8 @@ public class BuilderClanMori extends AbstractBuilderClan {
         
         this.castles.add(castle);
         
-        if (!imageList.isEmpty()) {
-            imageList.clear();
-        }
-        
         castle = new ClassicCastle().createCastle();
-        
+        imageList = new ArrayList<>();
         castle.setCastleName("Gassantoda");
         castle.setCastlePoints(2);
         castle.setDaimyoBattleLine("especialDaimyo");

@@ -1,5 +1,6 @@
 package scr.core.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 
@@ -8,7 +9,7 @@ public class Clan {
     private String clanName;
     private ImageIcon clanIcon;
     private int clanPoints;
-    private List<Castle> castles;
+    private List<Castle> castles = new ArrayList<>();
     private boolean isConquered;
 
     public String getName() {

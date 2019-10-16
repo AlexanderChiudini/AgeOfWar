@@ -44,11 +44,8 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
 
         this.castles.add(castle);
 
-        if (!imageList.isEmpty()) {
-            imageList.clear();
-        }
-
         castle = new ClassicCastle().createCastle();
+        imageList = new ArrayList<>();
         imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_matsuyama.png"));
         imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_castelo.png"));
         imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_cla.png"));
@@ -66,6 +63,10 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
         castle.setCastleFigures(imageList);
 
         this.castles.add(castle);
+        System.out.println(this.getCastle(0).getCastleName());
+        System.out.println(this.getCastle(0).getCastleFigure());
+        System.out.println(this.getCastle(1).getCastleName());
+        System.out.println(this.getCastle(1).getCastleFigure());
     }
 
     @Override

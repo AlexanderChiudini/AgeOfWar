@@ -47,12 +47,8 @@ public class BuilderClanOda extends AbstractBuilderClan{
         
         this.castles.add(castle);
         
-        if (!imageList.isEmpty()) {
-            imageList.clear();
-        }
-        
         castle = new ClassicCastle().createCastle();
-        
+        imageList = new ArrayList<>();
         castle.setCastleName("Gifu");
         castle.setCastlePoints(1);
         castle.setDaimyoBattleLine("especialDaimyo");
@@ -66,12 +62,8 @@ public class BuilderClanOda extends AbstractBuilderClan{
         
         this.castles.add(castle);
         
-        if (!imageList.isEmpty()) {
-            imageList.clear();
-        }
-        
         castle = new ClassicCastle().createCastle();
-        
+        imageList = new ArrayList<>();
         castle.setCastleName("Matsumoto");
         castle.setCastlePoints(2);
         castle.setDaimyoBattleLine("especialDaimyo");
@@ -87,12 +79,8 @@ public class BuilderClanOda extends AbstractBuilderClan{
         
         this.castles.add(castle);
         
-        if (!imageList.isEmpty()) {
-            imageList.clear();
-        }
-        
         castle = new ClassicCastle().createCastle();
-        
+        imageList = new ArrayList<>();
         castle.setCastleName("Odani");
         castle.setCastlePoints(1);
         castle.setDaimyoBattleLine("especialDaimyo");

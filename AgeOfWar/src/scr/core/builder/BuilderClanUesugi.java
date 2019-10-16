@@ -48,11 +48,8 @@ public class BuilderClanUesugi extends AbstractBuilderClan {
         
         this.castles.add(castle);
         
-        if (!imageList.isEmpty()) {
-            imageList.clear();
-        }
-
         castle = new ClassicCastle().createCastle();
+        imageList = new ArrayList<>();
         imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_kasugayama.png"));
         imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_castelo.png"));
         imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_cla.png"));

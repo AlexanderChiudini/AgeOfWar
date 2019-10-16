@@ -45,14 +45,11 @@ public class BuilderClanTokugawa extends AbstractBuilderClan {
         
         this.castles.add(castle);
         
-        if (!imageList.isEmpty()) {
-            imageList.clear();
-        }
-        
         castle = new ClassicCastle().createCastle();
-        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_kiyosu"));
-        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_cla"));
+        imageList = new ArrayList<>();
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_kiyosu.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_cla.png"));
         
         castle.setCastleName("Kiyosu");
         castle.setCastlePoints(2);
@@ -67,14 +64,11 @@ public class BuilderClanTokugawa extends AbstractBuilderClan {
         
         this.castles.add(castle);
         
-        if (!imageList.isEmpty()) {
-            imageList.clear();
-        }
-        
         castle = new ClassicCastle().createCastle();
-        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_edo"));
-        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_cla"));
+        imageList = new ArrayList<>();
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_edo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_cla.png"));
         
         castle.setCastleName("Edo");
         castle.setCastlePoints(3);
