@@ -8,12 +8,16 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import scr.core.model.Castle;
 import src.game.controller.GameControllerInterface;
 import src.game.controller.GameControllerObservers;
+import src.game.view.CardCastleFrame;
+import src.game.view.GameFrame;
 
 @SuppressWarnings("serial")
 public class GameBoardPanel extends JPanel implements GameControllerObservers{
 
+    GameFrame gameFrame;
     private GameControllerInterface gameController;
     private SlipBoardPanel slipBoard;
     private JPanel cardsBoard;
@@ -26,8 +30,9 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
     private DiceBoardPanel diceBoard;
     private PlayerBoardPanel playerBoard;
     
-    public GameBoardPanel(GameControllerInterface gameController){
+    public GameBoardPanel(GameControllerInterface gameController, GameFrame gameFrame){
         this.gameController = gameController;
+        this.gameFrame = gameFrame;
         gameController.attach(this);
         init();
     }
@@ -103,6 +108,13 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
     @Override
     public void diceListImg(List<ImageIcon> diceImg) {
         diceBoard.drawDiceResult(diceImg);
+    }
+
+    @Override
+    public void openCardFrame(Castle castle) {
+        CardCastleFrame castleFrame = new CardCastleFrame(this.gameController, castle.getCastleName());
+        System.out.println("Teste");
+        castleFrame.setVisible(true);
     }
     
 }

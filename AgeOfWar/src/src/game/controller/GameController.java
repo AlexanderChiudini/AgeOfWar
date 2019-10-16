@@ -11,6 +11,7 @@ import scr.core.builder.BuilderClanShimazu;
 import scr.core.builder.BuilderClanTokugawa;
 import scr.core.builder.BuilderClanUesugi;
 import scr.core.builder.Director;
+import scr.core.factory.ClassicCastle;
 import scr.core.factory.ClassicClan;
 import scr.core.model.Castle;
 import scr.core.model.Clan;
@@ -101,6 +102,27 @@ public class GameController implements GameControllerInterface {
         }
         notifyRollingDice(diceImg);
     }
+    
+    @Override
+    public void openCard(String clanName, int position) {
+//        Castle castle = ClassicCastle.getInstance().createCastle();
+        
+        switch(clanName){
+            case "chosokabe":
+                break;
+            case "mori":
+                break;
+            case "shimazu":
+                notifyOpenCard(shimazuClan.getCastle(position));
+                break;
+            case "tokugawa":
+                break;
+            case "uesugi":
+                break;
+            case "oda":
+                break;
+        }
+    }
 
     private void notifyNextCardsBoard() {
         for (GameControllerObservers obs : observers) {
@@ -123,6 +145,13 @@ public class GameController implements GameControllerInterface {
     private void notifyRollingDice(List<ImageIcon> diceImg) {
         for (GameControllerObservers obs : observers) {
             obs.diceListImg(diceImg);
+        }
+    }
+    
+    
+    private void notifyOpenCard(Castle castle) {
+        for (GameControllerObservers obs : observers) {
+            obs.openCardFrame(castle);
         }
     }
 

@@ -34,7 +34,7 @@ public class GameFrame extends JFrame {
         setLocationRelativeTo(null);
         setTitle("Age Of War");
         JDesktopPane desktopPane = new JDesktopPane();
-        gameMenu = new GameInternalFrame(gameController);
+        gameMenu = new GameInternalFrame(this.gameController,this);
         gameMenu.setBorder(null);
         ((BasicInternalFrameUI) gameMenu.getUI()).setNorthPane(null);
         desktopPane.add(gameMenu);

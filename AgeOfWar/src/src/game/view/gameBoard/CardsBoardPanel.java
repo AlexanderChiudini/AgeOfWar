@@ -51,17 +51,12 @@ public class CardsBoardPanel extends BackgroundPanel {
     }
 
     private void addComponents() {
-        for (ImageIcon img : cardPanelList) {
-            cardsBoardArea.add(new CardPanel(img, claName, gameController));
+//        for (ImageIcon img : cardPanelList) {
+//            cardsBoardArea.add(new CardPanel(img, claName, gameController));
+//        }
+        for(int i = 0; i < cardPanelList.size();i++){
+            cardsBoardArea.add(new CardPanel(cardPanelList.get(i),claName,i,gameController));
         }
         add(cardsBoardArea);
-//        for(ImageIcon img : cardPanelList){
-////            add(new CardPanel(img, claName, gameController));
-//            add(new CardPanel());
-//        }
-//        for (int i = 0; i < 4; i++) {
-//            CardPanel cp = new CardPanel();
-//            add(cp);
-//        }
     }
 }

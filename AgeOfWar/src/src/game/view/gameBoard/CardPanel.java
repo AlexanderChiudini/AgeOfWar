@@ -1,6 +1,8 @@
 package src.game.view.gameBoard;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -10,21 +12,16 @@ import src.game.controller.GameControllerInterface;
 public class CardPanel extends JPanel {
 
     private String clanName;
-//    private int number;
+    private int number;
     private GameControllerInterface gameController;
     private ImageIcon cardImg;
     private JButton castleCard;
 
-//    public CardPanel() {
-//        castleCard = new JButton();
-//        add(castleCard);
-//    }
-
-    public CardPanel(ImageIcon imagePath, String clanName, GameControllerInterface gameController) {
+    public CardPanel(ImageIcon imagePath, String clanName,int number, GameControllerInterface gameController) {
         this.cardImg = imagePath;
         this.gameController = gameController;
         this.clanName = clanName;
-//        this.number = number;
+        this.number = number;
         init();
     }
 
@@ -40,7 +37,12 @@ public class CardPanel extends JPanel {
     private void initComponents() {
         castleCard = new JButton();
         castleCard.setIcon(cardImg);
-//        castleCard.setPreferredSize(new Dimension(266, 266));
+        castleCard.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameController.openCard(clanName,number);
+            }
+        });
     }
 
     public ImageIcon getCardImg() {

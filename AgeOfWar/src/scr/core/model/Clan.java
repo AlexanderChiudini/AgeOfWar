@@ -38,6 +38,10 @@ public class Clan {
     public List<Castle> getCastles() {
         return castles;
     }
+    
+    public Castle getCastle(int position){
+        return castles.get(position);
+    }
 
     public void setCastles(List<Castle> castles) {
         this.castles = castles;

@@ -7,6 +7,7 @@ package src.game.controller;
 
 import java.util.List;
 import javax.swing.ImageIcon;
+import scr.core.model.Castle;
 
 /**
  *
@@ -23,4 +24,6 @@ public interface GameControllerObservers {
     void claLabel(String claName);
 
     void diceListImg(List<ImageIcon> diceImg);
+
+    void openCardFrame(Castle castle);
 }

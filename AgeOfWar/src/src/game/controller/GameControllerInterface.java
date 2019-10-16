@@ -27,5 +27,7 @@ public interface GameControllerInterface {
     void rollingDice();
     
     List<ImageIcon> imageClanCastles(String name, int status);
+
+    void openCard(String clanName, int position);
     
 }
