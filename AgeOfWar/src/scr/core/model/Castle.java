@@ -28,6 +28,14 @@ public class Castle {
         return castlePoints;
     }
 
+    public List<ImageIcon> getCastleFigures() {
+        return castleFigures;
+    }
+
+    public void setCastleFigures(List<ImageIcon> castleFigures) {
+        this.castleFigures = castleFigures;
+    }
+
     public String getCastleName() {
         return castleName;
     }

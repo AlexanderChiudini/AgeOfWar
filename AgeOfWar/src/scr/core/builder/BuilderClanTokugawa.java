@@ -10,7 +10,7 @@ import scr.core.model.Clan;
 public class BuilderClanTokugawa extends AbstractBuilderClan {
 
     private Clan clan;
-    private List<Castle> castles;
+    private List<Castle> castles = new ArrayList<>();
     
     @Override
     public void reset() {
@@ -30,6 +30,10 @@ public class BuilderClanTokugawa extends AbstractBuilderClan {
     @Override
     public void createCastles() {
         Castle castle = new ClassicCastle().getInstance().createCastle();
+        List<ImageIcon> imageList = new ArrayList<>();
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_inuyama"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_castelo"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_cla"));
         
         castle.setCastleName("Inuyama");
         castle.setCastlePoints(1);
@@ -37,8 +41,18 @@ public class BuilderClanTokugawa extends AbstractBuilderClan {
         castle.addList(0, "daimyo");
         castle.addList(1, "archery");
         castle.addList(1, "archery");
+        castle.setCastleFigures(imageList);
+        
+        this.castles.add(castle);
+        
+        if (!imageList.isEmpty()) {
+            imageList.clear();
+        }
         
         castle = new ClassicCastle().getInstance().createCastle();
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_kiyosu"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_castelo"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_cla"));
         
         castle.setCastleName("Kiyosu");
         castle.setCastlePoints(2);
@@ -49,8 +63,18 @@ public class BuilderClanTokugawa extends AbstractBuilderClan {
         for (int i=0; i<=2; i++) {
             castle.addList(3, "sword");
         }
-
+        castle.setCastleFigures(imageList);
+        
+        this.castles.add(castle);
+        
+        if (!imageList.isEmpty()) {
+            imageList.clear();
+        }
+        
         castle = new ClassicCastle().getInstance().createCastle();
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_edo"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_castelo"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_cla"));
         
         castle.setCastleName("Edo");
         castle.setCastlePoints(3);
@@ -62,6 +86,9 @@ public class BuilderClanTokugawa extends AbstractBuilderClan {
         for (int i=0; i<=2; i++) {
             castle.addList(2, "sword");
         }
+        castle.setCastleFigures(imageList);
+        
+        this.castles.add(castle);
     }
 
     @Override

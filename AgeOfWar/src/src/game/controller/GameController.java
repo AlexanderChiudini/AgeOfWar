@@ -21,6 +21,7 @@ public class GameController implements GameControllerInterface {
     private List<GameControllerObservers> observers;
     private List<Dice> diceList;
     private List<Dice> rollingDiceList;
+    private List<Clan> clanGlobalList = new ArrayList<>();
     private Random draft;
     private int diceChanges = 7;
     private Clan chosokabeClan;
@@ -173,6 +174,13 @@ public class GameController implements GameControllerInterface {
         director = new Director(builderOda);
         director.construir();
         odaClan = builderOda.getClan();
+        
+        clanGlobalList.add(chosokabeClan);
+        clanGlobalList.add(moriClan);
+        clanGlobalList.add(shimazuClan);
+        clanGlobalList.add(tokugawaClan);
+        clanGlobalList.add(uesugiClan);
+        clanGlobalList.add(odaClan);
     }
     
     @Override

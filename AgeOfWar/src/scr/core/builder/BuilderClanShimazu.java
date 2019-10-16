@@ -10,7 +10,7 @@ import scr.core.model.Clan;
 public class BuilderClanShimazu extends AbstractBuilderClan {
 
     private Clan clan;
-    private List<Castle> castles;
+    private List<Castle> castles = new ArrayList<>();
     
     @Override
     public void reset() {
@@ -40,6 +40,13 @@ public class BuilderClanShimazu extends AbstractBuilderClan {
         for (int i=0; i<=3; i++) {
             castle.addList(3, "sword");
         }
+        List<ImageIcon> imageList = new ArrayList<>();
+        imageList.add(new ImageIcon("image/cartas/cla_shimazu/carta_shimazu_kumamoto"));
+        imageList.add(new ImageIcon("image/cartas/cla_shimazu/carta_shimazu_castelo"));
+        imageList.add(new ImageIcon("image/cartas/cla_shimazu/carta_shimazu_cla"));
+        castle.setCastleFigures(imageList);
+        
+        this.castles.add(castle);
     }
 
     @Override

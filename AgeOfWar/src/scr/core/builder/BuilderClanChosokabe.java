@@ -11,7 +11,7 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
 
     private Clan clan;
     private List<Castle> castles = new ArrayList<>();
-    
+
     @Override
     public void reset() {
         this.clan = new Clan();
@@ -26,32 +26,45 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
         clan.setIcon(icon);
         clan.setCastles(castles);
     }
-    
+
     @Override
     public void createCastles() {
         Castle castle = new ClassicCastle().getInstance().createCastle();
+        List<ImageIcon> imageList = new ArrayList<>();
+        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_marugame"));
+        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_castelo"));
+        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_cla"));
 
         castle.setCastleName("Marugame");
         castle.setCastlePoints(1);
         castle.addList(0, "daimyo");
         castle.addList(0, "daimyo");
         castle.addList(1, "cavalry");
-        
+        castle.setCastleFigures(imageList);
+
         this.castles.add(castle);
-        
+
+        if (!imageList.isEmpty()) {
+            imageList.clear();
+        }
+
         castle = new ClassicCastle().getInstance().createCastle();
-        
+        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_matsuyama"));
+        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_castelo"));
+        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_cla"));
+
         castle.setCastleName("Matsuyama");
         castle.setCastlePoints(2);
         castle.setDaimyoBattleLine("especialDaimyo");
         castle.addList(0, "daimyo");
-        for (int i=0; i<=3; i++) {
+        for (int i = 0; i <= 3; i++) {
             castle.addList(1, "sword");
         }
-        for (int i=0; i<=3; i++) {
+        for (int i = 0; i <= 3; i++) {
             castle.addList(2, "sword");
         }
-        
+        castle.setCastleFigures(imageList);
+
         this.castles.add(castle);
     }
 
@@ -59,12 +72,12 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
     public Clan getClan() {
         return this.clan;
     }
-    
+
     @Override
     public Castle getCastle(int position) {
         return this.castles.get(position);
     }
-    
+
     @Override
     public Castle getCastle() {
         return (Castle) this.castles;
