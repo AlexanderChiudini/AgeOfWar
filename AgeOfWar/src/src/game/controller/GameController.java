@@ -15,6 +15,7 @@ import scr.core.factory.ClassicClan;
 import scr.core.model.Castle;
 import scr.core.model.Clan;
 import scr.core.model.Dice;
+import src.core.controller.NarutoController;
 
 public class GameController implements GameControllerInterface {
 
@@ -24,6 +25,7 @@ public class GameController implements GameControllerInterface {
     private List<Clan> clanGlobalList = new ArrayList<>();
     private Random draft;
     private int diceChanges = 7;
+
     private Clan chosokabeClan;
     private Clan moriClan;
     private Clan shimazuClan;
@@ -32,6 +34,18 @@ public class GameController implements GameControllerInterface {
     private Clan odaClan;
     private ClassicClan classicClan;
 
+    private List<Clan> clanGlobalList = new ArrayList<>();
+    private NarutoController naruto;
+
+    private static GameController instance;
+    
+    public static synchronized GameController getInstance() {
+        if(instance == null) {
+            instance = new GameController();
+        }
+        return instance;
+    }
+    
     public GameController() {
         init();
     }
@@ -41,7 +55,11 @@ public class GameController implements GameControllerInterface {
         diceList = new ArrayList<>();
         rollingDiceList = new ArrayList<>();
         draft = new Random();
+
         classicClan = ClassicClan.getInstance();
+
+        naruto = new NarutoController(instance);
+
     }
 
     @Override
@@ -220,5 +238,8 @@ public class GameController implements GameControllerInterface {
         }
         
         return imageList;
+
+    public List<Clan> getClanGlobalList() {
+        return clanGlobalList;
     }
 }

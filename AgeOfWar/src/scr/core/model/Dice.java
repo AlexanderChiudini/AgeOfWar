@@ -8,7 +8,6 @@ public class Dice {
 
     private ImageIcon dado; //imagem do dado
     private List<String> battleLine = new ArrayList();
-    private String raffledSide;
     
     public Dice(String imagePath) {
         this.dado = new ImageIcon(imagePath);
@@ -29,13 +28,4 @@ public class Dice {
     private ImageIcon createdImageIcon(String imagePath) {
         return new ImageIcon(imagePath);
     }
-
-    public String getRaffledSide() {
-        return raffledSide;
-    }
-
-    public void setRaffledSide(String raffledSide) {
-        this.raffledSide = raffledSide;
-    }
-    
 }

@@ -13,8 +13,6 @@ public class Main implements Runnable {
 
     @Override
     public void run() {
-        NarutoController nrt = new NarutoController();
-        nrt.escolherJogada();
             MainFrame.getInstance().setVisible(true);
     }
 
