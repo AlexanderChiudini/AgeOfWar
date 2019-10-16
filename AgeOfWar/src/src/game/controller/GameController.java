@@ -34,7 +34,6 @@ public class GameController implements GameControllerInterface {
     private Clan odaClan;
     private ClassicClan classicClan;
 
-    private List<Clan> clanGlobalList = new ArrayList<>();
     private NarutoController naruto;
 
     private static GameController instance;
@@ -238,6 +237,7 @@ public class GameController implements GameControllerInterface {
         }
         
         return imageList;
+    }
 
     public List<Clan> getClanGlobalList() {
         return clanGlobalList;

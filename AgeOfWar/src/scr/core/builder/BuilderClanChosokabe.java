@@ -31,9 +31,9 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
     public void createCastles() {
         Castle castle = new ClassicCastle().getInstance().createCastle();
         List<ImageIcon> imageList = new ArrayList<>();
-        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_marugame"));
-        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_cla"));
+        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_marugame.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_cla.png"));
 
         castle.setCastleName("Marugame");
         castle.setCastlePoints(1);
@@ -49,9 +49,9 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
         }
 
         castle = new ClassicCastle().getInstance().createCastle();
-        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_matsuyama"));
-        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_cla"));
+        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_matsuyama.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_cla.png"));
 
         castle.setCastleName("Matsuyama");
         castle.setCastlePoints(2);

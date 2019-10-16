@@ -41,9 +41,9 @@ public class BuilderClanShimazu extends AbstractBuilderClan {
             castle.addList(3, "sword");
         }
         List<ImageIcon> imageList = new ArrayList<>();
-        imageList.add(new ImageIcon("image/cartas/cla_shimazu/carta_shimazu_kumamoto"));
-        imageList.add(new ImageIcon("image/cartas/cla_shimazu/carta_shimazu_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_shimazu/carta_shimazu_cla"));
+        imageList.add(new ImageIcon("image/cartas/cla_shimazu/carta_shimazu_kumamoto.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_shimazu/carta_shimazu_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_shimazu/carta_shimazu_cla.png"));
         castle.setCastleFigures(imageList);
         
         this.castles.add(castle);

@@ -22,6 +22,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
     private CardsBoardPanel tokugawaBoard;
     private CardsBoardPanel uesugiBoard;
     private CardsBoardPanel odaBoard;
+    private CardsBoardPanel shimazuBoard;
     private DiceBoardPanel diceBoard;
     private PlayerBoardPanel playerBoard;
     
@@ -54,6 +55,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
         tokugawaBoard  = new CardsBoardPanel("image/kabuki_japones.jpg","tokugawa",gameController);
         uesugiBoard    = new CardsBoardPanel("image/montanha_japonesa.jpg","uesugi",gameController);
         odaBoard    = new CardsBoardPanel("image/mar_japones.jpg","oda",gameController);
+        shimazuBoard = new CardsBoardPanel("image/guerra_japonesa.jpg", "shimazu", gameController);
         
         diceBoard = new DiceBoardPanel(gameController);
         playerBoard = new PlayerBoardPanel();
@@ -64,6 +66,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
         cardsBoard.add(chosokabeBoard);
         cardsBoard.add(moriBoard);
         cardsBoard.add(tokugawaBoard);
+        cardsBoard.add(shimazuBoard);
         cardsBoard.add(uesugiBoard);
         cardsBoard.add(odaBoard);
         add(cardsBoard);

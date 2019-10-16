@@ -31,9 +31,9 @@ public class BuilderClanTokugawa extends AbstractBuilderClan {
     public void createCastles() {
         Castle castle = new ClassicCastle().getInstance().createCastle();
         List<ImageIcon> imageList = new ArrayList<>();
-        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_inuyama"));
-        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_cla"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_inuyama.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_cla.png"));
         
         castle.setCastleName("Inuyama");
         castle.setCastlePoints(1);

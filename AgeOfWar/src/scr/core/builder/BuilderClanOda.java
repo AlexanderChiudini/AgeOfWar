@@ -30,9 +30,9 @@ public class BuilderClanOda extends AbstractBuilderClan{
     public void createCastles() {
         Castle castle = new ClassicCastle().getInstance().createCastle();
         List<ImageIcon> imageList = new ArrayList<>();
-        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_azuchi"));
-        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_cla"));
+        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_azuchi.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_cla.png"));
         
         castle.setCastleName("Azuchi");
         castle.setCastlePoints(3);
@@ -59,9 +59,9 @@ public class BuilderClanOda extends AbstractBuilderClan{
         castle.addList(0, "daimyo");
         castle.addList(1, "cavalry");
         castle.addList(2, "cavalry");
-        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_gifu"));
-        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_cla"));
+        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_gifu.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_cla.png"));
         castle.setCastleFigures(imageList);
         
         this.castles.add(castle);
@@ -80,9 +80,9 @@ public class BuilderClanOda extends AbstractBuilderClan{
         for (int i=0; i<=6; i++) {
             castle.addList(2, "sword");
         }
-        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_matsumoto"));
-        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_cla"));
+        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_matsumoto.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_cla.png"));
         castle.setCastleFigures(imageList);
         
         this.castles.add(castle);
@@ -99,10 +99,12 @@ public class BuilderClanOda extends AbstractBuilderClan{
         for (int i=0; i<=9; i++) {
             castle.addList(0, "sword");
         }
-        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_odani"));
-        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_cla"));
+        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_odani.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_cla.png"));
         castle.setCastleFigures(imageList);
+        
+        this.castles.add(castle);
     }
     
     @Override

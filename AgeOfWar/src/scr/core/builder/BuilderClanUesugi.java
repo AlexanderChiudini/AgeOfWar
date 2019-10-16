@@ -31,9 +31,9 @@ public class BuilderClanUesugi extends AbstractBuilderClan {
     public void createCastles() {
         Castle castle = new ClassicCastle().getInstance().createCastle();
         List<ImageIcon> imageList = new ArrayList<>();
-        imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_kitanosho"));
-        imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_cla"));
+        imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_kitanosho.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_cla.png"));
 
         castle.setCastleName("Kitanosho");
         castle.setCastlePoints(3);
@@ -53,11 +53,11 @@ public class BuilderClanUesugi extends AbstractBuilderClan {
         }
 
         castle = new ClassicCastle().getInstance().createCastle();
-        imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_kasukayama"));
-        imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_cla"));
+        imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_kasugayama.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_uesugi/carta_uesugi_cla.png"));
         
-        castle.setCastleName("Kasukayama");
+        castle.setCastleName("Kasugayama");
         castle.setCastlePoints(4);
         castle.setDaimyoBattleLine("especialDaimyo");
         castle.addList(0, "archery");

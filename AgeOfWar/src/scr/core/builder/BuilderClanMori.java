@@ -31,9 +31,9 @@ public class BuilderClanMori extends AbstractBuilderClan {
     public void createCastles() {
         Castle castle = new ClassicCastle().getInstance().createCastle();
         List<ImageIcon> imageList = new ArrayList<>();
-        imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_takahashi"));
-        imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_cla"));
+        imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_takahashi.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_cla.png"));
 
         castle.setCastleName("Takahashi");
         castle.setCastlePoints(2);
@@ -62,9 +62,9 @@ public class BuilderClanMori extends AbstractBuilderClan {
         for (int i=0; i<=7; i++) {
             castle.addList(1, "sword");
         }
-        imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_gassantoda"));
-        imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_castelo"));
-        imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_cla"));
+        imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_gassantoda.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_castelo.png"));
+        imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_cla.png"));
         castle.setCastleFigures(imageList);
         
         this.castles.add(castle);
