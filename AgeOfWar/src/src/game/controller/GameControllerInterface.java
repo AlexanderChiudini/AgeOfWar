@@ -7,6 +7,7 @@ package src.game.controller;
 
 import java.util.List;
 import javax.swing.ImageIcon;
+import scr.core.model.Player;
 
 /**
  *
@@ -16,7 +17,7 @@ public interface GameControllerInterface {
     
     void attach(GameControllerObservers obs);
     
-    void gameStart(String player1,String player2);
+    void gameStart(Player player1,Player player2);
     
     void nextCardsBoard();
 

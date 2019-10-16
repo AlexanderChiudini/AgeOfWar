@@ -11,11 +11,11 @@ import scr.core.builder.BuilderClanShimazu;
 import scr.core.builder.BuilderClanTokugawa;
 import scr.core.builder.BuilderClanUesugi;
 import scr.core.builder.Director;
-import scr.core.factory.ClassicCastle;
 import scr.core.factory.ClassicClan;
 import scr.core.model.Castle;
 import scr.core.model.Clan;
 import scr.core.model.Dice;
+import scr.core.model.Player;
 import src.core.controller.NarutoController;
 
 public class GameController implements GameControllerInterface {
@@ -55,15 +55,12 @@ public class GameController implements GameControllerInterface {
         diceList = new ArrayList<>();
         rollingDiceList = new ArrayList<>();
         draft = new Random();
-
         classicClan = new ClassicClan();
-
         naruto = new NarutoController(instance);
-
     }
 
     @Override
-    public void gameStart(String player1, String player2) {
+    public void gameStart(Player player1, Player player2) {
         createDiceList();
         initComponents();
     }

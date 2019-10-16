@@ -63,10 +63,6 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
         castle.setCastleFigures(imageList);
 
         this.castles.add(castle);
-        System.out.println(this.getCastle(0).getCastleName());
-        System.out.println(this.getCastle(0).getCastleFigure());
-        System.out.println(this.getCastle(1).getCastleName());
-        System.out.println(this.getCastle(1).getCastleFigure());
     }
 
     @Override

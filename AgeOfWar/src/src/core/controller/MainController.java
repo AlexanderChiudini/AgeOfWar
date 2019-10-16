@@ -2,6 +2,7 @@ package src.core.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import scr.core.model.Player;
 import src.game.controller.GameController;
 import src.game.controller.GameControllerInterface;
 
@@ -9,8 +10,8 @@ public class MainController implements MainControllerInterface {
 
     private static MainController instance;
     private List<MainControllerObserver> observers;
-    private String player1;
-    private String player2;
+    private Player player1;
+    private Player player2;
 
     public static MainControllerInterface getInstance() {
         if (instance == null) {
@@ -21,22 +22,26 @@ public class MainController implements MainControllerInterface {
 
     private MainController() {
         observers = new ArrayList<>();
+        player1 = new Player();
+        player2 = new Player();
     }
     
+    @Override
     public void setPlayer1(String name){
         if(name == "" || name.isEmpty()){
             name = "Jogador 1";
         }
         
-        this.player1 = name;
+        this.player1.setName(name);
     }
     
+    @Override
     public void setPlayer2(String name){
         if(name == "" || name.isEmpty()){
             name = "Jogador 2";
         }
         
-        this.player2 = name;
+        this.player2.setName(name);
     }
 
     @Override
