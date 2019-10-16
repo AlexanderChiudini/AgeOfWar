@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.ImageIcon;
+import scr.core.model.Clan;
 import scr.core.model.Dice;
+import src.core.controller.NarutoController;
 
 public class GameController implements GameControllerInterface {
 
@@ -13,7 +15,18 @@ public class GameController implements GameControllerInterface {
     private List<Dice> rollingDiceList;
     private Random draft;
     private int diceChanges = 7;
+    private List<Clan> clanGlobalList = new ArrayList<>();
+    private NarutoController naruto;
 
+    private static GameController instance;
+    
+    public static synchronized GameController getInstance() {
+        if(instance == null) {
+            instance = new GameController();
+        }
+        return instance;
+    }
+    
     public GameController() {
         init();
     }
@@ -23,6 +36,7 @@ public class GameController implements GameControllerInterface {
         diceList = new ArrayList<>();
         rollingDiceList = new ArrayList<>();
         draft = new Random();
+        naruto = new NarutoController(instance);
     }
 
     @Override
@@ -116,5 +130,9 @@ public class GameController implements GameControllerInterface {
         dice.addBattleLine("sword");
         dice.addBattleLine("sword");
         diceList.add(dice);
+    }
+
+    public List<Clan> getClanGlobalList() {
+        return clanGlobalList;
     }
 }

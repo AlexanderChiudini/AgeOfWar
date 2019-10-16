@@ -56,12 +56,12 @@ public class Castle {
         this.daimyoBattleLine = daimyoBattleLine;
     }
     
-    public void addList(int posicao, String daimyo) {
+    public void addList(int posicao, String batleLine) {
         if(this.battleLine.size()== posicao){
             this.battleLine.add(new ArrayList<>());
         }
         
-        this.battleLine.get(posicao).add(daimyo);
+        this.battleLine.get(posicao).add(batleLine);
     }
 
     public ImageIcon getCastleFigureById(int i) {
