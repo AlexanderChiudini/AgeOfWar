@@ -29,7 +29,7 @@ public class BuilderClanMori extends AbstractBuilderClan {
     
     @Override
     public void createCastles() {
-        Castle castle = new ClassicCastle().getInstance().createCastle();
+        Castle castle = new ClassicCastle().createCastle();
         List<ImageIcon> imageList = new ArrayList<>();
         imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_takahashi.png"));
         imageList.add(new ImageIcon("image/cartas/cla_mori/carta_mori_castelo.png"));
@@ -53,7 +53,7 @@ public class BuilderClanMori extends AbstractBuilderClan {
             imageList.clear();
         }
         
-        castle = new ClassicCastle().getInstance().createCastle();
+        castle = new ClassicCastle().createCastle();
         
         castle.setCastleName("Gassantoda");
         castle.setCastlePoints(2);

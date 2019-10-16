@@ -29,7 +29,7 @@ public class BuilderClanTokugawa extends AbstractBuilderClan {
     
     @Override
     public void createCastles() {
-        Castle castle = new ClassicCastle().getInstance().createCastle();
+        Castle castle = new ClassicCastle().createCastle();
         List<ImageIcon> imageList = new ArrayList<>();
         imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_inuyama.png"));
         imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_castelo.png"));
@@ -49,7 +49,7 @@ public class BuilderClanTokugawa extends AbstractBuilderClan {
             imageList.clear();
         }
         
-        castle = new ClassicCastle().getInstance().createCastle();
+        castle = new ClassicCastle().createCastle();
         imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_kiyosu"));
         imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_castelo"));
         imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_cla"));
@@ -71,7 +71,7 @@ public class BuilderClanTokugawa extends AbstractBuilderClan {
             imageList.clear();
         }
         
-        castle = new ClassicCastle().getInstance().createCastle();
+        castle = new ClassicCastle().createCastle();
         imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_edo"));
         imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_castelo"));
         imageList.add(new ImageIcon("image/cartas/cla_tokugawa/carta_tokugawa_cla"));

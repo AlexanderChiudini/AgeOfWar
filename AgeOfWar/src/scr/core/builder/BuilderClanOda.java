@@ -28,7 +28,7 @@ public class BuilderClanOda extends AbstractBuilderClan{
 
     @Override
     public void createCastles() {
-        Castle castle = new ClassicCastle().getInstance().createCastle();
+        Castle castle = new ClassicCastle().createCastle();
         List<ImageIcon> imageList = new ArrayList<>();
         imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_azuchi.png"));
         imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_castelo.png"));
@@ -51,7 +51,7 @@ public class BuilderClanOda extends AbstractBuilderClan{
             imageList.clear();
         }
         
-        castle = new ClassicCastle().getInstance().createCastle();
+        castle = new ClassicCastle().createCastle();
         
         castle.setCastleName("Gifu");
         castle.setCastlePoints(1);
@@ -70,7 +70,7 @@ public class BuilderClanOda extends AbstractBuilderClan{
             imageList.clear();
         }
         
-        castle = new ClassicCastle().getInstance().createCastle();
+        castle = new ClassicCastle().createCastle();
         
         castle.setCastleName("Matsumoto");
         castle.setCastlePoints(2);
@@ -91,7 +91,7 @@ public class BuilderClanOda extends AbstractBuilderClan{
             imageList.clear();
         }
         
-        castle = new ClassicCastle().getInstance().createCastle();
+        castle = new ClassicCastle().createCastle();
         
         castle.setCastleName("Odani");
         castle.setCastlePoints(1);

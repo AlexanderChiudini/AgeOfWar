@@ -56,7 +56,7 @@ public class GameController implements GameControllerInterface {
         rollingDiceList = new ArrayList<>();
         draft = new Random();
 
-        classicClan = ClassicClan.getInstance();
+        classicClan = new ClassicClan();
 
         naruto = new NarutoController(instance);
 

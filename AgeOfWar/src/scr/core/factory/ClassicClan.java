@@ -6,12 +6,12 @@ public class ClassicClan extends AbstractFactoryClan {
 
     private static ClassicClan instance;
 
-    public static synchronized ClassicClan getInstance() {
-        if (instance == null) {
-            instance = new ClassicClan();
-        }
-        return instance;
-    }
+//    public static synchronized ClassicClan getInstance() {
+//        if (instance == null) {
+//            instance = new ClassicClan();
+//        }
+//        return instance;
+//    }
     
     @Override
     public Clan createClan() {

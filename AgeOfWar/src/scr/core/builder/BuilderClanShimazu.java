@@ -29,7 +29,7 @@ public class BuilderClanShimazu extends AbstractBuilderClan {
     
     @Override
     public void createCastles() {
-        Castle castle = new ClassicCastle().getInstance().createCastle();
+        Castle castle = new ClassicCastle().createCastle();
 
         castle.setCastleName("Kumamoto");
         castle.setCastlePoints(3);

@@ -6,12 +6,12 @@ public class ClassicCastle extends AbstractFactoryCastle {
 
     private static ClassicCastle instance;
 
-    public static synchronized ClassicCastle getInstance() {
-        if (instance == null) {
-            instance = new ClassicCastle();
-        }
-        return instance;
-    }
+//    public static synchronized ClassicCastle getInstance() {
+//        if (instance == null) {
+//            instance = new ClassicCastle();
+//        }
+//        return instance;
+//    }
 
     @Override
     public Castle createCastle() {
