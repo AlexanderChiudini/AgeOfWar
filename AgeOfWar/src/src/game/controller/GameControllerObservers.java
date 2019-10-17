@@ -25,5 +25,11 @@ public interface GameControllerObservers {
 
     void diceListImg(List<ImageIcon> diceImg);
 
-    void openCardFrame(Castle castle);
+    void openCardFrame();
+    
+    void getPlayerName(String name);
+
+    void playersCreated();
+
+    void playersPoint(int points);
 }

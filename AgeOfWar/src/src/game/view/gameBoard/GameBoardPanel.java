@@ -111,10 +111,26 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
     }
 
     @Override
-    public void openCardFrame(Castle castle) {
-        CardCastleFrame castleFrame = new CardCastleFrame(this.gameController, castle.getCastleName());
-        System.out.println("Teste");
+    public void openCardFrame() {
+        CardCastleFrame castleFrame = new CardCastleFrame(this.gameController,gameFrame);
+        gameFrame.setEnabled(false);
         castleFrame.setVisible(true);
+    }
+
+    @Override
+    public void getPlayerName(String name) {
+        playerBoard.setPlayerName(name);
+    }
+
+    @Override
+    public void playersCreated() {
+        gameController.playerName();
+        gameController.playerPoint();
+    }
+
+    @Override
+    public void playersPoint(int points) {
+        playerBoard.setPlayerPoint(points);
     }
     
 }

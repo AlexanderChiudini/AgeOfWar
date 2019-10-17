@@ -27,11 +27,19 @@ public class PlayerBoardPanel extends JPanel{
 
     private void initComponents() {
         playerLabel = new JLabel("Teste");
-        pointLabel = new JLabel("Ponto(s) : 20");
+        pointLabel = new JLabel("Ponto(s) : 0");
     }
 
     private void addComponents() {
         add(playerLabel);
         add(pointLabel);
+    }
+    
+    public void setPlayerName(String name){
+        playerLabel.setText(name);
+    }
+
+    void setPlayerPoint(int points) {
+        pointLabel.setText("Ponto(s) : "+points+"");
     }
 }

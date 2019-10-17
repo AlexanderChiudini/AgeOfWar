@@ -22,10 +22,11 @@ public class GameController implements GameControllerInterface {
 
     private List<GameControllerObservers> observers;
     private List<Dice> diceList;
-    private List<Dice> rollingDiceList;
+//    private List<Dice> rollingDiceList;
     private List<Clan> clanGlobalList = new ArrayList<>();
     private Random draft;
     private int diceChanges = 7;
+    private boolean turnPlayer = true;
 
     private Clan chosokabeClan;
     private Clan moriClan;
@@ -35,17 +36,21 @@ public class GameController implements GameControllerInterface {
     private Clan odaClan;
     private ClassicClan classicClan;
 
+    private Player player1;
+    private Player player2;
     private NarutoController naruto;
 
+    private Castle cardCastle;
+
     private static GameController instance;
-    
+
     public static synchronized GameController getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new GameController();
         }
         return instance;
     }
-    
+
     public GameController() {
         init();
     }
@@ -53,14 +58,16 @@ public class GameController implements GameControllerInterface {
     private void init() {
         observers = new ArrayList<>();
         diceList = new ArrayList<>();
-        rollingDiceList = new ArrayList<>();
+//        rollingDiceList = new ArrayList<>();
         draft = new Random();
         classicClan = new ClassicClan();
         naruto = new NarutoController(instance);
+        
     }
 
     @Override
     public void gameStart(Player player1, Player player2) {
+        createPlayers(player1, player2);
         createDiceList();
         initComponents();
     }
@@ -88,29 +95,32 @@ public class GameController implements GameControllerInterface {
     @Override
     public void rollingDice() {
         List<ImageIcon> diceImg = new ArrayList<>();
-        if (!rollingDiceList.isEmpty()) {
-            rollingDiceList.clear();
+        if (turnPlayer) {
+            if (!player1.getDice().isEmpty()) {
+                player1.getDice().clear();
+            }
+            for (int i = 0; i < diceChanges; i++) {
+                Dice diceBasic = diceList.get(draft.nextInt(diceList.size()));
+                player1.pushDice(diceBasic);
+                diceImg.add(player1.getDice().get(i).getDado());
+            }
         }
 
-        for (int i = 0; i < diceChanges; i++) {
-            Dice diceBasic = diceList.get(draft.nextInt(diceList.size()));
-            rollingDiceList.add(diceBasic);
-            diceImg.add(rollingDiceList.get(i).getDado());
-        }
         notifyRollingDice(diceImg);
     }
-    
+
     @Override
     public void openCard(String clanName, int position) {
 //        Castle castle = ClassicCastle.getInstance().createCastle();
-        
-        switch(clanName){
+
+        switch (clanName) {
             case "chosokabe":
                 break;
             case "mori":
                 break;
             case "shimazu":
-                notifyOpenCard(shimazuClan.getCastle(position));
+                cardCastle = shimazuClan.getCastle(position);
+                notifyOpenCard();
                 break;
             case "tokugawa":
                 break;
@@ -118,6 +128,41 @@ public class GameController implements GameControllerInterface {
                 break;
             case "oda":
                 break;
+        }
+    }
+
+    @Override
+    public ImageIcon getImageCastle(int position) {
+        return cardCastle.getCastleFigureById(position);
+    }
+
+    @Override
+    public void createPlayers(Player player1, Player player2) {
+        player1.setPoints(0);
+        player2.setPoints(0);
+        
+        this.player1 = player1;
+        this.player2 = player2;
+        notifyPlayersCreated();
+    }
+
+    @Override
+    public void playerName() {
+        String name = "";
+        if (turnPlayer) {
+            name = player1.getName();
+        } else {
+            name = player2.getName();
+        }
+        
+        notifyPlayerName(name);
+    }
+    
+    
+    @Override
+    public void playerPoint() {
+        if(turnPlayer){
+            notifyPlayerPoint(player1.getPoints());
         }
     }
 
@@ -144,11 +189,29 @@ public class GameController implements GameControllerInterface {
             obs.diceListImg(diceImg);
         }
     }
-    
-    
-    private void notifyOpenCard(Castle castle) {
+
+    private void notifyOpenCard() {
         for (GameControllerObservers obs : observers) {
-            obs.openCardFrame(castle);
+            obs.openCardFrame();
+        }
+    }
+    
+    
+    private void notifyPlayerName(String name) {
+        for (GameControllerObservers obs : observers) {
+            obs.getPlayerName(name);
+        }
+    }
+    
+    private void notifyPlayersCreated() {
+        for (GameControllerObservers obs : observers) {
+            obs.playersCreated();
+        }
+    }
+
+    private void notifyPlayerPoint(int points) {
+        for (GameControllerObservers obs : observers) {
+            obs.playersPoint(points);
         }
     }
 
@@ -187,37 +250,37 @@ public class GameController implements GameControllerInterface {
         Director director = new Director(builderChosokabe);
         director.construir();
         chosokabeClan = builderChosokabe.getClan();
-        
+
         moriClan = classicClan.createClan();
         BuilderClanMori builderMori = new BuilderClanMori();
         director = new Director(builderMori);
         director.construir();
         moriClan = builderMori.getClan();
-        
+
         shimazuClan = classicClan.createClan();
         BuilderClanShimazu builderShimazu = new BuilderClanShimazu();
         director = new Director(builderShimazu);
         director.construir();
         shimazuClan = builderShimazu.getClan();
-        
+
         tokugawaClan = classicClan.createClan();
         BuilderClanTokugawa builderTokugawa = new BuilderClanTokugawa();
         director = new Director(builderTokugawa);
         director.construir();
         tokugawaClan = builderTokugawa.getClan();
-        
+
         uesugiClan = classicClan.createClan();
         BuilderClanUesugi builderUesugi = new BuilderClanUesugi();
         director = new Director(builderUesugi);
         director.construir();
         uesugiClan = builderUesugi.getClan();
-        
+
         odaClan = classicClan.createClan();
         BuilderClanOda builderOda = new BuilderClanOda();
         director = new Director(builderOda);
         director.construir();
         odaClan = builderOda.getClan();
-        
+
         clanGlobalList.add(chosokabeClan);
         clanGlobalList.add(moriClan);
         clanGlobalList.add(shimazuClan);
@@ -225,47 +288,85 @@ public class GameController implements GameControllerInterface {
         clanGlobalList.add(uesugiClan);
         clanGlobalList.add(odaClan);
     }
-    
+
     @Override
-    public List<ImageIcon> imageClanCastles(String clanName,int status){
+    public List<ImageIcon> imageClanCastles(String clanName, int status) {
         List<ImageIcon> imageList = new ArrayList<>();
-        switch(clanName){
+        switch (clanName) {
             case "chosokabe":
-                for(Castle castle : chosokabeClan.getCastles()){
+                for (Castle castle : chosokabeClan.getCastles()) {
                     imageList.add(castle.getCastleFigureById(status));
                 }
                 break;
             case "mori":
-                for(Castle castle : moriClan.getCastles()){
+                for (Castle castle : moriClan.getCastles()) {
                     imageList.add(castle.getCastleFigureById(status));
                 }
                 break;
             case "shimazu":
-                for(Castle castle : shimazuClan.getCastles()){
+                for (Castle castle : shimazuClan.getCastles()) {
                     imageList.add(castle.getCastleFigureById(status));
                 }
                 break;
             case "tokugawa":
-                for(Castle castle : tokugawaClan.getCastles()){
+                for (Castle castle : tokugawaClan.getCastles()) {
                     imageList.add(castle.getCastleFigureById(status));
                 }
                 break;
             case "uesugi":
-                for(Castle castle : uesugiClan.getCastles()){
+                for (Castle castle : uesugiClan.getCastles()) {
                     imageList.add(castle.getCastleFigureById(status));
                 }
                 break;
             case "oda":
-                for(Castle castle : odaClan.getCastles()){
+                for (Castle castle : odaClan.getCastles()) {
                     imageList.add(castle.getCastleFigureById(status));
                 }
                 break;
         }
-        
+
         return imageList;
     }
 
     public List<Clan> getClanGlobalList() {
         return clanGlobalList;
+    }
+
+    @Override
+    public List<ImageIcon> playerDiceImg() {
+        List<ImageIcon> imgList = new ArrayList<>();
+
+        if (turnPlayer) {
+            for (Dice dice : player1.getDice()) {
+                imgList.add(dice.getDado());
+            }
+        }else{
+            for (Dice dice : player2.getDice()) {
+                imgList.add(dice.getDado());
+            }
+        }
+
+        return imgList;
+    }
+
+    @Override
+    public String playerText() {
+        String name;
+        if (turnPlayer) {
+            name = player1.getName();
+        } else {
+            name = player2.getName();
+        }
+        
+        return name;
+    }
+
+    @Override
+    public List<String> getCastleBL() {
+        List<String> bl = new ArrayList<>();
+        for(int i = 0; i < cardCastle.getBattleLine().size(); i++){
+           bl = cardCastle.getBattleLine().get(i);
+        }
+        return bl;
     }
 }

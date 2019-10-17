@@ -9,6 +9,15 @@ public class Player {
     private List<Castle> conqueredCastle = new ArrayList<>();
     private List<Dice> dice = new ArrayList<>(7);
     private String[][] battleLine = new String[14][38];
+    private int points;
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
 
     public String getName() {
         return name;
@@ -32,6 +41,10 @@ public class Player {
 
     public void setDice(List<Dice> dice) {
         this.dice = dice;
+    }
+    
+    public void pushDice(Dice dice){
+        this.dice.add(dice);
     }
 
     public String[][] getBattleLine() {

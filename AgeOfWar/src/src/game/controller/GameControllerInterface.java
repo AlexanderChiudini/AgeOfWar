@@ -30,5 +30,18 @@ public interface GameControllerInterface {
     List<ImageIcon> imageClanCastles(String name, int status);
 
     void openCard(String clanName, int position);
+
+    ImageIcon getImageCastle(int i);
     
+    void createPlayers(Player player1, Player player2);
+
+    void playerName();
+
+    List<ImageIcon> playerDiceImg();
+
+    String playerText();
+
+    void playerPoint();
+
+    public List<String> getCastleBL();
 }
