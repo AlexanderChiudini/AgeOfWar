@@ -115,18 +115,28 @@ public class GameController implements GameControllerInterface {
 
         switch (clanName) {
             case "chosokabe":
+                cardCastle = chosokabeClan.getCastle(position);
+                notifyOpenCard();
                 break;
             case "mori":
+                cardCastle = moriClan.getCastle(position);
+                notifyOpenCard();
                 break;
             case "shimazu":
                 cardCastle = shimazuClan.getCastle(position);
                 notifyOpenCard();
                 break;
             case "tokugawa":
+                cardCastle = tokugawaClan.getCastle(position);
+                notifyOpenCard();
                 break;
             case "uesugi":
+                cardCastle = uesugiClan.getCastle(position);
+                notifyOpenCard();
                 break;
             case "oda":
+                cardCastle = odaClan.getCastle(position);
+                notifyOpenCard();
                 break;
         }
     }
