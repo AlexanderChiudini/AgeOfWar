@@ -135,7 +135,6 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public void openCard(String clanName, int position) {
-//        Castle castle = ClassicCastle.getInstance().createCastle();
 
         switch (clanName) {
             case "chosokabe":
@@ -423,8 +422,14 @@ public class GameController implements GameControllerInterface {
     @Override
     public List<String> getCastleBL() {
         List<String> bl = new ArrayList<>();
+        String test = "[";
         for(int i = 0; i < cardCastle.getBattleLine().size(); i++){
-           bl = cardCastle.getBattleLine().get(i);
+            for(int j = 0; j < cardCastle.getBattleLine().get(i).size();j++){
+                test += cardCastle.getBattleLine().get(i).get(j)+",";
+            }
+            test += "]";
+           bl.add(test);
+           test = "[";
         }
         return bl;
     }
