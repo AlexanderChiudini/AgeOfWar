@@ -8,21 +8,25 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import src.game.controller.GameControllerInterface;
-import src.game.controller.GameControllerObservers;
-import src.utils.BackgroundPanel;
+import src.game.view.CardCastleFrame;
+import src.game.view.GameFrame;
 
 @SuppressWarnings("serial")
 public class CardMenuPanel extends JPanel{
     
     private GameControllerInterface gameController;
+    private CardCastleFrame cardFrame;
+    private GameFrame gameFrame;
     public static final int LINE = 1;
     public static final int COLS = 2;
     private JPanel imagePanel;
     private PlayCardPanel playCardPanel;
     private JLabel cardImg;
     
-    public CardMenuPanel(GameControllerInterface gameController){
+    public CardMenuPanel(GameControllerInterface gameController,CardCastleFrame cardFrame,GameFrame gameFrame){
         this.gameController = gameController;
+        this.cardFrame = cardFrame;
+        this.gameFrame = gameFrame;
         init();
     }
 
@@ -43,7 +47,7 @@ public class CardMenuPanel extends JPanel{
         imagePanel = new JPanel();
         imagePanel.setOpaque(false);
         
-        playCardPanel = new PlayCardPanel(this.gameController);
+        playCardPanel = new PlayCardPanel(this.gameController,cardFrame,gameFrame);
         playCardPanel.setOpaque(false);
         
         cardImg = new JLabel();

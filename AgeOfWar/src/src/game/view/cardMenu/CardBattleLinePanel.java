@@ -39,11 +39,15 @@ public class CardBattleLinePanel extends JPanel{
         buttonGroup = new ButtonGroup();
         radioButtonList = new ArrayList<>();
         
-        battleButton = new JRadioButton();
+        
     }
 
     private void addComponents() {
-        
+        for(String str : battleLine){
+            battleButton = new JRadioButton();
+            battleButton.setText(str);
+            buttonGroup.add(battleButton);
+        }
     }
     
 }

@@ -29,7 +29,7 @@ public class CardCastleFrame extends JFrame{
         setLocationRelativeTo(null);
         setUndecorated(true);
         JDesktopPane desktopPane = new JDesktopPane();
-        cardMenu = new CardMenuInternalFrame(this.gameController);
+        cardMenu = new CardMenuInternalFrame(this.gameController,this,gameFrame);
         cardMenu.setBorder(null);
         cardMenu.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         ((BasicInternalFrameUI) cardMenu.getUI()).setNorthPane(null);

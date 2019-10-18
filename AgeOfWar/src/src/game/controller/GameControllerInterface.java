@@ -44,4 +44,6 @@ public interface GameControllerInterface {
     void playerPoint();
 
     public List<String> getCastleBL();
+
+    public void goGameFrame();
 }
