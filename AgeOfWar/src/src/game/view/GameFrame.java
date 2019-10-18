@@ -17,16 +17,10 @@ public class GameFrame extends JFrame {
 
     public static final int WIDTH = 1360;
     public static final int HEIGHT = 720;
-//    private JDesktopPane desktop;
     private JInternalFrame gameMenu;
 
     private GameControllerInterface gameController;
-
-//    public GameFrame(GameControllerInterface gameController) {
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        this.gameController = gameController;
-//        init();
-//    }
+    
     public GameFrame(GameControllerInterface gameController) {
         this.gameController = gameController;
         setResizable(false);
@@ -54,29 +48,6 @@ public class GameFrame extends JFrame {
         });
     }
 
-//    private void init() {
-//        defineProperties();
-//        initComponents();
-//        addComponents();
-//    }
-//    
-//    private void defineProperties() {
-//        setResizable(false);
-//        setSize(WIDTH, HEIGHT);
-//        setLocationRelativeTo(null);
-//        setUndecorated(true);
-//    }
-//
-//    private void initComponents() {
-//        desktop = new JDesktopPane();
-//        gameMenu = new GameInternalFrame();
-//    }
-//
-//    private void addComponents() {
-//        setContentPane(desktop);
-//        desktop.add(gameMenu);
-//    }
-//
     @Override
     public void setVisible(boolean b) {
         gameMenu.setVisible(b);

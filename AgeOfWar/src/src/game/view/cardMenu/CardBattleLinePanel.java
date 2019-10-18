@@ -1,6 +1,5 @@
 package src.game.view.cardMenu;
 
-import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
@@ -50,9 +49,5 @@ public class CardBattleLinePanel extends JPanel{
             buttonGroup.add(battleButton);
             add(battleButton);
         }
-        
-//buttonGroup.add(new JRadioButton("teste1"));
-//buttonGroup.add(new JRadioButton("teste2"));
-//buttonGroup.add(new JRadioButton("teste3"));
     }
 }

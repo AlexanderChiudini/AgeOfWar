@@ -17,13 +17,6 @@ public class Castle {
 
     private static Castle instance;
     
-//    public static synchronized Castle getInstance() {
-//        if(instance == null) {
-//            instance = new Castle();
-//        }
-//        return instance;
-//    }
-    
     public int getCastlePoints() {
         return castlePoints;
     }

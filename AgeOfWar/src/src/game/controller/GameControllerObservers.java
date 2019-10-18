@@ -7,8 +7,6 @@ package src.game.controller;
 
 import java.util.List;
 import javax.swing.ImageIcon;
-import scr.core.model.Castle;
-
 /**
  *
  * @author lucas

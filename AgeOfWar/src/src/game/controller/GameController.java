@@ -431,7 +431,7 @@ public class GameController implements GameControllerInterface {
     
     public static String getProp() throws IOException {
         Properties props = new Properties();
-        FileInputStream file = new FileInputStream("C:\\Users\\Alexander Chiudini\\Documents\\GitHub\\AgeOfWar\\AgeOfWar\\src\\src\\game\\controller\\Adapter.properties");
+        FileInputStream file = new FileInputStream("src\\src\\game\\controller\\Adapter.properties");
         props.load(file);
         return props.getProperty("tipo");
     }

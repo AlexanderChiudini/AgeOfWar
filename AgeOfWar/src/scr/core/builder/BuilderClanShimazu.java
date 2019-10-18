@@ -22,7 +22,7 @@ public class BuilderClanShimazu extends AbstractBuilderClan {
         clan.setName("Shimazu");
         clan.setIsConquered(false);
         clan.setPoints(3);
-        ImageIcon icon = null; //definir a imagem do clã
+        ImageIcon icon = null; //definir a imagem do cla
         clan.setIcon(icon);
         clan.setCastles(castles);
     }

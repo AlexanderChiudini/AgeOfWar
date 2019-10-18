@@ -22,7 +22,7 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
         clan.setName("Chosokabe");
         clan.setIsConquered(false);
         clan.setPoints(4);
-        ImageIcon icon = null; //definir a imagem do clã
+        ImageIcon icon = null; //definir a imagem do cla
         clan.setIcon(icon);
         clan.setCastles(castles);
     }

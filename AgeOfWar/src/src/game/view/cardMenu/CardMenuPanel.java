@@ -3,8 +3,6 @@ package src.game.view.cardMenu;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import src.game.controller.GameControllerInterface;
@@ -42,8 +40,6 @@ public class CardMenuPanel extends JPanel{
     }
 
     private void initComponents() {
-//        imagePanel = new BackgroundPanel(gameController.getImageCastle(0));
-//        imagePanel.setPreferredSize(new Dimension(261, 261));
         imagePanel = new JPanel();
         imagePanel.setOpaque(false);
         
@@ -62,7 +58,4 @@ public class CardMenuPanel extends JPanel{
         add(playCardPanel);
     }
     
-//    public void diceListImg(List<ImageIcon> diceImg) {
-//        playCardPanel.drawDiceResult(diceImg);
-//    }
 }

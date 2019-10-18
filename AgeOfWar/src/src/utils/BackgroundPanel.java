@@ -12,10 +12,6 @@ public class BackgroundPanel extends JPanel {
        img = new ImageIcon(imagePath);
     }
     
-//    public BackgroundPanel(ImageIcon imagePath){
-//        this.img = imagePath;
-//    }
-    
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);

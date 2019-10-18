@@ -22,7 +22,7 @@ public class BuilderClanMori extends AbstractBuilderClan {
         clan.setName("Mori");
         clan.setIsConquered(false);
         clan.setPoints(5);
-        ImageIcon icon = null; //definir a imagem do clã
+        ImageIcon icon = null; //definir a imagem do cla
         clan.setIcon(icon);
         clan.setCastles(castles);
     }
