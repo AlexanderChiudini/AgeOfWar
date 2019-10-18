@@ -3,6 +3,7 @@ package src.game.view.cardMenu;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -29,7 +30,7 @@ public class CardBattleLinePanel extends JPanel{
     }
 
     private void defineProperties() {
-//        setLayout(new GridLayout(1,2));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
     private void initComponents() {
@@ -47,7 +48,11 @@ public class CardBattleLinePanel extends JPanel{
             battleButton = new JRadioButton();
             battleButton.setText(str);
             buttonGroup.add(battleButton);
+            add(battleButton);
         }
+        
+//buttonGroup.add(new JRadioButton("teste1"));
+//buttonGroup.add(new JRadioButton("teste2"));
+//buttonGroup.add(new JRadioButton("teste3"));
     }
-    
 }

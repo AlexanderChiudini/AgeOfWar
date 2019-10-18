@@ -62,7 +62,7 @@ public class GameController implements GameControllerInterface {
         draft = new Random();
         classicClan = new ClassicClan();
         naruto = new NarutoController(instance);
-        
+
     }
 
     @Override
@@ -150,7 +150,7 @@ public class GameController implements GameControllerInterface {
     public void createPlayers(Player player1, Player player2) {
         player1.setPoints(0);
         player2.setPoints(0);
-        
+
         this.player1 = player1;
         this.player2 = player2;
         notifyPlayersCreated();
@@ -164,19 +164,18 @@ public class GameController implements GameControllerInterface {
         } else {
             name = player2.getName();
         }
-        
+
         notifyPlayerName(name);
     }
 
     @Override
     public void goGameFrame() {
-        
+
     }
-    
-    
+
     @Override
     public void playerPoint() {
-        if(turnPlayer){
+        if (turnPlayer) {
             notifyPlayerPoint(player1.getPoints());
         }
     }
@@ -210,14 +209,13 @@ public class GameController implements GameControllerInterface {
             obs.openCardFrame();
         }
     }
-    
-    
+
     private void notifyPlayerName(String name) {
         for (GameControllerObservers obs : observers) {
             obs.getPlayerName(name);
         }
     }
-    
+
     private void notifyPlayersCreated() {
         for (GameControllerObservers obs : observers) {
             obs.playersCreated();
@@ -355,7 +353,7 @@ public class GameController implements GameControllerInterface {
             for (Dice dice : player1.getDice()) {
                 imgList.add(dice.getDado());
             }
-        }else{
+        } else {
             for (Dice dice : player2.getDice()) {
                 imgList.add(dice.getDado());
             }
@@ -372,7 +370,7 @@ public class GameController implements GameControllerInterface {
         } else {
             name = player2.getName();
         }
-        
+
         return name;
     }
 
