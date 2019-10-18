@@ -167,6 +167,11 @@ public class GameController implements GameControllerInterface {
         
         notifyPlayerName(name);
     }
+
+    @Override
+    public void goGameFrame() {
+        
+    }
     
     
     @Override
