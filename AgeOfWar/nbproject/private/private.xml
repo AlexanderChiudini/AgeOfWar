@@ -3,26 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/scr/core/model/Clan.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/scr/core/model/Dice.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/scr/core/builder/BuilderClanTokugawa.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/scr/core/builder/Director.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/src/game/controller/GameController.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/src/game/view/GameFrame.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/src/game/view/gameBoard/CardsBoardPanel.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/scr/core/model/Castle.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/scr/core/builder/BuilderClanUesugi.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/src/game/view/gameBoard/GameBoardPanel.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/scr/core/builder/BuilderClanMori.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/scr/core/builder/BuilderClanShimazu.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/scr/core/builder/BuilderClanChosokabe.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/src/core/view/MainFrame.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/scr/core/builder/BuilderClanOda.java</file>
-        </group>
-        <group>
             <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/src/game/view/cardMenu/CardBattleLinePanel.java</file>
             <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/src/game/controller/GameController.java</file>
             <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/scr/core/model/Castle.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/Alexander%20Chiudini/Documents/GitHub/AgeOfWar/AgeOfWar/src/src/utils/adapter/TecFileForObject.java</file>
+            <file>file:/C:/Users/Alexander%20Chiudini/Documents/GitHub/AgeOfWar/AgeOfWar/src/src/game/controller/GameController.java</file>
+            <file>file:/C:/Users/Alexander%20Chiudini/Documents/GitHub/AgeOfWar/AgeOfWar/src/src/utils/adapter/AcmeForObject.java</file>
+            <file>file:/C:/Users/Alexander%20Chiudini/Documents/GitHub/AgeOfWar/AgeOfWar/src/src/game/controller/Adapter.properties</file>
+            <file>file:/C:/Users/Alexander%20Chiudini/Documents/GitHub/AgeOfWar/AgeOfWar/src/src/utils/adapter/Adapter.java</file>
         </group>
     </open-files>
 </project-private>

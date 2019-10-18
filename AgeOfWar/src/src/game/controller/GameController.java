@@ -1,8 +1,13 @@
 package src.game.controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import scr.core.builder.BuilderClanChosokabe;
 import scr.core.builder.BuilderClanMori;
@@ -17,12 +22,14 @@ import scr.core.model.Clan;
 import scr.core.model.Dice;
 import scr.core.model.Player;
 import src.core.controller.NarutoController;
+import src.utils.adapter.AcmeForObject;
+import src.utils.adapter.Adapter;
+import src.utils.adapter.TecFileForObject;
 
 public class GameController implements GameControllerInterface {
 
     private List<GameControllerObservers> observers;
     private List<Dice> diceList;
-//    private List<Dice> rollingDiceList;
     private List<Clan> clanGlobalList = new ArrayList<>();
     private Random draft;
     private int diceChanges = 7;
@@ -42,6 +49,9 @@ public class GameController implements GameControllerInterface {
 
     private Castle cardCastle;
 
+    private Adapter acme;
+    private Adapter tecFile;
+    
     private static GameController instance;
 
     public static synchronized GameController getInstance() {
@@ -58,18 +68,31 @@ public class GameController implements GameControllerInterface {
     private void init() {
         observers = new ArrayList<>();
         diceList = new ArrayList<>();
-//        rollingDiceList = new ArrayList<>();
         draft = new Random();
         classicClan = new ClassicClan();
-        naruto = new NarutoController(instance);
-        
-    }
+        naruto = new NarutoController(this);
+    } 
 
     @Override
     public void gameStart(Player player1, Player player2) {
         createPlayers(player1, player2);
         createDiceList();
         initComponents();
+
+        acme = new AcmeForObject("");
+        tecFile = new TecFileForObject();
+        
+        try {
+            if(getProp().equals("1")) {
+                acme.savePlayer( playerText(), playerPoints(), playerCastles(), "acme.xml");
+            }
+            else {
+                tecFile.savePlayer(playerText(), playerPoints(), playerCastles(), "tecFile.txt");
+            }
+        }
+        catch (IOException ex) {
+            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -370,6 +393,28 @@ public class GameController implements GameControllerInterface {
         
         return name;
     }
+    
+    public int playerPoints() {
+        int pontos = 0;
+        if (turnPlayer) {
+            pontos = player1.getPoints();
+        } else {
+            pontos = player2.getPoints();
+        }
+        
+        return pontos;
+    }
+    
+    public List<Castle> playerCastles() {
+        List<Castle> catelos;
+        if (turnPlayer) {
+            catelos = player1.getConqueredCastle();
+        } else {
+            catelos = player2.getConqueredCastle();
+        }
+        
+        return catelos;
+    }
 
     @Override
     public List<String> getCastleBL() {
@@ -379,4 +424,12 @@ public class GameController implements GameControllerInterface {
         }
         return bl;
     }
+    
+    public static String getProp() throws IOException {
+        Properties props = new Properties();
+        FileInputStream file = new FileInputStream("C:\\Users\\Alexander Chiudini\\Documents\\GitHub\\AgeOfWar\\AgeOfWar\\src\\src\\game\\controller\\Adapter.properties");
+        props.load(file);
+        return props.getProperty("tipo");
+    }
+    
 }
