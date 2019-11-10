@@ -3,6 +3,8 @@ package core.controller;
 import java.util.ArrayList;
 import java.util.List;
 import core.model.Player;
+import core.state.Aguardando;
+import core.state.Jogando;
 import game.controller.GameController;
 import game.controller.GameControllerInterface;
 
@@ -12,6 +14,8 @@ public class MainController implements MainControllerInterface {
     private List<MainControllerObserver> observers;
     private Player player1;
     private Player player2;
+    
+    private GameControllerInterface gameController;
 
     public static MainControllerInterface getInstance() {
         if (instance == null) {
@@ -22,26 +26,23 @@ public class MainController implements MainControllerInterface {
 
     private MainController() {
         observers = new ArrayList<>();
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new Player("Jogador 1", 0, new Jogando(player1));
+        player2 = new Player("Jogador 2", 0, new Aguardando(player2));
     }
     
     @Override
     public void setPlayer1(String name){
-        if(name == "" || name.isEmpty()){
-            name = "Jogador 1";
+        if(name != "" || !name.isEmpty()){
+            this.player1.setName(name);
         }
-        
-        this.player1.setName(name);
     }
     
     @Override
     public void setPlayer2(String name){
-        if(name == "" || name.isEmpty()){
-            name = "Jogador 2";
+        if(name != "" || !name.isEmpty()){
+            this.player2.setName(name);
         }
         
-        this.player2.setName(name);
     }
 
     @Override
@@ -87,7 +88,7 @@ public class MainController implements MainControllerInterface {
     
     @Override
     public void gameStart() {
-        GameControllerInterface gameController = new GameController();
+        gameController = GameController.getInstance();
         gameController.gameStart(player1, player2);
         notifyLoadingGame(gameController);
     }

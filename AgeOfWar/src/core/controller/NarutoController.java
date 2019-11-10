@@ -4,6 +4,7 @@ import java.util.List;
 import core.model.Castle;
 import core.model.Clan;
 import core.model.Player;
+import core.state.Aguardando;
 import game.controller.GameController;
 
 public class NarutoController {
@@ -13,8 +14,7 @@ public class NarutoController {
     
     public NarutoController(GameController gameController) {
         this.gameController = gameController;
-        this.naruto = new Player();
-        naruto.setName("Naruto Uzumaki");
+        this.naruto = new Player("Naruto Uzumaki", 0, new Aguardando(naruto));
     }
 
     /**
