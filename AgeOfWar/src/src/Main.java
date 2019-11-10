@@ -1,6 +1,6 @@
 package src;
 
-import src.core.view.MainFrame;
+import core.view.MainFrame;
 
 public class Main implements Runnable {
 

@@ -1,7 +1,7 @@
 package core.builder;
 
-import scr.core.model.Castle;
-import scr.core.model.Clan;
+import core.model.Castle;
+import core.model.Clan;
 
 public abstract class AbstractBuilderClan {
     

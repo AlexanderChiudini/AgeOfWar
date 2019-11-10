@@ -1,6 +1,6 @@
 package core.builder;
 
-import scr.core.model.Clan;
+import core.model.Clan;
 
 public class Director {
     

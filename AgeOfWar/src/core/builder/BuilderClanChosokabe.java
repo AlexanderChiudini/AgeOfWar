@@ -3,10 +3,10 @@ package core.builder;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
-import scr.core.factory.AbstractFactoryCastle;
-import scr.core.factory.ClassicCastle;
-import scr.core.model.Castle;
-import scr.core.model.Clan;
+import core.factory.AbstractFactoryCastle;
+import core.factory.ClassicCastle;
+import core.model.Castle;
+import core.model.Clan;
 
 public class BuilderClanChosokabe extends AbstractBuilderClan {
 
