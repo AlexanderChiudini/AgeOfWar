@@ -1,4 +1,4 @@
-package scr.core.builder;
+package core.builder;
 
 import java.util.ArrayList;
 import java.util.List;

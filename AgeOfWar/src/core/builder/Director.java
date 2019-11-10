@@ -1,4 +1,4 @@
-package scr.core.builder;
+package core.builder;
 
 import scr.core.model.Clan;
 

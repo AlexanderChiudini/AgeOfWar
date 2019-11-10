@@ -1,8 +1,9 @@
-package scr.core.builder;
+package core.builder;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
+import scr.core.factory.AbstractFactoryCastle;
 import scr.core.factory.ClassicCastle;
 import scr.core.model.Castle;
 import scr.core.model.Clan;
@@ -11,6 +12,12 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
 
     private Clan clan;
     private List<Castle> castles = new ArrayList<>();
+
+    private AbstractFactoryCastle createCastle;
+
+    public BuilderClanChosokabe() {
+        createCastle = new ClassicCastle();
+    }    
 
     @Override
     public void reset() {
