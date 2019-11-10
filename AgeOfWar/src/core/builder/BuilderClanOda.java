@@ -21,7 +21,7 @@ public class BuilderClanOda extends AbstractBuilderClan{
     public void createClan() {
         clan.setName("Oda");
         clan.setPoints(10);
-        ImageIcon icon = new ImageIcon("image/cartas/cla_oda/carta_oda_cla.png"); //definir a imagem do clã
+        ImageIcon icon = new ImageIcon("image/cartas/cla_oda/carta_oda_cla.png"); //definir a imagem do cla
         clan.setIcon(icon);
         clan.setCastles(castles);
     }

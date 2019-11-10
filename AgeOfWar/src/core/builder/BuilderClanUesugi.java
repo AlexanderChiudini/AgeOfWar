@@ -22,7 +22,7 @@ public class BuilderClanUesugi extends AbstractBuilderClan {
         clan.setName("Uesugi");
         clan.setIsConquered(false);
         clan.setPoints(8);
-        ImageIcon icon = null; //definir a imagem do clã
+        ImageIcon icon = null; //definir a imagem do cla
         clan.setIcon(icon);
         clan.setCastles(castles);
     }

@@ -1,6 +1,5 @@
 package src;
 
-import src.core.controller.NarutoController;
 import src.core.view.MainFrame;
 
 public class Main implements Runnable {

@@ -70,6 +70,7 @@ public class GameController implements GameControllerInterface {
         diceList = new ArrayList<>();
         draft = new Random();
         classicClan = new ClassicClan();
+
         naruto = new NarutoController(this);
     } 
 
@@ -134,7 +135,6 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public void openCard(String clanName, int position) {
-//        Castle castle = ClassicCastle.getInstance().createCastle();
 
         switch (clanName) {
             case "chosokabe":
@@ -173,7 +173,7 @@ public class GameController implements GameControllerInterface {
     public void createPlayers(Player player1, Player player2) {
         player1.setPoints(0);
         player2.setPoints(0);
-        
+
         this.player1 = player1;
         this.player2 = player2;
         notifyPlayersCreated();
@@ -187,19 +187,18 @@ public class GameController implements GameControllerInterface {
         } else {
             name = player2.getName();
         }
-        
+
         notifyPlayerName(name);
     }
 
     @Override
     public void goGameFrame() {
-        
+
     }
-    
-    
+
     @Override
     public void playerPoint() {
-        if(turnPlayer){
+        if (turnPlayer) {
             notifyPlayerPoint(player1.getPoints());
         }
     }
@@ -233,14 +232,13 @@ public class GameController implements GameControllerInterface {
             obs.openCardFrame();
         }
     }
-    
-    
+
     private void notifyPlayerName(String name) {
         for (GameControllerObservers obs : observers) {
             obs.getPlayerName(name);
         }
     }
-    
+
     private void notifyPlayersCreated() {
         for (GameControllerObservers obs : observers) {
             obs.playersCreated();
@@ -378,7 +376,7 @@ public class GameController implements GameControllerInterface {
             for (Dice dice : player1.getDice()) {
                 imgList.add(dice.getDado());
             }
-        }else{
+        } else {
             for (Dice dice : player2.getDice()) {
                 imgList.add(dice.getDado());
             }
@@ -395,7 +393,7 @@ public class GameController implements GameControllerInterface {
         } else {
             name = player2.getName();
         }
-        
+
         return name;
     }
     
@@ -424,15 +422,21 @@ public class GameController implements GameControllerInterface {
     @Override
     public List<String> getCastleBL() {
         List<String> bl = new ArrayList<>();
+        String test = "[";
         for(int i = 0; i < cardCastle.getBattleLine().size(); i++){
-           bl = cardCastle.getBattleLine().get(i);
+            for(int j = 0; j < cardCastle.getBattleLine().get(i).size();j++){
+                test += cardCastle.getBattleLine().get(i).get(j)+",";
+            }
+            test += "]";
+           bl.add(test);
+           test = "[";
         }
         return bl;
     }
     
     public static String getProp() throws IOException {
         Properties props = new Properties();
-        FileInputStream file = new FileInputStream("C:\\Users\\Alexander Chiudini\\Documents\\GitHub\\AgeOfWar\\AgeOfWar\\src\\src\\game\\controller\\Adapter.properties");
+        FileInputStream file = new FileInputStream("src\\src\\game\\controller\\Adapter.properties");
         props.load(file);
         return props.getProperty("tipo");
     }
