@@ -23,7 +23,7 @@ public class PlayCardPanel extends JPanel {
     private GameFrame gameFrame;
     private JPanel playerPanel;
     private JPanel dicePanel;
-    private JPanel possiblePanel;
+    private CardBattleLinePanel possiblePanel;
     private JPanel conquerorsPanel;
     private JPanel doPanel;
 
@@ -32,6 +32,8 @@ public class PlayCardPanel extends JPanel {
     private JButton cancelButton;
 
     private JLabel diceLabel;
+    private JButton btnDice;
+    private List<JButton> btnList;
     private List<ImageIcon> diceImg;
 
     public PlayCardPanel(GameControllerInterface gameController, CardCastleFrame cardFrame,GameFrame gameFrame) {
@@ -59,6 +61,13 @@ public class PlayCardPanel extends JPanel {
 
         playButton = new JButton("Jogar");
         playButton.setBackground(Color.RED);
+        playButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String str = possiblePanel.battleLineCheck();
+                gameController.checkMatch(str);
+            }
+        });
 
         cancelButton = new JButton("Cancelar");
         cancelButton.setBackground(Color.GREEN);

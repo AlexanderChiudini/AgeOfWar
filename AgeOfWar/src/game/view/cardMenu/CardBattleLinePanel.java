@@ -47,7 +47,19 @@ public class CardBattleLinePanel extends JPanel{
             battleButton = new JRadioButton();
             battleButton.setText(str);
             buttonGroup.add(battleButton);
+            radioButtonList.add(battleButton);
             add(battleButton);
         }
+    }
+    
+    public String battleLineCheck(){
+        String str = null;
+        
+        for(JRadioButton b : radioButtonList){
+            if(b.isSelected()){
+                str = b.getText();
+            }
+        }
+        return str;
     }
 }

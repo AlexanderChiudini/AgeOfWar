@@ -433,10 +433,35 @@ public class GameController implements GameControllerInterface {
         }
         return bl;
     }
+
+    @Override
+    public void checkMatch(String str) {
+//        String aux = "";
+//        if(turnPlayer){
+//            for(Dice d : player1.getDice()){
+//                aux += d.getBattleLine()+" ";
+//            }
+//        }
+//        
+//        str = str.replace("[", "");
+//        str = str.replace("]", "");
+//        String[] arrayStr = str.split(",");
+//        
+//        String[] array = aux.split(" ");
+//        for(int i = 0; i < array.length; i++){
+//            array[i] = array[i].replace("[", "");
+//            array[i] = array[i].replace("]", "");
+//        }
+//        
+//        
+//        for(int i = 0; i < aux.length(); i++){
+//            
+//        }
+    }
     
     public static String getProp() throws IOException {
         Properties props = new Properties();
-        FileInputStream file = new FileInputStream("src\\src\\game\\controller\\Adapter.properties");
+        FileInputStream file = new FileInputStream("src\\game\\controller\\Adapter.properties");
         props.load(file);
         return props.getProperty("tipo");
     }
