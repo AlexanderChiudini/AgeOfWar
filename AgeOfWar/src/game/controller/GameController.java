@@ -22,6 +22,8 @@ import core.model.Clan;
 import core.model.Dice;
 import core.model.Player;
 import core.controller.NarutoController;
+import core.factory.AbstractFactoryClan;
+import core.visitor.PlayerVisitor;
 import utils.adapter.AcmeForObject;
 import utils.adapter.Adapter;
 import utils.adapter.TecFileForObject;
@@ -33,7 +35,6 @@ public class GameController implements GameControllerInterface {
     private List<Clan> clanGlobalList = new ArrayList<>();
     private Random draft;
     private int diceChanges = 7;
-    private boolean turnPlayer = true;
 
     private Clan chosokabeClan;
     private Clan moriClan;
@@ -41,7 +42,7 @@ public class GameController implements GameControllerInterface {
     private Clan tokugawaClan;
     private Clan uesugiClan;
     private Clan odaClan;
-    private ClassicClan classicClan;
+    private AbstractFactoryClan classicClan;
 
     private Player player1;
     private Player player2;
@@ -52,6 +53,8 @@ public class GameController implements GameControllerInterface {
     private Adapter acme;
     private Adapter tecFile;
     
+    private PlayerVisitor visitor;
+    
     private static GameController instance;
 
     public static synchronized GameController getInstance() {
@@ -61,7 +64,7 @@ public class GameController implements GameControllerInterface {
         return instance;
     }
 
-    public GameController() {
+    private GameController() {
         init();
     }
 
@@ -70,6 +73,7 @@ public class GameController implements GameControllerInterface {
         diceList = new ArrayList<>();
         draft = new Random();
         classicClan = new ClassicClan();
+        visitor = new PlayerVisitor();
 
         naruto = new NarutoController(this);
     } 
@@ -118,18 +122,23 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public void rollingDice() {
+        Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
         List<ImageIcon> diceImg = new ArrayList<>();
-        if (turnPlayer) {
-            if (!player1.getDice().isEmpty()) {
-                player1.getDice().clear();
-            }
-            for (int i = 0; i < diceChanges; i++) {
-                Dice diceBasic = diceList.get(draft.nextInt(diceList.size()));
-                player1.pushDice(diceBasic);
-                diceImg.add(player1.getDice().get(i).getDado());
-            }
-        }
 
+        if (!player.getDice().isEmpty()) {
+            player.getDice().clear();
+        }
+        for (int i = 0; i < diceChanges; i++) {
+            Dice diceBasic = diceList.get(draft.nextInt(diceList.size()));
+            player.pushDice(diceBasic);
+            diceImg.add(player.getDice().get(i).getDado());
+        }
+        try {
+            player.accept(visitor);
+        } catch (Exception ex) {
+            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         notifyRollingDice(diceImg);
     }
 
@@ -171,9 +180,6 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public void createPlayers(Player player1, Player player2) {
-        player1.setPoints(0);
-        player2.setPoints(0);
-
         this.player1 = player1;
         this.player2 = player2;
         notifyPlayersCreated();
@@ -181,13 +187,8 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public void playerName() {
-        String name = "";
-        if (turnPlayer) {
-            name = player1.getName();
-        } else {
-            name = player2.getName();
-        }
-
+        Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
+        String name = player.getName();
         notifyPlayerName(name);
     }
 
@@ -198,9 +199,8 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public void playerPoint() {
-        if (turnPlayer) {
-            notifyPlayerPoint(player1.getPoints());
-        }
+        Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
+        notifyPlayerPoint(player.getPoints());
     }
 
     private void notifyNextCardsBoard() {
@@ -372,14 +372,8 @@ public class GameController implements GameControllerInterface {
     public List<ImageIcon> playerDiceImg() {
         List<ImageIcon> imgList = new ArrayList<>();
 
-        if (turnPlayer) {
-            for (Dice dice : player1.getDice()) {
-                imgList.add(dice.getDado());
-            }
-        } else {
-            for (Dice dice : player2.getDice()) {
-                imgList.add(dice.getDado());
-            }
+        for (Dice dice : visitor.getDice()) {
+            imgList.add(dice.getDado());
         }
 
         return imgList;
@@ -387,36 +381,18 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public String playerText() {
-        String name;
-        if (turnPlayer) {
-            name = player1.getName();
-        } else {
-            name = player2.getName();
-        }
-
-        return name;
+        Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
+        return player.getName();
     }
     
     public int playerPoints() {
-        int pontos = 0;
-        if (turnPlayer) {
-            pontos = player1.getPoints();
-        } else {
-            pontos = player2.getPoints();
-        }
-        
-        return pontos;
+        Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
+        return player.getPoints();
     }
     
     public List<Castle> playerCastles() {
-        List<Castle> catelos;
-        if (turnPlayer) {
-            catelos = player1.getConqueredCastle();
-        } else {
-            catelos = player2.getConqueredCastle();
-        }
-        
-        return catelos;
+        Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
+        return player.getConqueredCastle();
     }
 
     @Override
@@ -436,7 +412,7 @@ public class GameController implements GameControllerInterface {
     
     public static String getProp() throws IOException {
         Properties props = new Properties();
-        FileInputStream file = new FileInputStream("src\\src\\game\\controller\\Adapter.properties");
+        FileInputStream file = new FileInputStream("src\\game\\controller\\Adapter.properties");
         props.load(file);
         return props.getProperty("tipo");
     }
