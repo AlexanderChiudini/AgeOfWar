@@ -24,6 +24,7 @@ import core.model.Player;
 import core.controller.NarutoController;
 import core.factory.AbstractFactoryClan;
 import core.visitor.PlayerVisitor;
+import java.util.Arrays;
 import utils.adapter.AcmeForObject;
 import utils.adapter.Adapter;
 import utils.adapter.TecFileForObject;
@@ -35,6 +36,7 @@ public class GameController implements GameControllerInterface {
     private List<Clan> clanGlobalList = new ArrayList<>();
     private Random draft;
     private int diceChanges = 7;
+    private boolean subtract = false;
 
     private Clan chosokabeClan;
     private Clan moriClan;
@@ -52,9 +54,9 @@ public class GameController implements GameControllerInterface {
 
     private Adapter acme;
     private Adapter tecFile;
-    
+
     private PlayerVisitor visitor;
-    
+
     private static GameController instance;
 
     public static synchronized GameController getInstance() {
@@ -76,7 +78,7 @@ public class GameController implements GameControllerInterface {
         visitor = new PlayerVisitor();
 
         naruto = new NarutoController(this);
-    } 
+    }
 
     @Override
     public void gameStart(Player player1, Player player2) {
@@ -86,16 +88,14 @@ public class GameController implements GameControllerInterface {
 
         acme = new AcmeForObject("");
         tecFile = new TecFileForObject();
-        
+
         try {
-            if(getProp().equals("1")) {
-                acme.savePlayer( playerText(), playerPoints(), playerCastles(), "acme.xml");
-            }
-            else {
+            if (getProp().equals("1")) {
+                acme.savePlayer(playerText(), playerPoints(), playerCastles(), "acme.xml");
+            } else {
                 tecFile.savePlayer(playerText(), playerPoints(), playerCastles(), "tecFile.txt");
             }
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -122,6 +122,11 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public void rollingDice() {
+        if (this.subtract) {
+            notifyClearDices();
+            diceChanges--;
+        }
+
         Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
         List<ImageIcon> diceImg = new ArrayList<>();
 
@@ -138,36 +143,100 @@ public class GameController implements GameControllerInterface {
         } catch (Exception ex) {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+        this.subtract = true;
         notifyRollingDice(diceImg);
     }
 
     @Override
     public void openCard(String clanName, int position) {
+        Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
+        boolean aux = false;
+        String cName = "";
 
         switch (clanName) {
             case "chosokabe":
-                cardCastle = chosokabeClan.getCastle(position);
+                for (Castle c : player.getConqueredCastle()) {
+                    if (c.getCastleName().equals(chosokabeClan.getCastle(position).getCastleName())) {
+                        aux = true;
+                        cName = chosokabeClan.getCastle(position).getCastleName();
+                    }
+                }
+                if (!aux) {
+                    cardCastle = chosokabeClan.getCastle(position);
+                } else {
+                    cardCastle = player.getCastle(cName);
+                }
                 notifyOpenCard();
                 break;
             case "mori":
-                cardCastle = moriClan.getCastle(position);
+                for (Castle c : player.getConqueredCastle()) {
+                    if (c.getCastleName().equals(moriClan.getCastle(position).getCastleName())) {
+                        aux = true;
+                        cName = moriClan.getCastle(position).getCastleName();
+                    }
+                }
+                if (!aux) {
+                    cardCastle = moriClan.getCastle(position);
+                } else {
+                    cardCastle = player.getCastle(cName);
+                }
                 notifyOpenCard();
                 break;
             case "shimazu":
-                cardCastle = shimazuClan.getCastle(position);
+                for (Castle c : player.getConqueredCastle()) {
+                    if (c.getCastleName().equals(shimazuClan.getCastle(position).getCastleName())) {
+                        aux = true;
+                        cName = shimazuClan.getCastle(position).getCastleName();
+                    }
+                }
+                if (!aux) {
+                    cardCastle = shimazuClan.getCastle(position);
+                } else {
+                    cardCastle = player.getCastle(cName);
+                }
                 notifyOpenCard();
                 break;
             case "tokugawa":
-                cardCastle = tokugawaClan.getCastle(position);
+                for (Castle c : player.getConqueredCastle()) {
+                    if (c.getCastleName().equals(tokugawaClan.getCastle(position).getCastleName())) {
+                        aux = true;
+                        cName = tokugawaClan.getCastle(position).getCastleName();
+                    }
+                }
+                if (!aux) {
+                    cardCastle = tokugawaClan.getCastle(position);
+                } else {
+                    cardCastle = player.getCastle(cName);
+                }
                 notifyOpenCard();
                 break;
             case "uesugi":
-                cardCastle = uesugiClan.getCastle(position);
+                for (Castle c : player.getConqueredCastle()) {
+                    if (c.getCastleName().equals(uesugiClan.getCastle(position).getCastleName())) {
+                        aux = true;
+                        cName = uesugiClan.getCastle(position).getCastleName();
+                    }
+                }
+                if (!aux) {
+                    cardCastle = uesugiClan.getCastle(position);
+                } else {
+                    cardCastle = player.getCastle(cName);
+                }
                 notifyOpenCard();
                 break;
             case "oda":
-                cardCastle = odaClan.getCastle(position);
+                for (Castle c : player.getConqueredCastle()) {
+                    if (c.getCastleName().equals(odaClan.getCastle(position).getCastleName())) {
+                        aux = true;
+                        cName = odaClan.getCastle(position).getCastleName();
+                    }
+                }
+                if (!aux) {
+                    cardCastle = odaClan.getCastle(position);
+                } else {
+                    cardCastle = player.getCastle(cName);
+                }
                 notifyOpenCard();
                 break;
         }
@@ -248,6 +317,24 @@ public class GameController implements GameControllerInterface {
     private void notifyPlayerPoint(int points) {
         for (GameControllerObservers obs : observers) {
             obs.playersPoint(points);
+        }
+    }
+
+    private void notifyUpdateCardMenu() {
+        for (GameControllerObservers obs : observers) {
+            obs.updateCardMenu();
+        }
+    }
+
+    private void notifyClearDices() {
+        for (GameControllerObservers obs : observers) {
+            obs.clearDiceList();
+        }
+    }
+
+    private void notifyWarningAlert(String message, String title) {
+        for (GameControllerObservers obs : observers) {
+            obs.warningAlert(message, title);
         }
     }
 
@@ -384,12 +471,12 @@ public class GameController implements GameControllerInterface {
         Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
         return player.getName();
     }
-    
+
     public int playerPoints() {
         Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
         return player.getPoints();
     }
-    
+
     public List<Castle> playerCastles() {
         Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
         return player.getConqueredCastle();
@@ -399,47 +486,138 @@ public class GameController implements GameControllerInterface {
     public List<String> getCastleBL() {
         List<String> bl = new ArrayList<>();
         String test = "[";
-        for(int i = 0; i < cardCastle.getBattleLine().size(); i++){
-            for(int j = 0; j < cardCastle.getBattleLine().get(i).size();j++){
-                test += cardCastle.getBattleLine().get(i).get(j)+",";
+        if (cardCastle.getBattleLine().isEmpty()) {
+            bl = null;
+        } else {
+            for (int i = 0; i < cardCastle.getBattleLine().size(); i++) {
+                for (int j = 0; j < cardCastle.getBattleLine().get(i).size(); j++) {
+                    test += cardCastle.getBattleLine().get(i).get(j) + ",";
+                }
+                test += "]";
+                bl.add(test);
+                test = "[";
             }
-            test += "]";
-           bl.add(test);
-           test = "[";
         }
         return bl;
     }
 
     @Override
-    public void checkMatch(String str) {
-//        String aux = "";
-//        if(turnPlayer){
-//            for(Dice d : player1.getDice()){
-//                aux += d.getBattleLine()+" ";
-//            }
-//        }
-//        
-//        str = str.replace("[", "");
-//        str = str.replace("]", "");
-//        String[] arrayStr = str.split(",");
-//        
-//        String[] array = aux.split(" ");
-//        for(int i = 0; i < array.length; i++){
-//            array[i] = array[i].replace("[", "");
-//            array[i] = array[i].replace("]", "");
-//        }
-//        
-//        
-//        for(int i = 0; i < aux.length(); i++){
-//            
-//        }
+    public void addPlayerChooseDice(int indice) {
+        Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
+
+        Dice aux = player.getDice().get(indice);
+        boolean b = true;
+        for (Dice d : player.getChooseDice()) {
+            if (d == aux) {
+                b = false;
+            }
+        }
+        if (b) {
+            player.addChooseDice(aux);
+        } else {
+            player.removeChooseDice(aux);
+        }
     }
-    
+
+    @Override
+    public void checkMatch(List<String> str, List<Integer> indices) {
+        Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
+
+        int daimyo = 0;
+        int archery = 0;
+        int sword = 0;
+        int cavalry = 0;
+        for (String s : str) {
+            String[] array = s.split(",");
+            for (String st : array) {
+                if (st.indexOf("daimyo") >= 0) {
+                    daimyo++;
+                }
+                if (st.indexOf("archery") >= 0) {
+                    archery++;
+                }
+                if (st.indexOf("sword") >= 0) {
+                    sword++;
+                }
+                if (st.indexOf("cavalry") >= 0) {
+                    cavalry++;
+                }
+            }
+        }
+
+        int daimyo2 = 0;
+        int archery2 = 0;
+        int sword2 = 0;
+        int cavalry2 = 0;
+        for (Dice d : player.getChooseDice()) {
+            for (String s : d.getBattleLine()) {
+                if (s.indexOf("daimyo") >= 0) {
+                    daimyo2++;
+                }
+                if (s.indexOf("archery") >= 0) {
+                    archery2++;
+                }
+                if (s.indexOf("sword") >= 0) {
+                    sword2++;
+                }
+                if (s.indexOf("cavalry") >= 0) {
+                    cavalry2++;
+                }
+            }
+        }
+
+        System.out.println(
+                "daimyo: "+daimyo + "\n"+
+                "archery: "+archery + "\n"+
+                "sword: "+sword + "\n"+
+                "cavalry: "+cavalry + "\n"
+        );
+        
+        System.out.println(
+                "daimyo2: "+daimyo2 + "\n"+
+                "archery2: "+archery2 + "\n"+
+                "sword2: "+sword2 + "\n"+
+                "cavalry2: "+cavalry2 + "\n"
+        );
+
+        if (daimyo <= daimyo2 && archery <= archery2 && sword <= sword2 && cavalry <= cavalry2) {
+            makeItHappen(player, indices);
+            this.subtract = false;
+        } else {
+            notifyWarningAlert("Não foi possivel dominar as linhas de batalhas com os dados selecionados", "Falha em conquistar linhas de batalhas");
+        }
+    }
+
     public static String getProp() throws IOException {
         Properties props = new Properties();
         FileInputStream file = new FileInputStream("src\\game\\controller\\Adapter.properties");
         props.load(file);
         return props.getProperty("tipo");
     }
-    
+
+    private void makeItHappen(Player player, List<Integer> indices) {
+        player.removeDiceForChoose();
+
+        List<ImageIcon> diceImg = new ArrayList<>();
+
+        for (int i = 0; i < player.getDice().size(); i++) {
+            diceImg.add(player.getDice().get(i).getDado());
+        }
+
+        for (int i : indices) {
+            cardCastle.addConqueredLines(i);
+        }
+        player.addConqueredCastle(cardCastle);
+
+//        comentei por que não lembro o que faz
+//        try {
+//            player.accept(visitor);
+//        } catch (Exception ex) {
+//            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        this.subtract = false;
+        notifyClearDices();
+        notifyRollingDice(diceImg);
+        notifyUpdateCardMenu();
+    }
 }

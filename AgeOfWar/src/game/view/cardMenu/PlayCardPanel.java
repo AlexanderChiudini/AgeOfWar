@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import game.controller.GameControllerInterface;
 import game.view.CardCastleFrame;
 import game.view.GameFrame;
+import utils.DiceButton;
 
 public class PlayCardPanel extends JPanel {
 
@@ -32,8 +33,6 @@ public class PlayCardPanel extends JPanel {
     private JButton cancelButton;
 
     private JLabel diceLabel;
-    private JButton btnDice;
-    private List<JButton> btnList;
     private List<ImageIcon> diceImg;
 
     public PlayCardPanel(GameControllerInterface gameController, CardCastleFrame cardFrame,GameFrame gameFrame) {
@@ -64,8 +63,9 @@ public class PlayCardPanel extends JPanel {
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String str = possiblePanel.battleLineCheck();
-                gameController.checkMatch(str);
+                List<String> str = possiblePanel.battleLineCheck();
+                List<Integer> indices = possiblePanel.blCheckIndices();
+                gameController.checkMatch(str,indices);
             }
         });
 
@@ -106,10 +106,11 @@ public class PlayCardPanel extends JPanel {
 
     public void drawDiceResult() {
         for (int i = 0; i < this.diceImg.size(); i++) {
-            diceLabel = new JLabel();
-            diceLabel.setPreferredSize(new Dimension(10, 10));
-            diceLabel.setIcon(diceImg.get(i));
-            dicePanel.add(diceLabel);
+//            diceLabel = new JLabel();
+            JButton diceButton = new DiceButton(gameController,true,i);
+            diceButton.setPreferredSize(new Dimension(2, 2));
+            diceButton.setIcon(diceImg.get(i));
+            dicePanel.add(diceButton);
         }
     }
 

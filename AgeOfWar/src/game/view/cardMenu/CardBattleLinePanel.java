@@ -7,17 +7,19 @@ import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import game.controller.GameControllerInterface;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 
-public class CardBattleLinePanel extends JPanel{
-    
+public class CardBattleLinePanel extends JPanel {
+
     private GameControllerInterface gameController;
     private ButtonGroup buttonGroup;
-    private List<JRadioButton> radioButtonList;
-    private JRadioButton battleButton;
-    
+    private List<JCheckBox> buttonList;
+    private JCheckBox battleButton;
+
     private List<String> battleLine;
-    
-    public CardBattleLinePanel(GameControllerInterface gameController){
+
+    public CardBattleLinePanel(GameControllerInterface gameController) {
         this.gameController = gameController;
         init();
     }
@@ -35,31 +37,46 @@ public class CardBattleLinePanel extends JPanel{
     private void initComponents() {
         battleLine = new ArrayList<>();
         battleLine = gameController.getCastleBL();
-        
+
         buttonGroup = new ButtonGroup();
-        radioButtonList = new ArrayList<>();
-        
-        
+        buttonList = new ArrayList<>();
+
     }
 
     private void addComponents() {
-        for(String str : battleLine){
-            battleButton = new JRadioButton();
-            battleButton.setText(str);
-            buttonGroup.add(battleButton);
-            radioButtonList.add(battleButton);
-            add(battleButton);
+        if (battleLine != null) {
+            for (String str : battleLine) {
+                battleButton = new JCheckBox();
+                battleButton.setText(str);
+//            buttonGroup.add(battleButton);
+                buttonList.add(battleButton);
+                add(battleButton);
+            }
+        } else {
+            add(new JLabel("Castelo Conquistado"));
         }
     }
-    
-    public String battleLineCheck(){
-        String str = null;
-        
-        for(JRadioButton b : radioButtonList){
-            if(b.isSelected()){
-                str = b.getText();
+
+    public List<String> battleLineCheck() {
+        List<String> str = new ArrayList<>();
+
+        for (JCheckBox b : buttonList) {
+            if (b.isSelected()) {
+                str.add(b.getText());
             }
         }
         return str;
+    }
+
+    List<Integer> blCheckIndices() {
+        List<Integer> indices = new ArrayList<>();
+        
+        for(int i =0; i < buttonList.size(); i++){
+            if(buttonList.get(i).isSelected()){
+                indices.add(i);
+            }
+        }
+        
+        return indices;
     }
 }

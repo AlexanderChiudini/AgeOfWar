@@ -30,4 +30,10 @@ public interface GameControllerObservers {
     void playersCreated();
 
     void playersPoint(int points);
+
+    public void clearDiceList();
+
+    public void warningAlert(String message, String title);
+
+    public void updateCardMenu();
 }

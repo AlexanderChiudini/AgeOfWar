@@ -11,12 +11,14 @@ import game.controller.GameControllerInterface;
 import game.controller.GameControllerObservers;
 import game.view.CardCastleFrame;
 import game.view.GameFrame;
+import utils.Alerts;
 
 @SuppressWarnings("serial")
 public class GameBoardPanel extends JPanel implements GameControllerObservers{
 
     GameFrame gameFrame;
     private GameControllerInterface gameController;
+    CardCastleFrame castleFrame;
     private SlipBoardPanel slipBoard;
     private JPanel cardsBoard;
     private CardsBoardPanel chosokabeBoard;
@@ -110,7 +112,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
 
     @Override
     public void openCardFrame() {
-        CardCastleFrame castleFrame = new CardCastleFrame(this.gameController,gameFrame);
+        castleFrame = new CardCastleFrame(this.gameController,gameFrame);
         gameFrame.setEnabled(false);
         castleFrame.setVisible(true);
     }
@@ -129,6 +131,21 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
     @Override
     public void playersPoint(int points) {
         playerBoard.setPlayerPoint(points);
+    }
+
+    @Override
+    public void clearDiceList() {
+        diceBoard.clearDicerResult(7);
+    }
+
+    @Override
+    public void warningAlert(String message, String title) {
+        Alerts.getWarningAlert(message, title);
+    }
+
+    @Override
+    public void updateCardMenu() {
+        castleFrame.updateFrame();
     }
     
 }

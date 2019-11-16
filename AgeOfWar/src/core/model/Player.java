@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    
+
     private String name;
     private List<Castle> conqueredCastle = new ArrayList<>();
     private List<Dice> dice = new ArrayList<>(7);
+    private List<Dice> chooseDice = new ArrayList<>(7);
     private String[][] battleLine = new String[14][38];
     private int points;
     private EstadoJogo state;
@@ -19,11 +20,11 @@ public class Player {
         this.points = points;
         this.state = state;
     }
-    
+
     public void jogar() throws Exception {
         this.state.jogar();
     }
-    
+
     public int getPoints() {
         return points;
     }
@@ -47,6 +48,25 @@ public class Player {
     public void setConqueredCastle(List<Castle> conqueredCastle) {
         this.conqueredCastle = conqueredCastle;
     }
+    
+    public Castle getCastle(String name){
+        Castle castle = new Castle();
+        for(Castle c : conqueredCastle){
+            if(name.equals(c.getCastleName())){
+                castle = c;
+            }
+        }
+        
+        return castle;
+    }
+    
+    public void addConqueredCastle(Castle c){
+        this.conqueredCastle.add(c);
+    }
+    
+    public void removeConqueredCastle(Castle c){
+        this.conqueredCastle.remove(c);
+    }
 
     public List<Dice> getDice() {
         return dice;
@@ -55,8 +75,8 @@ public class Player {
     public void setDice(List<Dice> dice) {
         this.dice = dice;
     }
-    
-    public void pushDice(Dice dice){
+
+    public void pushDice(Dice dice) {
         this.dice.add(dice);
     }
 
@@ -68,6 +88,22 @@ public class Player {
         this.battleLine = teste;
     }
 
+    public void addChooseDice(Dice dice) {
+        this.chooseDice.add(dice);
+    }
+
+    public void removeChooseDice(Dice dice) {
+        this.chooseDice.remove(dice);
+    }
+
+    public void clearChooseDice() {
+        this.chooseDice.clear();
+    }
+    
+    public List<Dice> getChooseDice(){
+        return this.chooseDice;
+    }
+
     public EstadoJogo getState() {
         return state;
     }
@@ -75,17 +111,23 @@ public class Player {
     public void setEstado(EstadoJogo state) {
         this.state = state;
     }
-    
+
     public void accept(Visitor visitor) throws Exception {
         visitor.visit(this);
     }
-    
+
     @Override
     public String toString() {
         String diceName = "";
-        for(Dice dados : dice) {
+        for (Dice dados : dice) {
             diceName += dados.getBattleLine().toString();
         }
         return diceName;
+    }
+
+    public void removeDiceForChoose() {
+        for(Dice d : chooseDice){
+           dice.remove(d);
+        }
     }
 }
