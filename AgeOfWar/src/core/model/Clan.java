@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 
-public class Clan {
+public class Clan extends Composite {
     
     private String clanName;
     private ImageIcon clanIcon;
@@ -26,10 +26,6 @@ public class Clan {
 
     public void setIcon(ImageIcon icon) {
         this.clanIcon = icon;
-    }
-
-    public int getPoints() {
-        return clanPoints;
     }
 
     public void setPoints(int points) {
@@ -78,5 +74,16 @@ public class Clan {
 
     public void setIsConquered(boolean isConquered) {
         this.isConquered = isConquered;
+    }
+
+    @Override
+    public int getPoints() {
+        int pontos = 0;
+        for(Castle c : castles) {
+            if(c.isConquered()) {
+                pontos += c.getPoints();
+            }
+        }
+        return pontos;
     }
 }

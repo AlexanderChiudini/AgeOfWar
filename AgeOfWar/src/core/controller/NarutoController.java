@@ -27,9 +27,9 @@ public class NarutoController {
         for(Clan c: gameController.getClanGlobalList()) {
             if(!c.isIsConquered()) {
                 for(Castle ct : c.getCastles()) {
-                    if(!ct.isIsConquered()) {
-                        if(ct.getCastlePoints() > maior) {
-                            maior = ct.getCastlePoints();
+                    if(!ct.isConquered()) {
+                        if(ct.getPoints() > maior) {
+                            maior = ct.getPoints();
                             for(List<String> battleLine : ct.getBattleLine()) {
                                 if(battleLine.contains(naruto.getDice().toString())) {
                                     return battleLine;

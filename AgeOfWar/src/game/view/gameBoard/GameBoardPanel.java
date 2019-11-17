@@ -1,5 +1,6 @@
 package game.view.gameBoard;
 
+import core.strategy.WarningAlert;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -11,7 +12,6 @@ import game.controller.GameControllerInterface;
 import game.controller.GameControllerObservers;
 import game.view.CardCastleFrame;
 import game.view.GameFrame;
-import utils.Alerts;
 
 @SuppressWarnings("serial")
 public class GameBoardPanel extends JPanel implements GameControllerObservers{
@@ -29,6 +29,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
     private CardsBoardPanel shimazuBoard;
     private DiceBoardPanel diceBoard;
     private PlayerBoardPanel playerBoard;
+    private WarningAlert warningAlert;
     
     public GameBoardPanel(GameControllerInterface gameController, GameFrame gameFrame){
         this.gameController = gameController;
@@ -140,7 +141,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
 
     @Override
     public void warningAlert(String message, String title) {
-        Alerts.getWarningAlert(message, title);
+        warningAlert = new WarningAlert(message, title);
     }
 
     @Override

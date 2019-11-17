@@ -10,12 +10,12 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 import core.controller.MainController;
 import core.controller.MainControllerInterface;
 import core.controller.MainControllerObserver;
+import core.strategy.InformationAlert;
 import core.view.frames.PlayerSelectionInternalFrame;
 import core.view.frames.GameInformationInternalFrame;
 import core.view.frames.MainMenuInternalFrame;
 import game.controller.GameControllerInterface;
 import game.view.GameFrame;
-import utils.Alerts;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame implements MainControllerObserver {
@@ -27,6 +27,7 @@ public class MainFrame extends JFrame implements MainControllerObserver {
     private JInternalFrame mainMenu;
     private GameInformationInternalFrame gameInformation;
     private PlayerSelectionInternalFrame playerSelection;
+    private InformationAlert informationAlert;
 
     private MainControllerInterface mainController;
 
@@ -92,7 +93,8 @@ public class MainFrame extends JFrame implements MainControllerObserver {
 
     @Override
     public void systemWillBeClosed() {
-        Alerts.getInformationAlert("Obrigado, volte sempre!!! ;D", "Obrigado");
+        informationAlert = new InformationAlert("Obrigado, volte sempre!!! ;D", "Obrigado");
+        informationAlert.alerta();
     }
 
     @Override
@@ -102,7 +104,7 @@ public class MainFrame extends JFrame implements MainControllerObserver {
 
     @Override
     public void developerInfo() {
-        Alerts.getInformationAlert("Este sistema foi desenvolvido para a disciplina de Padrões de Projeto (PPR55) pela supervisão do Professor Adilson Vahldick\n"
+        informationAlert = new InformationAlert("Este sistema foi desenvolvido para a disciplina de Padrões de Projeto (PPR55) pela supervisão do Professor Adilson Vahldick\n"
                 + "\n\n"
                 + "Desenvolvedor : Alexander Felipe Chiudini Ristow\n"
                 + "Desenvolvedor : Lucas Eduardo Nogueira\n"
@@ -113,6 +115,7 @@ public class MainFrame extends JFrame implements MainControllerObserver {
                 + "\n\n"
                 + "                                                                                                                                                                                                                       21/11/2019"
                 , "Desenvolvedores");
+        informationAlert.alerta();
     }
 
     @Override
