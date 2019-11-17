@@ -16,5 +16,4 @@ public abstract class EstadoJogo {
     public Player getPlayer() {
         return player;
     }
-    
 }

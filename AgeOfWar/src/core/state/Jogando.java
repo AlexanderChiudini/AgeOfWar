@@ -11,12 +11,11 @@ public class Jogando extends EstadoJogo {
     
     @Override
     public void jogar() throws Exception {
-        // lógica
+        
     }
 
     @Override
     public String toString() {
         return "Jogando";
     }
-
 }

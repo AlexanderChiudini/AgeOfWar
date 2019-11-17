@@ -52,4 +52,6 @@ public interface GameControllerInterface {
     void checkMatch(List<String> str, List<Integer> indices);
     
     void playerChange();
+
+    int playerPoints();
 }

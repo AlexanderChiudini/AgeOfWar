@@ -9,8 +9,12 @@ public class PlayerBoardPanel extends JPanel{
     
     private JLabel playerLabel;
     private JLabel pointLabel;
+    private String name;
+    private int point;
     
-    public PlayerBoardPanel(){
+    public PlayerBoardPanel(String nome, int pontos){
+        this.name = nome;
+        this.point = pontos;
         init();
     }
 
@@ -26,8 +30,8 @@ public class PlayerBoardPanel extends JPanel{
     }
 
     private void initComponents() {
-        playerLabel = new JLabel("Teste");
-        pointLabel = new JLabel("Ponto(s) : 0");
+        playerLabel = new JLabel(this.name);
+        pointLabel = new JLabel("Ponto(s) : "+point+"");
     }
 
     private void addComponents() {

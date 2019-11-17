@@ -37,5 +37,5 @@ public interface GameControllerObservers {
 
     public void updateCardMenu();
 
-    public void playerChangeModify();
+    public void playerChangeModify(String playerName,int point);
 }

@@ -14,7 +14,7 @@ import game.view.GameFrame;
 import utils.Alerts;
 
 @SuppressWarnings("serial")
-public class GameBoardPanel extends JPanel implements GameControllerObservers{
+public class GameBoardPanel extends JPanel implements GameControllerObservers {
 
     GameFrame gameFrame;
     private GameControllerInterface gameController;
@@ -29,8 +29,8 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
     private CardsBoardPanel shimazuBoard;
     private DiceBoardPanel diceBoard;
     private PlayerBoardPanel playerBoard;
-    
-    public GameBoardPanel(GameControllerInterface gameController, GameFrame gameFrame){
+
+    public GameBoardPanel(GameControllerInterface gameController, GameFrame gameFrame) {
         this.gameController = gameController;
         this.gameFrame = gameFrame;
         gameController.attach(this);
@@ -50,20 +50,20 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
 
     private void initComponents() {
         slipBoard = new SlipBoardPanel(gameController);
-        
+
         cardsBoard = new JPanel();
         cardsBoard.setLayout(new CardLayout());
         cardsBoard.setPreferredSize(new Dimension(getX(), 400));
-        
-        chosokabeBoard = new CardsBoardPanel("image/arquitetura_japonesa.jpg","chosokabe",gameController);
-        moriBoard      = new CardsBoardPanel("image/horizonte_japones.jpg","mori",gameController);
-        tokugawaBoard  = new CardsBoardPanel("image/kabuki_japones.jpg","tokugawa",gameController);
-        uesugiBoard    = new CardsBoardPanel("image/montanha_japonesa.jpg","uesugi",gameController);
-        odaBoard    = new CardsBoardPanel("image/mar_japones.jpg","oda",gameController);
+
+        chosokabeBoard = new CardsBoardPanel("image/arquitetura_japonesa.jpg", "chosokabe", gameController);
+        moriBoard = new CardsBoardPanel("image/horizonte_japones.jpg", "mori", gameController);
+        tokugawaBoard = new CardsBoardPanel("image/kabuki_japones.jpg", "tokugawa", gameController);
+        uesugiBoard = new CardsBoardPanel("image/montanha_japonesa.jpg", "uesugi", gameController);
+        odaBoard = new CardsBoardPanel("image/mar_japones.jpg", "oda", gameController);
         shimazuBoard = new CardsBoardPanel("image/guerra_japonesa.jpg", "shimazu", gameController);
-        
+
         diceBoard = new DiceBoardPanel(gameController);
-        playerBoard = new PlayerBoardPanel();
+        playerBoard = new PlayerBoardPanel(gameController.playerText(),gameController.playerPoints());
     }
 
     private void addComponents() {
@@ -81,13 +81,13 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
 
     @Override
     public void nextBoard() {
-        ((CardLayout)cardsBoard.getLayout()).next(cardsBoard);
+        ((CardLayout) cardsBoard.getLayout()).next(cardsBoard);
         currentBoard();
     }
 
     @Override
     public void prevBoard() {
-        ((CardLayout)cardsBoard.getLayout()).previous(cardsBoard);
+        ((CardLayout) cardsBoard.getLayout()).previous(cardsBoard);
         currentBoard();
     }
 
@@ -98,9 +98,9 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
 
     @Override
     public void currentBoard() {
-        for(Component comp : cardsBoard.getComponents()){
-            if(comp.isVisible()){
-                gameController.setClaLabel(((CardsBoardPanel)comp).getClaName());
+        for (Component comp : cardsBoard.getComponents()) {
+            if (comp.isVisible()) {
+                gameController.setClaLabel(((CardsBoardPanel) comp).getClaName());
             }
         }
     }
@@ -112,7 +112,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
 
     @Override
     public void openCardFrame() {
-        castleFrame = new CardCastleFrame(this.gameController,gameFrame);
+        castleFrame = new CardCastleFrame(this.gameController, gameFrame);
         gameFrame.setEnabled(false);
         castleFrame.setVisible(true);
     }
@@ -126,6 +126,8 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
     public void playersCreated() {
         gameController.playerName();
         gameController.playerPoint();
+        updateUI();
+//        repaint();
     }
 
     @Override
@@ -149,9 +151,12 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
     }
 
     @Override
-    public void playerChangeModify() {
-//        configura a GUI do jogo para a mudança de jogador
-//        chama Alerts informando a mudança de jogador
+    public void playerChangeModify(String playerName, int point) {
+        //        configura a GUI do jogo para a mudança de jogador
+        //        chama Alerts informando a mudança de jogador
+        playerBoard.setPlayerName(playerName);
+        playerBoard.setPlayerPoint(point);
+        Alerts.getInformationAlert("Chegou a vez de "+playerName, playerName);
     }
-    
+
 }

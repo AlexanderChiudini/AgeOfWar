@@ -108,7 +108,7 @@ public class Player {
         return state;
     }
 
-    public void setEstado(EstadoJogo state) {
+    public void setState(EstadoJogo state) {
         this.state = state;
     }
 

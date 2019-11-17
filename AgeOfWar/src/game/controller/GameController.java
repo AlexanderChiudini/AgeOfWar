@@ -69,6 +69,12 @@ public class GameController implements GameControllerInterface {
     private GameController() {
         init();
     }
+    
+    public GameController(Player player1, Player player2){
+        this.player1 = player1;
+        this.player2 = player2;
+        init();
+    }
 
     private void init() {
         observers = new ArrayList<>();
@@ -83,6 +89,8 @@ public class GameController implements GameControllerInterface {
     @Override
     public void gameStart(Player player1, Player player2) {
         createPlayers(player1, player2);
+        System.out.println(":"+player1.getName());
+        System.out.println(":"+player2.getName());
         createDiceList();
         initComponents();
 
@@ -127,7 +135,9 @@ public class GameController implements GameControllerInterface {
         diceChanges--;
 //        }
         if (diceChanges == 0) {
-            notifyPlayerChange();
+            Player player = (player1.getState().toString() == "Aguardando") ? player1 : player2;
+            playerChange();
+            notifyPlayerChange(player.getName(),player.getPoints());
         } else {
 
             Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
@@ -342,9 +352,9 @@ public class GameController implements GameControllerInterface {
         }
     }
 
-    private void notifyPlayerChange() {
+    private void notifyPlayerChange(String playerName,int point) {
         for(GameControllerObservers obs : observers){
-            obs.playerChangeModify();
+            obs.playerChangeModify(playerName,point);
         }
     }
 
@@ -629,6 +639,10 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public void playerChange() {
-        
+        if(player1.getState().toString() == "Jogando"){
+            
+        }else{
+            
+        }
     }
 }
