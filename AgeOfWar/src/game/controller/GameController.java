@@ -167,7 +167,7 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public void openCard(String clanName, int position) {
-        Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
+        Player player = ("Jogando".equals(player1.getState().toString())) ? player1 : player2;
         boolean aux = false;
         String cName = "";
 
@@ -181,6 +181,7 @@ public class GameController implements GameControllerInterface {
                 }
                 if (!aux) {
                     cardCastle = chosokabeClan.getCastle(position);
+                    System.out.println("Teste : "+cardCastle.getBattleLine().toString());
                 } else {
                     cardCastle = player.getCastle(cName);
                 }
@@ -621,18 +622,19 @@ public class GameController implements GameControllerInterface {
     }
 
     private void makeItHappen(Player player, List<Integer> indices) {
-        try {
-            player.jogar();
-        } catch (Exception ex) {
-            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            player.jogar();
+//        } catch (Exception ex) {
+//            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        player.removeDiceForChoose();
 
         List<ImageIcon> diceImg = new ArrayList<>();
 
         for (int i = 0; i < player.getDice().size(); i++) {
             diceImg.add(player.getDice().get(i).getDado());
         }
-
+        
         for (int i : indices) {
             cardCastle.addConqueredLines(i);
         }

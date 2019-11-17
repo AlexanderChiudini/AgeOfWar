@@ -16,13 +16,14 @@ public class Jogando extends EstadoJogo {
         
         player.removeDiceForChoose();
         
-//        for(Castle castle : player.getConqueredCastle()){
-//            if(!castle.isConquered()){
-//                if(castle.getBattleLine().size() == 0){
-//                    
-//                }
-//            }
-//        }
+        for(Castle castle : player.getConqueredCastle()){
+            if(!castle.isConquered()){
+                if(castle.getBattleLine().size() == 0){
+                    castle.setIsConquered(true);
+                    player.setPoints(castle.getPoints());
+                }
+            }
+        }
     }
 
     @Override
