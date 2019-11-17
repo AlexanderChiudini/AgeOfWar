@@ -7,6 +7,7 @@ import core.factory.AbstractFactoryCastle;
 import core.factory.ClassicCastle;
 import core.model.Castle;
 import core.model.Clan;
+import core.visitor.Visitor;
 
 public class BuilderClanChosokabe extends AbstractBuilderClan {
 
@@ -17,7 +18,7 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
 
     public BuilderClanChosokabe() {
         createCastle = new ClassicCastle();
-    }    
+    }
 
     @Override
     public void reset() {
@@ -36,7 +37,7 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
 
     @Override
     public void createCastles() {
-        Castle castle = new ClassicCastle().createCastle();
+        Castle castle = createCastle.createCastle();
         List<ImageIcon> imageList = new ArrayList<>();
         imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_marugame.png"));
         imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_castelo.png"));
@@ -51,7 +52,7 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
 
         this.castles.add(castle);
 
-        castle = new ClassicCastle().createCastle();
+        castle = createCastle.createCastle();
         imageList = new ArrayList<>();
         imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_matsuyama.png"));
         imageList.add(new ImageIcon("image/cartas/cla_chosokabe/carta_chosokabe_castelo.png"));
@@ -85,5 +86,14 @@ public class BuilderClanChosokabe extends AbstractBuilderClan {
     @Override
     public Castle getCastle() {
         return (Castle) this.castles;
+    }
+
+    @Override
+    public int sizeCastleList() {
+        return this.castles.size();
+    }
+    
+    public void accept(Visitor visitor) throws Exception {
+        visitor.visit(this);
     }
 }

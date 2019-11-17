@@ -16,4 +16,6 @@ public abstract class AbstractBuilderClan {
     public abstract Castle getCastle(int position);
     
     public abstract Castle getCastle();
+    
+    public abstract int sizeCastleList();
 }

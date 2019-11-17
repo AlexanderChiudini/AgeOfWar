@@ -23,8 +23,7 @@ import core.model.Dice;
 import core.model.Player;
 import core.controller.NarutoController;
 import core.factory.AbstractFactoryClan;
-import core.visitor.PlayerVisitor;
-import java.util.Arrays;
+import core.visitor.ClanVisitor;
 import utils.adapter.AcmeForObject;
 import utils.adapter.Adapter;
 import utils.adapter.TecFileForObject;
@@ -55,8 +54,6 @@ public class GameController implements GameControllerInterface {
     private Adapter acme;
     private Adapter tecFile;
 
-    private PlayerVisitor visitor;
-
     private static GameController instance;
 
     public static synchronized GameController getInstance() {
@@ -81,7 +78,6 @@ public class GameController implements GameControllerInterface {
         diceList = new ArrayList<>();
         draft = new Random();
         classicClan = new ClassicClan();
-        visitor = new PlayerVisitor();
 
         naruto = new NarutoController(this);
     }
@@ -92,7 +88,11 @@ public class GameController implements GameControllerInterface {
         System.out.println(":"+player1.getName());
         System.out.println(":"+player2.getName());
         createDiceList();
-        initComponents();
+        try {
+            initComponents();
+        } catch (Exception ex) {
+            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         acme = new AcmeForObject("");
         tecFile = new TecFileForObject();
@@ -150,11 +150,6 @@ public class GameController implements GameControllerInterface {
                 Dice diceBasic = diceList.get(draft.nextInt(diceList.size()));
                 player.pushDice(diceBasic);
                 diceImg.add(player.getDice().get(i).getDado());
-            }
-            try {
-                player.accept(visitor);
-            } catch (Exception ex) {
-                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
 //        this.subtract = true;
@@ -387,42 +382,49 @@ public class GameController implements GameControllerInterface {
         diceList.add(dice);
     }
 
-    private void initComponents() {
+    private void initComponents() throws Exception {
+        ClanVisitor visitor = new ClanVisitor();
         chosokabeClan = classicClan.createClan();
         BuilderClanChosokabe builderChosokabe = new BuilderClanChosokabe();
         Director director = new Director(builderChosokabe);
         director.construir();
         chosokabeClan = builderChosokabe.getClan();
+        builderChosokabe.accept(visitor);
 
         moriClan = classicClan.createClan();
         BuilderClanMori builderMori = new BuilderClanMori();
         director = new Director(builderMori);
         director.construir();
         moriClan = builderMori.getClan();
+        builderMori.accept(visitor);
 
         shimazuClan = classicClan.createClan();
         BuilderClanShimazu builderShimazu = new BuilderClanShimazu();
         director = new Director(builderShimazu);
         director.construir();
         shimazuClan = builderShimazu.getClan();
+        builderShimazu.accept(visitor);
 
         tokugawaClan = classicClan.createClan();
         BuilderClanTokugawa builderTokugawa = new BuilderClanTokugawa();
         director = new Director(builderTokugawa);
         director.construir();
         tokugawaClan = builderTokugawa.getClan();
+        builderTokugawa.accept(visitor);
 
         uesugiClan = classicClan.createClan();
         BuilderClanUesugi builderUesugi = new BuilderClanUesugi();
         director = new Director(builderUesugi);
         director.construir();
         uesugiClan = builderUesugi.getClan();
+        builderUesugi.accept(visitor);
 
         odaClan = classicClan.createClan();
         BuilderClanOda builderOda = new BuilderClanOda();
         director = new Director(builderOda);
         director.construir();
         odaClan = builderOda.getClan();
+        builderOda.accept(visitor);
 
         clanGlobalList.add(chosokabeClan);
         clanGlobalList.add(moriClan);
@@ -478,8 +480,8 @@ public class GameController implements GameControllerInterface {
     @Override
     public List<ImageIcon> playerDiceImg() {
         List<ImageIcon> imgList = new ArrayList<>();
-
-        for (Dice dice : visitor.getDice()) {
+        Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
+        for (Dice dice : player.getDice()) {
             imgList.add(dice.getDado());
         }
 
@@ -624,12 +626,6 @@ public class GameController implements GameControllerInterface {
         }
         player.addConqueredCastle(cardCastle);
 
-//        comentei por que não lembro o que faz
-//        try {
-//            player.accept(visitor);
-//        } catch (Exception ex) {
-//            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
 //        this.subtract = false;
         this.diceChanges = player.getDice().size();
         notifyClearDices();

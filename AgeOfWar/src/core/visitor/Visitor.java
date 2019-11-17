@@ -1,11 +1,10 @@
 
 package core.visitor;
 
-import core.model.Dice;
-import core.model.Player;
+import core.builder.AbstractBuilderClan;
 
 public interface Visitor {
     
-    public void visit(Player player) throws Exception;
+    public void visit(AbstractBuilderClan clan) throws Exception;
     
 }
