@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 
-public class Castle {
+public class Castle extends Composite {
 
     private int castlePoints; // pontos do castelo
     private String castleName; // nome do castelo
     private List<List<String>> battleLine = new ArrayList<>(); // array contendo os elementos da linha de batalha (infantaria, cavalaria, ...)
     private List<List<String>> conqueredLines = new ArrayList<>();
     private String daimyoBattleLine; // linha de batalha Daimyo
-    private boolean isConquered;
+    private boolean conquered;
     private List<ImageIcon> castleFigures; // array contendo as imagens do castelo
 
     private List<String> line = new ArrayList<>();
 
     private static Castle instance;
     
-    public int getCastlePoints() {
+    @Override
+    public int getPoints() {
         return castlePoints;
     }
 
@@ -74,12 +75,12 @@ public class Castle {
         return castleFigures;
     }
 
-    public boolean isIsConquered() {
-        return isConquered;
+    public boolean isConquered() {
+        return conquered;
     }
 
     public void setIsConquered(boolean isConquered) {
-        this.isConquered = isConquered;
+        this.conquered = isConquered;
     }
     
     public void addConqueredLines(int i){
