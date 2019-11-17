@@ -36,4 +36,6 @@ public interface GameControllerObservers {
     public void warningAlert(String message, String title);
 
     public void updateCardMenu();
+
+    public void playerChangeModify();
 }

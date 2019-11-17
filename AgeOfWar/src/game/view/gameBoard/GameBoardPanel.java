@@ -147,5 +147,11 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers{
     public void updateCardMenu() {
         castleFrame.updateFrame();
     }
+
+    @Override
+    public void playerChangeModify() {
+//        configura a GUI do jogo para a mudança de jogador
+//        chama Alerts informando a mudança de jogador
+    }
     
 }

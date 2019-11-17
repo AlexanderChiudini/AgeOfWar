@@ -35,7 +35,7 @@ public class GameController implements GameControllerInterface {
     private List<Dice> diceList;
     private List<Clan> clanGlobalList = new ArrayList<>();
     private Random draft;
-    private int diceChanges = 7;
+    private int diceChanges = 8;
     private boolean subtract = false;
 
     private Clan chosokabeClan;
@@ -122,30 +122,34 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public void rollingDice() {
-        if (this.subtract) {
-            notifyClearDices();
-            diceChanges--;
-        }
+//        if (this.subtract) {
+        notifyClearDices();
+        diceChanges--;
+//        }
+        if (diceChanges == 0) {
+            notifyPlayerChange();
+        } else {
 
-        Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
-        List<ImageIcon> diceImg = new ArrayList<>();
+            Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
+            List<ImageIcon> diceImg = new ArrayList<>();
 
-        if (!player.getDice().isEmpty()) {
-            player.getDice().clear();
-        }
-        for (int i = 0; i < diceChanges; i++) {
-            Dice diceBasic = diceList.get(draft.nextInt(diceList.size()));
-            player.pushDice(diceBasic);
-            diceImg.add(player.getDice().get(i).getDado());
-        }
-        try {
-            player.accept(visitor);
-        } catch (Exception ex) {
-            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            if (!player.getDice().isEmpty()) {
+                player.getDice().clear();
+            }
+            for (int i = 0; i < diceChanges; i++) {
+                Dice diceBasic = diceList.get(draft.nextInt(diceList.size()));
+                player.pushDice(diceBasic);
+                diceImg.add(player.getDice().get(i).getDado());
+            }
+            try {
+                player.accept(visitor);
+            } catch (Exception ex) {
+                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-        this.subtract = true;
-        notifyRollingDice(diceImg);
+//        this.subtract = true;
+            notifyRollingDice(diceImg);
+        }
     }
 
     @Override
@@ -338,6 +342,12 @@ public class GameController implements GameControllerInterface {
         }
     }
 
+    private void notifyPlayerChange() {
+        for(GameControllerObservers obs : observers){
+            obs.playerChangeModify();
+        }
+    }
+
     private void createDiceList() {
         Dice dice = new Dice("image/dados/dado_artilharia.png");
         dice.addBattleLine("archery");
@@ -502,17 +512,11 @@ public class GameController implements GameControllerInterface {
     }
 
     @Override
-    public void addPlayerChooseDice(int indice) {
+    public void addPlayerChooseDice(int indice, boolean btnCondition) {
         Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
 
         Dice aux = player.getDice().get(indice);
-        boolean b = true;
-        for (Dice d : player.getChooseDice()) {
-            if (d == aux) {
-                b = false;
-            }
-        }
-        if (b) {
+        if (btnCondition) {
             player.addChooseDice(aux);
         } else {
             player.removeChooseDice(aux);
@@ -530,16 +534,16 @@ public class GameController implements GameControllerInterface {
         for (String s : str) {
             String[] array = s.split(",");
             for (String st : array) {
-                if (st.indexOf("daimyo") >= 0) {
+                if (st.contains("daimyo")) {
                     daimyo++;
                 }
-                if (st.indexOf("archery") >= 0) {
+                if (st.contains("archery")) {
                     archery++;
                 }
-                if (st.indexOf("sword") >= 0) {
+                if (st.contains("sword")) {
                     sword++;
                 }
-                if (st.indexOf("cavalry") >= 0) {
+                if (st.contains("cavalry")) {
                     cavalry++;
                 }
             }
@@ -550,34 +554,35 @@ public class GameController implements GameControllerInterface {
         int sword2 = 0;
         int cavalry2 = 0;
         for (Dice d : player.getChooseDice()) {
+            System.out.println(d.getBattleLine().toString());
             for (String s : d.getBattleLine()) {
-                if (s.indexOf("daimyo") >= 0) {
+                if (s.contains("daimyo")) {
                     daimyo2++;
                 }
-                if (s.indexOf("archery") >= 0) {
+                if (s.contains("archery")) {
                     archery2++;
                 }
-                if (s.indexOf("sword") >= 0) {
+                if (s.contains("sword")) {
                     sword2++;
                 }
-                if (s.indexOf("cavalry") >= 0) {
+                if (s.contains("cavalry")) {
                     cavalry2++;
                 }
             }
         }
 
         System.out.println(
-                "daimyo: "+daimyo + "\n"+
-                "archery: "+archery + "\n"+
-                "sword: "+sword + "\n"+
-                "cavalry: "+cavalry + "\n"
+                "daimyo: " + daimyo + "\n"
+                + "archery: " + archery + "\n"
+                + "sword: " + sword + "\n"
+                + "cavalry: " + cavalry + "\n"
         );
-        
+
         System.out.println(
-                "daimyo2: "+daimyo2 + "\n"+
-                "archery2: "+archery2 + "\n"+
-                "sword2: "+sword2 + "\n"+
-                "cavalry2: "+cavalry2 + "\n"
+                "daimyo2: " + daimyo2 + "\n"
+                + "archery2: " + archery2 + "\n"
+                + "sword2: " + sword2 + "\n"
+                + "cavalry2: " + cavalry2 + "\n"
         );
 
         if (daimyo <= daimyo2 && archery <= archery2 && sword <= sword2 && cavalry <= cavalry2) {
@@ -615,9 +620,15 @@ public class GameController implements GameControllerInterface {
 //        } catch (Exception ex) {
 //            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        this.subtract = false;
+//        this.subtract = false;
+        this.diceChanges = player.getDice().size();
         notifyClearDices();
         notifyRollingDice(diceImg);
         notifyUpdateCardMenu();
+    }
+
+    @Override
+    public void playerChange() {
+        
     }
 }

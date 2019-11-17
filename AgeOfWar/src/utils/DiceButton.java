@@ -24,7 +24,7 @@ public class DiceButton extends JButton{
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameController.addPlayerChooseDice(indice);
+                gameController.addPlayerChooseDice(indice,condition);
                 condition = !condition;
                 shiftBackground(condition);
             }
