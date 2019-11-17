@@ -112,10 +112,6 @@ public class Player {
         this.state = state;
     }
 
-    public void accept(Visitor visitor) throws Exception {
-        visitor.visit(this);
-    }
-
     @Override
     public String toString() {
         String diceName = "";

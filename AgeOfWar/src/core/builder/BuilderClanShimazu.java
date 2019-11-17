@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import core.factory.ClassicCastle;
 import core.model.Castle;
 import core.model.Clan;
+import core.visitor.Visitor;
 
 public class BuilderClanShimazu extends AbstractBuilderClan {
 
@@ -62,5 +63,14 @@ public class BuilderClanShimazu extends AbstractBuilderClan {
     @Override
     public Castle getCastle() {
         return (Castle) this.castles;
+    }
+    
+    @Override
+    public int sizeCastleList() {
+        return this.castles.size();
+    }
+    
+    public void accept(Visitor visitor) throws Exception {
+        visitor.visit(this);
     }
 }
