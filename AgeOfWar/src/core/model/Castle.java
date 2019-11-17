@@ -9,6 +9,7 @@ public class Castle {
     private int castlePoints; // pontos do castelo
     private String castleName; // nome do castelo
     private List<List<String>> battleLine = new ArrayList<>(); // array contendo os elementos da linha de batalha (infantaria, cavalaria, ...)
+    private List<List<String>> conqueredLines = new ArrayList<>();
     private String daimyoBattleLine; // linha de batalha Daimyo
     private boolean isConquered;
     private List<ImageIcon> castleFigures; // array contendo as imagens do castelo
@@ -79,5 +80,10 @@ public class Castle {
 
     public void setIsConquered(boolean isConquered) {
         this.isConquered = isConquered;
+    }
+    
+    public void addConqueredLines(int i){
+        conqueredLines.add(battleLine.get(i));
+        battleLine.remove(i);
     }
 }

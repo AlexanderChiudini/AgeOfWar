@@ -70,15 +70,21 @@ public class DiceBoardPanel extends JPanel {
     }
 
     private void createDicePanel() {
-        for(int i = 0; i < ((GridLayout)resultDicePanel.getLayout()).getColumns(); i++){
+        for (int i = 0; i < ((GridLayout) resultDicePanel.getLayout()).getColumns(); i++) {
             resultDicePanel.add(new DicePanel());
         }
-        
+
     }
 
     public void drawDiceResult(List<ImageIcon> diceImg) {
-        for(int i = 0; i < diceImg.size(); i++){
-            ((DicePanel)resultDicePanel.getComponent(i)).updateIcon(diceImg.get(i));
+        for (int i = 0; i < diceImg.size(); i++) {
+            ((DicePanel) resultDicePanel.getComponent(i)).updateIcon(diceImg.get(i));
+        }
+    }
+    
+    public void clearDicerResult(int max){
+        for(int i = 0; i < max; i++){
+            ((DicePanel) resultDicePanel.getComponent(i)).updateIcon(null);
         }
     }
 }

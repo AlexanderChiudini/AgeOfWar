@@ -7,4 +7,8 @@ public class Alerts{
     public static void getInformationAlert(String mensage, String title){
         JOptionPane.showMessageDialog(null, mensage, title, JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    public static void getWarningAlert(String mensage, String title){
+        JOptionPane.showMessageDialog(null, mensage, title, JOptionPane.ERROR_MESSAGE);
+    }
 }

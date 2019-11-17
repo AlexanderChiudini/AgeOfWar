@@ -15,4 +15,8 @@ public class CardMenuInternalFrame extends JInternalFrame{
         cardMenuPanel = new CardMenuPanel(gameController,cardFrame,gameFrame);
         setContentPane(cardMenuPanel);
     }
+
+    public void updateMenu() {
+        cardMenuPanel.updateUI();
+    }
 }

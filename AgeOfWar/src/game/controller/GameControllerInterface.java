@@ -47,5 +47,9 @@ public interface GameControllerInterface {
 
     void goGameFrame();
 
-    void checkMatch(String str);
+    void addPlayerChooseDice(int indice,boolean condition);
+
+    void checkMatch(List<String> str, List<Integer> indices);
+    
+    void playerChange();
 }

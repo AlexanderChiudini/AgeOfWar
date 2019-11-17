@@ -54,4 +54,8 @@ public class CardCastleFrame extends JFrame{
         cardMenu.setVisible(b);
         super.setVisible(b);
     }
+    
+    public void updateFrame(){
+        cardMenu.updateMenu();
+    }
 }
