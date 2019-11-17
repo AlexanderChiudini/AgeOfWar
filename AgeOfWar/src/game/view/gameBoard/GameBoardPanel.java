@@ -1,5 +1,6 @@
 package game.view.gameBoard;
 
+import core.strategy.InformationAlert;
 import core.strategy.WarningAlert;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -31,6 +32,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers {
     private PlayerBoardPanel playerBoard;
 
     private WarningAlert warningAlert;
+    private InformationAlert infoAlert;
     
     public GameBoardPanel(GameControllerInterface gameController, GameFrame gameFrame){
         this.gameController = gameController;
@@ -145,6 +147,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers {
     @Override
     public void warningAlert(String message, String title) {
         warningAlert = new WarningAlert(message, title);
+        warningAlert.alerta();
     }
 
     @Override
@@ -158,7 +161,8 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers {
         //        chama Alerts informando a mudança de jogador
         playerBoard.setPlayerName(playerName);
         playerBoard.setPlayerPoint(point);
-        Alerts.getInformationAlert("Chegou a vez de "+playerName, playerName);
+        infoAlert = new InformationAlert("Chegou a vez de "+playerName, playerName);
+        infoAlert.alerta();
     }
 
 }

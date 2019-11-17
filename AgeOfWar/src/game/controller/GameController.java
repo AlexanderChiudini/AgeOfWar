@@ -24,10 +24,16 @@ import core.model.Player;
 import core.controller.NarutoController;
 import core.factory.AbstractFactoryClan;
 import core.visitor.PlayerVisitor;
-import java.util.Arrays;
+
+
 import utils.adapter.AcmeForObject;
 import utils.adapter.Adapter;
 import utils.adapter.TecFileForObject;
+
+import core.state.Aguardando;
+import core.state.Derrota;
+import core.state.Jogando;
+import core.state.Vitoria;
 
 public class GameController implements GameControllerInterface {
 
@@ -36,7 +42,7 @@ public class GameController implements GameControllerInterface {
     private List<Clan> clanGlobalList = new ArrayList<>();
     private Random draft;
     private int diceChanges = 8;
-    private boolean subtract = false;
+    private boolean subtract = true;
 
     private Clan chosokabeClan;
     private Clan moriClan;
@@ -69,8 +75,8 @@ public class GameController implements GameControllerInterface {
     private GameController() {
         init();
     }
-    
-    public GameController(Player player1, Player player2){
+
+    public GameController(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
         init();
@@ -89,8 +95,8 @@ public class GameController implements GameControllerInterface {
     @Override
     public void gameStart(Player player1, Player player2) {
         createPlayers(player1, player2);
-        System.out.println(":"+player1.getName());
-        System.out.println(":"+player2.getName());
+        System.out.println(":" + player1.getName());
+        System.out.println(":" + player2.getName());
         createDiceList();
         initComponents();
 
@@ -130,14 +136,16 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public void rollingDice() {
-//        if (this.subtract) {
-        notifyClearDices();
-        diceChanges--;
-//        }
+        if (this.subtract) {
+            notifyClearDices();
+            diceChanges--;
+        }
         if (diceChanges == 0) {
             Player player = (player1.getState().toString() == "Aguardando") ? player1 : player2;
             playerChange();
-            notifyPlayerChange(player.getName(),player.getPoints());
+            notifyPlayerChange(player.getName(), player.getPoints());
+            this.diceChanges = 7;
+            this.subtract = false;
         } else {
 
             Player player = (player1.getState().toString() == "Jogando") ? player1 : player2;
@@ -157,7 +165,7 @@ public class GameController implements GameControllerInterface {
                 Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-//        this.subtract = true;
+            this.subtract = true;
             notifyRollingDice(diceImg);
         }
     }
@@ -352,9 +360,9 @@ public class GameController implements GameControllerInterface {
         }
     }
 
-    private void notifyPlayerChange(String playerName,int point) {
-        for(GameControllerObservers obs : observers){
-            obs.playerChangeModify(playerName,point);
+    private void notifyPlayerChange(String playerName, int point) {
+        for (GameControllerObservers obs : observers) {
+            obs.playerChangeModify(playerName, point);
         }
     }
 
@@ -611,7 +619,11 @@ public class GameController implements GameControllerInterface {
     }
 
     private void makeItHappen(Player player, List<Integer> indices) {
-        player.removeDiceForChoose();
+        try {
+            player.jogar();
+        } catch (Exception ex) {
+            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         List<ImageIcon> diceImg = new ArrayList<>();
 
@@ -639,10 +651,16 @@ public class GameController implements GameControllerInterface {
 
     @Override
     public void playerChange() {
-        if(player1.getState().toString() == "Jogando"){
-            
-        }else{
-            
+        if (player1.getState().toString() == "Jogando") {
+            player1.setState(new Aguardando(player1));
+        } else {
+            player1.setState(new Jogando(player1));
+        }
+        
+        if (player2.getState().toString() == "Jogando") {
+            player2.setState(new Aguardando(player1));
+        } else {
+            player2.setState(new Jogando(player1));
         }
     }
 }
