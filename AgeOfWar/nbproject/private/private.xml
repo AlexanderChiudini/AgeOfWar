@@ -3,48 +3,31 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/controller/MainController.java</file>
             <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/model/Player.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/cardMenu/CardMenuPanel.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/controller/GameControllerInterface.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/model/Castle.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/gameBoard/DiceBoardPanel.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/CardCastleFrame.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/cardMenu/CardBattleLinePanel.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/gameBoard/GameBoardPanel.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/frame/CardMenuInternalFrame.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/controller/GameController.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/gameBoard/DicePanel.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/cardMenu/PlayCardPanel.java</file>
-        </group>
-        <group>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/cardMenu/CardMenuPanel.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/utils/DiceButton.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/controller/GameControllerInterface.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/gameBoard/GameBoardPanel.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/controller/GameController.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/cardMenu/PlayCardPanel.java</file>
-        </group>
-        <group>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/cardMenu/CardMenuPanel.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/utils/DiceButton.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/state/Jogando.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/controller/GameControllerInterface.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/gameBoard/GameBoardPanel.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/state/Derrota.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/controller/GameController.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/cardMenu/PlayCardPanel.java</file>
-        </group>
-        <group>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/model/Player.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/cardMenu/CardMenuPanel.java</file>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/visitor/ClanVisitor.java</file>
             <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/controller/GameControllerObservers.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/utils/DiceButton.java</file>
             <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/state/Jogando.java</file>
             <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/controller/GameControllerInterface.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/state/EstadoJogo.java</file>
             <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/gameBoard/GameBoardPanel.java</file>
-            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/state/Derrota.java</file>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/controller/NarutoController.java</file>
             <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/controller/GameController.java</file>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/GameFrame.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/controller/MainController.java</file>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/model/Player.java</file>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/visitor/ClanVisitor.java</file>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/controller/GameControllerObservers.java</file>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/state/Jogando.java</file>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/controller/GameControllerInterface.java</file>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/gameBoard/GameBoardPanel.java</file>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/core/controller/NarutoController.java</file>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/controller/GameController.java</file>
+            <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/GameFrame.java</file>
+        </group>
+        <group/>
+        <group>
             <file>file:/C:/Git_Repositorios/Repositorios%20Clonados/Age%20Of%20War_Clone3/AgeOfWar/AgeOfWar/src/game/view/cardMenu/PlayCardPanel.java</file>
         </group>
     </open-files>

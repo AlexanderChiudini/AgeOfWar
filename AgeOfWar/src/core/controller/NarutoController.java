@@ -14,7 +14,7 @@ public class NarutoController {
     
     public NarutoController(GameController gameController) {
         this.gameController = gameController;
-        this.naruto = new Player("Naruto Uzumaki", 0, new Aguardando(naruto));
+//        this.naruto = new Player("Naruto Uzumaki", 0, new Aguardando(naruto));
     }
 
     /**

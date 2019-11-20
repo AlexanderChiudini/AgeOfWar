@@ -47,4 +47,15 @@ public class CardsBoardPanel extends BackgroundPanel {
         }
         add(cardsBoardArea);
     }
+
+    public void clanConquered(ImageIcon img) {
+        for(int i = 0; i < cardPanelList.size();i++){
+            ((CardPanel)cardsBoardArea.getComponent(i)).setCardImg(img);
+            ((CardPanel)cardsBoardArea.getComponent(i)).getCastleCard().setEnabled(false);
+        }
+    }
+
+    public void cardConquered(int castleNmuber, ImageIcon img) {
+        ((CardPanel)cardsBoardArea.getComponent(castleNmuber)).setCardImg(img);
+    }
 }

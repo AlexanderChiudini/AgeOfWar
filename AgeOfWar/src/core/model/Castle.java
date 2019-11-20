@@ -72,11 +72,11 @@ public class Castle extends Composite {
     }
     
     public List<ImageIcon> getCastleFigure(){
-        return castleFigures;
+        return this.castleFigures;
     }
 
     public boolean isConquered() {
-        return conquered;
+        return this.conquered;
     }
 
     public void setIsConquered(boolean isConquered) {
@@ -84,7 +84,29 @@ public class Castle extends Composite {
     }
     
     public void addConqueredLines(int i){
+        List<String> sub = new ArrayList<>();
+        sub.add("Conquistado");
         conqueredLines.add(battleLine.get(i));
-        battleLine.remove(i);
+        battleLine.set(i, sub);
+    }
+
+    public List<List<String>> getConqueredLines() {
+        return conqueredLines;
+    }
+    
+    public void remakeBattleLines(){
+        int i = 0;
+        for(List<String> sub : battleLine){
+            if("Conquistado".equals(sub.get(0).toString())){
+                sub = conqueredLines.get(i);
+                i++;
+            }
+        }
+        conqueredLines.clear();
+    }
+
+    @Override
+    public int getPointsIsConquered() {
+        return this.castlePoints;
     }
 }

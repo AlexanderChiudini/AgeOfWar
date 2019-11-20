@@ -3,6 +3,7 @@ package core.state;
 
 import core.model.Castle;
 import core.model.Player;
+import core.visitor.ClanVisitor;
 
 public class Jogando extends EstadoJogo {
 
@@ -12,18 +13,22 @@ public class Jogando extends EstadoJogo {
     
     @Override
     public void jogar() throws Exception {
-        Player player = super.getPlayer();
+        Player player = getPlayer();
+        System.out.println(player.getName());
         
         player.removeDiceForChoose();
         
         for(Castle castle : player.getConqueredCastle()){
             if(!castle.isConquered()){
-                if(castle.getBattleLine().size() == 0){
+                if(castle.getBattleLine().size() == castle.getConqueredLines().size()){
                     castle.setIsConquered(true);
-                    player.setPoints(castle.getPoints());
+                    player.setPoints(player.getPoints()+castle.getPoints());
+                    System.out.println("Castelo"+castle.getPoints());
+                    System.out.println("Jogador"+player.getPoints());
                 }
             }
         }
+        
     }
 
     @Override

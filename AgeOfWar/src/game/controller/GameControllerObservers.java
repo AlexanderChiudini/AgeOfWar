@@ -31,11 +31,21 @@ public interface GameControllerObservers {
 
     void playersPoint(int points);
 
-    public void clearDiceList();
+    void clearDiceList();
 
-    public void warningAlert(String message, String title);
+    void warningAlert(String message, String title);
+    
+    void informationAlert(String message, String title);
 
-    public void updateCardMenu();
+    void updateCardMenu();
 
-    public void playerChangeModify(String playerName,int point);
+    void playerChangeModify(String playerName,int point);
+
+    void theEndOfTheGame(String message, String title);
+
+    void closeWindow();
+
+    public void clanConquered(String clan, ImageIcon img);
+
+    public void cardConquered(String clan, int castleNmuber, ImageIcon img);
 }

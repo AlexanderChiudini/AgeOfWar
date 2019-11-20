@@ -39,9 +39,10 @@ public class GameController implements GameControllerInterface {
     private List<GameControllerObservers> observers;
     private List<Dice> diceList;
     private List<Clan> clanGlobalList = new ArrayList<>();
+    private List<Castle> castleGlobalList = new ArrayList<>();
     private Random draft;
-    private int diceChanges = 8;
-    private boolean subtract = true;
+    private int diceChanges = 7;
+    private boolean subtract = false;
 
     private Clan chosokabeClan;
     private Clan moriClan;
@@ -89,16 +90,10 @@ public class GameController implements GameControllerInterface {
     }
 
     @Override
-    public void gameStart(Player player1, Player player2) {
-        createPlayers(player1, player2);
-        System.out.println(":" + player1.getName());
-        System.out.println(":" + player2.getName());
+    public void gameStart() {
+        createPlayers();
         createDiceList();
-        try {
-            initComponents();
-        } catch (Exception ex) {
-            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        initComponents();
 
         acme = new AcmeForObject("");
         tecFile = new TecFileForObject();
@@ -168,93 +163,30 @@ public class GameController implements GameControllerInterface {
     @Override
     public void openCard(String clanName, int position) {
         Player player = ("Jogando".equals(player1.getState().toString())) ? player1 : player2;
-        boolean aux = false;
-        String cName = "";
 
         switch (clanName) {
             case "chosokabe":
-                for (Castle c : player.getConqueredCastle()) {
-                    if (c.getCastleName().equals(chosokabeClan.getCastle(position).getCastleName())) {
-                        aux = true;
-                        cName = chosokabeClan.getCastle(position).getCastleName();
-                    }
-                }
-                if (!aux) {
-                    cardCastle = chosokabeClan.getCastle(position);
-                    System.out.println("Teste : "+cardCastle.getBattleLine().toString());
-                } else {
-                    cardCastle = player.getCastle(cName);
-                }
+                cardCastle = player.getPlayerClan().get(0).getCastle(position);
                 notifyOpenCard();
                 break;
             case "mori":
-                for (Castle c : player.getConqueredCastle()) {
-                    if (c.getCastleName().equals(moriClan.getCastle(position).getCastleName())) {
-                        aux = true;
-                        cName = moriClan.getCastle(position).getCastleName();
-                    }
-                }
-                if (!aux) {
-                    cardCastle = moriClan.getCastle(position);
-                } else {
-                    cardCastle = player.getCastle(cName);
-                }
+                cardCastle = player.getPlayerClan().get(1).getCastle(position);
                 notifyOpenCard();
                 break;
             case "shimazu":
-                for (Castle c : player.getConqueredCastle()) {
-                    if (c.getCastleName().equals(shimazuClan.getCastle(position).getCastleName())) {
-                        aux = true;
-                        cName = shimazuClan.getCastle(position).getCastleName();
-                    }
-                }
-                if (!aux) {
-                    cardCastle = shimazuClan.getCastle(position);
-                } else {
-                    cardCastle = player.getCastle(cName);
-                }
+                cardCastle = player.getPlayerClan().get(2).getCastle(position);
                 notifyOpenCard();
                 break;
             case "tokugawa":
-                for (Castle c : player.getConqueredCastle()) {
-                    if (c.getCastleName().equals(tokugawaClan.getCastle(position).getCastleName())) {
-                        aux = true;
-                        cName = tokugawaClan.getCastle(position).getCastleName();
-                    }
-                }
-                if (!aux) {
-                    cardCastle = tokugawaClan.getCastle(position);
-                } else {
-                    cardCastle = player.getCastle(cName);
-                }
+                cardCastle = player.getPlayerClan().get(3).getCastle(position);
                 notifyOpenCard();
                 break;
             case "uesugi":
-                for (Castle c : player.getConqueredCastle()) {
-                    if (c.getCastleName().equals(uesugiClan.getCastle(position).getCastleName())) {
-                        aux = true;
-                        cName = uesugiClan.getCastle(position).getCastleName();
-                    }
-                }
-                if (!aux) {
-                    cardCastle = uesugiClan.getCastle(position);
-                } else {
-                    cardCastle = player.getCastle(cName);
-                }
+                cardCastle = player.getPlayerClan().get(4).getCastle(position);
                 notifyOpenCard();
                 break;
             case "oda":
-                for (Castle c : player.getConqueredCastle()) {
-                    if (c.getCastleName().equals(odaClan.getCastle(position).getCastleName())) {
-                        aux = true;
-                        cName = odaClan.getCastle(position).getCastleName();
-                    }
-                }
-                if (!aux) {
-                    cardCastle = odaClan.getCastle(position);
-                } else {
-                    cardCastle = player.getCastle(cName);
-                }
+                cardCastle = player.getPlayerClan().get(5).getCastle(position);
                 notifyOpenCard();
                 break;
         }
@@ -266,9 +198,7 @@ public class GameController implements GameControllerInterface {
     }
 
     @Override
-    public void createPlayers(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public void createPlayers() {
         notifyPlayersCreated();
     }
 
@@ -362,6 +292,36 @@ public class GameController implements GameControllerInterface {
         }
     }
 
+    private void notifyTheEndOfTheGame(String message, String title) {
+        for (GameControllerObservers obs : observers) {
+            obs.warningAlert(message, title);
+        }
+    }
+
+    private void notifyCloseWindow() {
+        for (GameControllerObservers obs : observers) {
+            obs.closeWindow();
+        }
+    }
+
+    private void notifyInformationAlert(String message, String title) {
+        for (GameControllerObservers obs : observers) {
+            obs.informationAlert(message, title);
+        }
+    }
+
+    private void notifyCardImg(String clan, int castleNmuber, ImageIcon img) {
+        for (GameControllerObservers obs : observers) {
+            obs.cardConquered(clan, castleNmuber, img);
+        }
+    }
+
+    private void notifyCardsListImg(String clan, ImageIcon img) {
+        for (GameControllerObservers obs : observers) {
+            obs.clanConquered(clan, img);
+        }
+    }
+
     private void createDiceList() {
         Dice dice = new Dice("image/dados/dado_artilharia.png");
         dice.addBattleLine("archery");
@@ -391,56 +351,63 @@ public class GameController implements GameControllerInterface {
         diceList.add(dice);
     }
 
-    private void initComponents() throws Exception {
-        ClanVisitor visitor = new ClanVisitor();
-        chosokabeClan = classicClan.createClan();
-        BuilderClanChosokabe builderChosokabe = new BuilderClanChosokabe();
-        Director director = new Director(builderChosokabe);
-        director.construir();
-        chosokabeClan = builderChosokabe.getClan();
-        builderChosokabe.accept(visitor);
+    private void initComponents() {
+        player1.setPlayerClan(initClanList());
+        player2.setPlayerClan(initClanList());
+//        clanGlobalList = initClanList();
+    }
 
-        moriClan = classicClan.createClan();
-        BuilderClanMori builderMori = new BuilderClanMori();
-        director = new Director(builderMori);
-        director.construir();
-        moriClan = builderMori.getClan();
-        builderMori.accept(visitor);
+    private List<Clan> initClanList() {
+        List<Clan> list = new ArrayList<>();
 
-        shimazuClan = classicClan.createClan();
-        BuilderClanShimazu builderShimazu = new BuilderClanShimazu();
-        director = new Director(builderShimazu);
-        director.construir();
-        shimazuClan = builderShimazu.getClan();
-        builderShimazu.accept(visitor);
+        try {
+            chosokabeClan = classicClan.createClan();
+            BuilderClanChosokabe builderChosokabe = new BuilderClanChosokabe();
+            Director director = new Director(builderChosokabe);
+            director.construir();
+            chosokabeClan = builderChosokabe.getClan();
 
-        tokugawaClan = classicClan.createClan();
-        BuilderClanTokugawa builderTokugawa = new BuilderClanTokugawa();
-        director = new Director(builderTokugawa);
-        director.construir();
-        tokugawaClan = builderTokugawa.getClan();
-        builderTokugawa.accept(visitor);
+            moriClan = classicClan.createClan();
+            BuilderClanMori builderMori = new BuilderClanMori();
+            director = new Director(builderMori);
+            director.construir();
+            moriClan = builderMori.getClan();
 
-        uesugiClan = classicClan.createClan();
-        BuilderClanUesugi builderUesugi = new BuilderClanUesugi();
-        director = new Director(builderUesugi);
-        director.construir();
-        uesugiClan = builderUesugi.getClan();
-        builderUesugi.accept(visitor);
+            shimazuClan = classicClan.createClan();
+            BuilderClanShimazu builderShimazu = new BuilderClanShimazu();
+            director = new Director(builderShimazu);
+            director.construir();
+            shimazuClan = builderShimazu.getClan();
 
-        odaClan = classicClan.createClan();
-        BuilderClanOda builderOda = new BuilderClanOda();
-        director = new Director(builderOda);
-        director.construir();
-        odaClan = builderOda.getClan();
-        builderOda.accept(visitor);
+            tokugawaClan = classicClan.createClan();
+            BuilderClanTokugawa builderTokugawa = new BuilderClanTokugawa();
+            director = new Director(builderTokugawa);
+            director.construir();
+            tokugawaClan = builderTokugawa.getClan();
 
-        clanGlobalList.add(chosokabeClan);
-        clanGlobalList.add(moriClan);
-        clanGlobalList.add(shimazuClan);
-        clanGlobalList.add(tokugawaClan);
-        clanGlobalList.add(uesugiClan);
-        clanGlobalList.add(odaClan);
+            uesugiClan = classicClan.createClan();
+            BuilderClanUesugi builderUesugi = new BuilderClanUesugi();
+            director = new Director(builderUesugi);
+            director.construir();
+            uesugiClan = builderUesugi.getClan();
+
+            odaClan = classicClan.createClan();
+            BuilderClanOda builderOda = new BuilderClanOda();
+            director = new Director(builderOda);
+            director.construir();
+            odaClan = builderOda.getClan();
+
+            list.add(chosokabeClan);
+            list.add(moriClan);
+            list.add(shimazuClan);
+            list.add(tokugawaClan);
+            list.add(uesugiClan);
+            list.add(odaClan);
+        } catch (Exception ex) {
+            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+
     }
 
     @Override
@@ -622,29 +589,89 @@ public class GameController implements GameControllerInterface {
     }
 
     private void makeItHappen(Player player, List<Integer> indices) {
-//        try {
-//            player.jogar();
-//        } catch (Exception ex) {
-//            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        player.removeDiceForChoose();
-
-        List<ImageIcon> diceImg = new ArrayList<>();
-
-        for (int i = 0; i < player.getDice().size(); i++) {
-            diceImg.add(player.getDice().get(i).getDado());
-        }
-        
         for (int i : indices) {
             cardCastle.addConqueredLines(i);
         }
-        player.addConqueredCastle(cardCastle);
+
+        if (!player.getConqueredCastle().contains(cardCastle)) {
+            player.getConqueredCastle().add(cardCastle);
+        } else {
+            for (int i = 0; i < player.getConqueredCastle().size();i++) {
+                if (player.getConqueredCastle().get(i).getCastleName().equals(cardCastle.getCastleName())) {
+                    player.getConqueredCastle().set(i, cardCastle);
+                }
+            }
+        }
+
+        for (Castle c : player.getConqueredCastle()) {
+            System.out.print(c.getCastleName() + " ");
+        }
+
+        try {
+            player.jogar();
+        } catch (Exception ex) {
+            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Clan ourClan = player.getClanWithCastle(cardCastle);
+
+        if (cardCastle.isConquered()) {
+            if (castleGlobalList.isEmpty()) {
+                castleGlobalList.add(cardCastle);
+                notifyCardImg(ourClan.getClanName(), ourClan.getCastleNumber(cardCastle.getCastleName()), cardCastle.getCastleFigures().get(1));
+            } else {
+                boolean b = false;
+                for (Castle castle : castleGlobalList) {
+                    if (castle.getCastleName().equals(cardCastle.getCastleName())) {
+                        b = true;
+                    }
+                }
+                if (b == false) {
+                    castleGlobalList.add(cardCastle);
+                    notifyCardImg(ourClan.getClanName(), ourClan.getCastleNumber(cardCastle.getCastleName()), cardCastle.getCastleFigures().get(1));
+                }
+            }
+        }
+
+        ClanVisitor visitor = new ClanVisitor();
+        try {
+            ourClan.accept(visitor);
+        } catch (Exception ex) {
+            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        ourClan.setIsConquered(visitor.isClanConquistado());
+        if (ourClan.isIsConquered()) {
+            conqueredClan(ourClan);
+        } else {
+            if (cardCastle.isConquered()) {
+                playerPointsDivision();
+            }
+        }
+
+        if (!theEnd()) {
+            List<ImageIcon> diceImg = new ArrayList<>();
+
+            for (int i = 0; i < player.getDice().size(); i++) {
+                diceImg.add(player.getDice().get(i).getDado());
+            }
 
 //        this.subtract = false;
-        this.diceChanges = player.getDice().size();
-        notifyClearDices();
-        notifyRollingDice(diceImg);
-        notifyUpdateCardMenu();
+            this.diceChanges = player.getDice().size();
+            notifyClearDices();
+            notifyRollingDice(diceImg);
+            notifyPlayerPoint(player.getPoints());
+            if (ourClan.isIsConquered()) {
+                if (ourClan.getClanName() != "Shimazu") {
+                    notifyCardsListImg(ourClan.getClanName(), cardCastle.getCastleFigures().get(2));
+                } else {
+                    notifyCardsListImg(ourClan.getClanName(), cardCastle.getCastleFigures().get(1));
+                }
+            }
+            notifyUpdateCardMenu();
+        } else {
+            thisIsTheEndOfTheGame();
+        }
     }
 
     @Override
@@ -654,11 +681,76 @@ public class GameController implements GameControllerInterface {
         } else {
             player1.setState(new Jogando(player1));
         }
-        
+
         if (player2.getState().toString() == "Jogando") {
-            player2.setState(new Aguardando(player1));
+            player2.setState(new Aguardando(player2));
         } else {
-            player2.setState(new Jogando(player1));
+            player2.setState(new Jogando(player2));
         }
     }
+
+    @Override
+    public void playerPointsDivision() {
+//        verifica quem dominou o castelo por ultimo
+//        entrega o castelo para o jogador que dominou por ultimo
+//        entrega os pontos para o jogador que dominou por ultimo
+        Player player = (player1.getState().toString() == "Aguardando") ? player1 : player2;
+        Castle castle = player.getCastle(cardCastle.getCastleName());
+        if (castle != null) {
+            player.setPoints(player.getPoints() - castle.getPoints());
+            player.getCastle(castle.getCastleName()).remakeBattleLines();
+            player.removeConqueredCastle(castle);
+        }
+    }
+
+    @Override
+    public void thisIsTheEndOfTheGame() {
+//        verifica em clanGlobalList se todos os castelos estão dominados
+//        caso todos os castelos (14 castelos) estajam dominados, o jogo termina
+//        não importa quem esteja com o(s) castelos
+        notifyTheEndOfTheGame("O jogo acabou!!!\nTodos os castelos foram dominados.", "Acabou o jogo");
+        victory();
+        notifyCloseWindow();
+
+    }
+
+    @Override
+    public void victory() {
+        if (player1.getPoints() > player2.getPoints()) {
+            player1.setState(new Vitoria(player1));
+            player2.setState(new Derrota(player1));
+            notifyInformationAlert("Parabens " + player1.getName() + " você ganhou!!!", player1.getName() + " venceu!!!");
+        }
+        if (player1.getPoints() < player2.getPoints()) {
+            player2.setState(new Vitoria(player1));
+            player1.setState(new Derrota(player1));
+            notifyInformationAlert("Parabens " + player2.getName() + " você ganhou!!!", player2.getName() + " venceu!!!");
+        }
+        if (player1.getPoints() == player2.getPoints()) {
+            notifyInformationAlert("Houve um empate", "Empate");
+        }
+    }
+
+    @Override
+    public boolean theEnd() {
+        if (castleGlobalList.size() == 14) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void conqueredClan(Clan winnerClan) {
+        Player winner = (player1.getState().toString() == "Jogando") ? player1 : player2;
+        Player loser = (player1.getState().toString() == "Aguardando") ? player1 : player2;
+
+        winner.setPoints(winnerClan.getPointsIsConquered());
+
+        Clan loserClan = loser.getClanWithName(winnerClan.getClanName());
+        for (Castle castle : loserClan.getCastles()) {
+            castle.remakeBattleLines();
+        }
+        loser.setPoints(loser.getPoints() - loserClan.getPoints());
+    }
+
 }

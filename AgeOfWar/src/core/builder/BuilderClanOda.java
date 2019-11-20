@@ -47,6 +47,7 @@ public class BuilderClanOda extends AbstractBuilderClan{
         castle.setCastleFigures(imageList);
         
         this.castles.add(castle);
+        this.clan.getCastles().add(castle);
         
         castle = new ClassicCastle().createCastle();
         imageList = new ArrayList<>();
@@ -62,6 +63,7 @@ public class BuilderClanOda extends AbstractBuilderClan{
         castle.setCastleFigures(imageList);
         
         this.castles.add(castle);
+        this.clan.getCastles().add(castle);
         
         castle = new ClassicCastle().createCastle();
         imageList = new ArrayList<>();
@@ -79,6 +81,7 @@ public class BuilderClanOda extends AbstractBuilderClan{
         castle.setCastleFigures(imageList);
         
         this.castles.add(castle);
+        this.clan.getCastles().add(castle);
         
         castle = new ClassicCastle().createCastle();
         imageList = new ArrayList<>();
@@ -94,6 +97,7 @@ public class BuilderClanOda extends AbstractBuilderClan{
         castle.setCastleFigures(imageList);
         
         this.castles.add(castle);
+        this.clan.getCastles().add(castle);
     }
     
     @Override
@@ -116,7 +120,7 @@ public class BuilderClanOda extends AbstractBuilderClan{
         return this.castles.size();
     }
     
-    public void accept(Visitor visitor) throws Exception {
-        visitor.visit(this);
-    }
+//    public void accept(Visitor visitor) throws Exception {
+//        visitor.visit(this);
+//    }
 }

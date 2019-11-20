@@ -1,11 +1,12 @@
 package core.model;
 
+import core.visitor.Visitor;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 
 public class Clan extends Composite {
-    
+
     private String clanName;
     private ImageIcon clanIcon;
     private int clanPoints;
@@ -35,8 +36,8 @@ public class Clan extends Composite {
     public List<Castle> getCastles() {
         return castles;
     }
-    
-    public Castle getCastle(int position){
+
+    public Castle getCastle(int position) {
         return castles.get(position);
     }
 
@@ -75,15 +76,45 @@ public class Clan extends Composite {
     public void setIsConquered(boolean isConquered) {
         this.isConquered = isConquered;
     }
+    
+    public Integer getCastleNumber(String name){
+        Integer number = null;
+        for(int i = 0; i < sizeCastleList(); i++){
+            if(name.equals(castles.get(i).getCastleName())){
+                number = i;
+            }
+        }
+        
+        return number;
+    }
 
     @Override
     public int getPoints() {
         int pontos = 0;
-        for(Castle c : castles) {
-            if(c.isConquered()) {
+        for (Castle c : castles) {
+            if (c.isConquered()) {
                 pontos += c.getPoints();
             }
         }
         return pontos;
+    }
+    
+    @Override
+    public int getPointsIsConquered(){
+        int pontos = this.clanPoints;
+        
+        for(Castle c : castles){
+            pontos += c.getPoints();
+        }
+        
+        return pontos;
+    }
+
+    public void accept(Visitor visitor) throws Exception {
+        visitor.visit(this);
+    }
+
+    public int sizeCastleList() {
+        return this.castles.size();
     }
 }

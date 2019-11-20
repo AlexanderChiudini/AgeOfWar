@@ -161,8 +161,71 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers {
         //        chama Alerts informando a mudança de jogador
         playerBoard.setPlayerName(playerName);
         playerBoard.setPlayerPoint(point);
-        infoAlert = new InformationAlert("Chegou a vez de "+playerName, playerName);
+        informationAlert("Chegou a vez de "+playerName, playerName);
+    }
+
+    @Override
+    public void theEndOfTheGame(String message, String title) {
+        
+    }
+
+    @Override
+    public void informationAlert(String message, String title) {
+        infoAlert = new InformationAlert(message, title);
         infoAlert.alerta();
+    }
+
+    @Override
+    public void closeWindow() {
+        setVisible(false);
+    }
+
+    @Override
+    public void clanConquered(String clan, ImageIcon img) {
+        switch(clan){
+            case "Chosokabe":
+                chosokabeBoard.clanConquered(img);
+                break;
+            case "Mori":
+                moriBoard.clanConquered(img);
+                break;
+            case "Tokugawa":
+                tokugawaBoard.clanConquered(img);
+                break;
+            case "Uesugi":
+                uesugiBoard.clanConquered(img);
+                break;
+            case "Oda":
+                odaBoard.clanConquered(img);
+                break;
+            case "Shimazu":
+                shimazuBoard.clanConquered(img);
+                break;
+        }
+    }
+
+    @Override
+    public void cardConquered(String clan, int castleNmuber, ImageIcon img) {
+        switch(clan){
+            case "Chosokabe":
+                chosokabeBoard.cardConquered(castleNmuber,img);
+                break;
+            case "Mori":
+                moriBoard.cardConquered(castleNmuber,img);
+                break;
+            case "Tokugawa":
+                tokugawaBoard.cardConquered(castleNmuber,img);
+                break;
+            case "Uesugi":
+                uesugiBoard.cardConquered(castleNmuber,img);
+                break;
+            case "Oda":
+                odaBoard.cardConquered(castleNmuber,img);
+                break;
+            case "Shimazu":
+                shimazuBoard.cardConquered(castleNmuber,img);
+                break;
+        }
     }
 
 }

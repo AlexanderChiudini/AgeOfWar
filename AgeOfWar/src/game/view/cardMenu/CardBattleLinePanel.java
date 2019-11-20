@@ -48,7 +48,9 @@ public class CardBattleLinePanel extends JPanel {
             for (String str : battleLine) {
                 battleButton = new JCheckBox();
                 battleButton.setText(str);
-//            buttonGroup.add(battleButton);
+                if("[Conquistado,]".equals(str)){
+                    battleButton.setEnabled(false);
+                }
                 buttonList.add(battleButton);
                 add(battleButton);
             }

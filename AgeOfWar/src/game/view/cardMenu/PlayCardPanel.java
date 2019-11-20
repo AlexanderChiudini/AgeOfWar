@@ -66,6 +66,7 @@ public class PlayCardPanel extends JPanel {
                 List<String> str = possiblePanel.battleLineCheck();
                 List<Integer> indices = possiblePanel.blCheckIndices();
                 gameController.checkMatch(str,indices);
+                goGameFrame();
             }
         });
 
@@ -117,5 +118,13 @@ public class PlayCardPanel extends JPanel {
     private void goGameFrame() {
         gameFrame.setEnabled(true);
         cardFrame.dispose();
+    }
+    
+    private boolean btnIsSelect(){
+        boolean select = false;
+//        percorrer dicePanel e ver se algum dado esta selecionado
+//        caso der errado, fazer uma lista de botões e fazer a verificação na lista
+//        for(int i = 0; )
+        return select;
     }
 }

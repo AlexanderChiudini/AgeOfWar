@@ -8,6 +8,7 @@ import java.util.List;
 public class Player {
 
     private String name;
+    private List<Clan> playerClan = new ArrayList<>();
     private List<Castle> conqueredCastle = new ArrayList<>();
     private List<Dice> dice = new ArrayList<>(7);
     private List<Dice> chooseDice = new ArrayList<>(7);
@@ -15,10 +16,10 @@ public class Player {
     private int points;
     private EstadoJogo state;
 
-    public Player(String name, int points, EstadoJogo state) {
+    public Player(String name, int points) {
         this.name = name;
         this.points = points;
-        this.state = state;
+//        this.state = state;
     }
 
     public void jogar() throws Exception {
@@ -50,7 +51,7 @@ public class Player {
     }
     
     public Castle getCastle(String name){
-        Castle castle = new Castle();
+        Castle castle = null;
         for(Castle c : conqueredCastle){
             if(name.equals(c.getCastleName())){
                 castle = c;
@@ -125,5 +126,37 @@ public class Player {
         for(Dice d : chooseDice){
            dice.remove(d);
         }
+        chooseDice.clear();
     }
+
+    public List<Clan> getPlayerClan() {
+        return this.playerClan;
+    }
+
+    public void setPlayerClan(List<Clan> playerClan) {
+        this.playerClan = playerClan;
+    }
+
+    public Clan getClanWithCastle(Castle cardCastle) {
+        Clan clan = null;
+        for(Clan sub : playerClan){
+            for(Castle castle : sub.getCastles()){
+                if(cardCastle.getCastleName().equals(castle.getCastleName())){
+                    clan = sub;
+                }
+            }
+        }
+        return clan;
+    }
+    
+    public Clan getClanWithName(String name){
+        Clan clan = null;
+        for(Clan sub : playerClan){
+            if(sub.getClanName().equals(name)){
+                clan = sub;
+            }
+        }
+        return clan;
+    }
+    
 }

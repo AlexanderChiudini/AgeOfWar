@@ -26,8 +26,10 @@ public class MainController implements MainControllerInterface {
 
     private MainController() {
         observers = new ArrayList<>();
-        player1 = new Player("Jogador 1", 0, new Jogando(player1));
-        player2 = new Player("Jogador 2", 0, new Aguardando(player2));
+        player1 = new Player("Jogador 1", 0);
+        player1.setState(new Jogando(player1));
+        player2 = new Player("Jogador 2", 0);
+        player2.setState(new Aguardando(player2));
     }
     
     @Override
@@ -43,6 +45,14 @@ public class MainController implements MainControllerInterface {
             this.player2.setName(name);
         }
         
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
     }
 
     @Override
@@ -88,8 +98,8 @@ public class MainController implements MainControllerInterface {
     
     @Override
     public void gameStart() {
-        gameController = GameController.getInstance();
-        gameController.gameStart(player1, player2);
+        gameController = new GameController(player1, player2);
+        gameController.gameStart();
         notifyLoadingGame(gameController);
     }
     

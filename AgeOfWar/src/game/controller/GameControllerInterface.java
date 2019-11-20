@@ -17,7 +17,7 @@ public interface GameControllerInterface {
     
     void attach(GameControllerObservers obs);
     
-    void gameStart(Player player1,Player player2);
+    void gameStart();
     
     void nextCardsBoard();
 
@@ -33,7 +33,7 @@ public interface GameControllerInterface {
 
     ImageIcon getImageCastle(int i);
     
-    void createPlayers(Player player1, Player player2);
+    void createPlayers();
 
     void playerName();
 
@@ -54,4 +54,12 @@ public interface GameControllerInterface {
     void playerChange();
 
     int playerPoints();
+    
+    void playerPointsDivision();
+    
+    boolean theEnd();
+    
+    void thisIsTheEndOfTheGame();
+    
+    void victory();
 }

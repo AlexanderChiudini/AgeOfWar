@@ -53,6 +53,16 @@ public class CardPanel extends JPanel {
         castleCard.setIcon(cardImg);
     }
 
+    public JButton getCastleCard() {
+        return castleCard;
+    }
+
+    public void setCastleCard(JButton castleCard) {
+        this.castleCard = castleCard;
+    }
+    
+    
+
     private void addComponents() {
         add(castleCard);
     }
