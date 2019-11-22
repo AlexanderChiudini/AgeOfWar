@@ -1,5 +1,6 @@
 package game.view.cardMenu;
 
+import core.strategy.WarningAlert;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -35,7 +36,7 @@ public class PlayCardPanel extends JPanel {
     private JLabel diceLabel;
     private List<ImageIcon> diceImg;
 
-    public PlayCardPanel(GameControllerInterface gameController, CardCastleFrame cardFrame,GameFrame gameFrame) {
+    public PlayCardPanel(GameControllerInterface gameController, CardCastleFrame cardFrame, GameFrame gameFrame) {
         this.gameController = gameController;
         this.cardFrame = cardFrame;
         this.gameFrame = gameFrame;
@@ -65,7 +66,7 @@ public class PlayCardPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 List<String> str = possiblePanel.battleLineCheck();
                 List<Integer> indices = possiblePanel.blCheckIndices();
-                gameController.checkMatch(str,indices);
+                gameController.checkMatch(str, indices);
                 goGameFrame();
             }
         });
@@ -75,7 +76,12 @@ public class PlayCardPanel extends JPanel {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                goGameFrame();
+                if (!btnIsSelect()) {
+                    goGameFrame();
+                } else {
+                    WarningAlert alert = new WarningAlert("H\u00E1 dados selecionados que precisam ser desabilitados para poder cancelar a jogada.", "Dados Selecionados!!!");
+                    alert.alerta();
+                }
             }
         });
 
@@ -107,8 +113,7 @@ public class PlayCardPanel extends JPanel {
 
     public void drawDiceResult() {
         for (int i = 0; i < this.diceImg.size(); i++) {
-//            diceLabel = new JLabel();
-            JButton diceButton = new DiceButton(gameController,true,i);
+            DiceButton diceButton = new DiceButton(gameController, true, i);
             diceButton.setPreferredSize(new Dimension(2, 2));
             diceButton.setIcon(diceImg.get(i));
             dicePanel.add(diceButton);
@@ -119,12 +124,16 @@ public class PlayCardPanel extends JPanel {
         gameFrame.setEnabled(true);
         cardFrame.dispose();
     }
-    
-    private boolean btnIsSelect(){
+
+    private boolean btnIsSelect() {
         boolean select = false;
 //        percorrer dicePanel e ver se algum dado esta selecionado
-//        caso der errado, fazer uma lista de botões e fazer a verificação na lista
-//        for(int i = 0; )
+//        caso der errado, fazer uma lista de botões e fazer a verificacao na lista
+        for (int i = 0; i < dicePanel.getComponentCount(); i++) {
+            if (((DiceButton) dicePanel.getComponent(i)).getCondition() == false) {
+                select = true;
+            }
+        }
         return select;
     }
 }

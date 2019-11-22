@@ -3,7 +3,6 @@ package core.state;
 
 import core.model.Castle;
 import core.model.Player;
-import core.visitor.ClanVisitor;
 
 public class Jogando extends EstadoJogo {
 

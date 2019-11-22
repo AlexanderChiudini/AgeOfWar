@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 import core.factory.ClassicCastle;
 import core.model.Castle;
 import core.model.Clan;
-import core.visitor.Visitor;
 
 public class BuilderClanTokugawa extends AbstractBuilderClan {
 
@@ -108,8 +107,4 @@ public class BuilderClanTokugawa extends AbstractBuilderClan {
     public int sizeCastleList() {
         return this.castles.size();
     }
-    
-//    public void accept(Visitor visitor) throws Exception {
-//        visitor.visit(this);
-//    }
 }

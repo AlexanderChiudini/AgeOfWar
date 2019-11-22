@@ -95,11 +95,9 @@ public class Castle extends Composite {
     }
     
     public void remakeBattleLines(){
-        int i = 0;
-        for(List<String> sub : battleLine){
-            if("Conquistado".equals(sub.get(0).toString())){
-                sub = conqueredLines.get(i);
-                i++;
+        for(int i = 0; i < battleLine.size(); i++){
+            if("Conquistado".equals(battleLine.get(i).get(0))){
+                battleLine.set(i,conqueredLines.get(i));
             }
         }
         conqueredLines.clear();

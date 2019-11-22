@@ -45,7 +45,7 @@ public interface GameControllerObservers {
 
     void closeWindow();
 
-    public void clanConquered(String clan, ImageIcon img);
+    void clanConquered(String clan, ImageIcon img);
 
-    public void cardConquered(String clan, int castleNmuber, ImageIcon img);
+    void cardConquered(String clan, int castleNmuber, ImageIcon img);
 }

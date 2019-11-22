@@ -157,7 +157,7 @@ public class GameBoardPanel extends JPanel implements GameControllerObservers {
 
     @Override
     public void playerChangeModify(String playerName, int point) {
-        //        configura a GUI do jogo para a mudança de jogador
+        //        configura a GUI do jogo para a mudanca de jogador
         //        chama Alerts informando a mudança de jogador
         playerBoard.setPlayerName(playerName);
         playerBoard.setPlayerPoint(point);

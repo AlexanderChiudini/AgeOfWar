@@ -1,7 +1,6 @@
 package core.model;
 
 import core.state.EstadoJogo;
-import core.visitor.Visitor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,6 @@ public class Player {
     public Player(String name, int points) {
         this.name = name;
         this.points = points;
-//        this.state = state;
     }
 
     public void jogar() throws Exception {

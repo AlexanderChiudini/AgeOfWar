@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 import core.factory.ClassicCastle;
 import core.model.Castle;
 import core.model.Clan;
-import core.visitor.Visitor;
 
 public class BuilderClanShimazu extends AbstractBuilderClan {
 
@@ -43,7 +42,6 @@ public class BuilderClanShimazu extends AbstractBuilderClan {
         }
         List<ImageIcon> imageList = new ArrayList<>();
         imageList.add(new ImageIcon("image/cartas/cla_shimazu/carta_shimazu_kumamoto.png"));
-        imageList.add(new ImageIcon("image/cartas/cla_shimazu/carta_shimazu_castelo.png"));
         imageList.add(new ImageIcon("image/cartas/cla_shimazu/carta_shimazu_cla.png"));
         castle.setCastleFigures(imageList);
         
@@ -70,8 +68,4 @@ public class BuilderClanShimazu extends AbstractBuilderClan {
     public int sizeCastleList() {
         return this.castles.size();
     }
-    
-//    public void accept(Visitor visitor) throws Exception {
-//        visitor.visit(this);
-//    }
 }

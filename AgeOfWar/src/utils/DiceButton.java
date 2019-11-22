@@ -38,4 +38,8 @@ public class DiceButton extends JButton{
             setBackground(Color.BLUE);
         }
     }
+    
+    public boolean getCondition(){
+        return this.condition;
+    }
 }

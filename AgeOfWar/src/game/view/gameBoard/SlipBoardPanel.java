@@ -19,7 +19,7 @@ public class SlipBoardPanel extends JPanel{
     private final float L_SIZE = 25.0f;
     private JPanel labelPanel;
     private JLabel centerLabel;
-    private String labelTxt = "Clã Exemplo";
+    private String labelTxt = "Cl\u00E3 Exemplo";
     private JButton leftButton;
     private JButton rightButton;
     

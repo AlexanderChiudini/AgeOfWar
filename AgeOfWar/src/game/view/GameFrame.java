@@ -20,7 +20,7 @@ public class GameFrame extends JFrame {
     private JInternalFrame gameMenu;
 
     private GameControllerInterface gameController;
-    
+
     public GameFrame(GameControllerInterface gameController) {
         this.gameController = gameController;
         setResizable(false);
@@ -28,7 +28,7 @@ public class GameFrame extends JFrame {
         setLocationRelativeTo(null);
         setTitle("Age Of War");
         JDesktopPane desktopPane = new JDesktopPane();
-        gameMenu = new GameInternalFrame(this.gameController,this);
+        gameMenu = new GameInternalFrame(this.gameController, this);
         gameMenu.setBorder(null);
         ((BasicInternalFrameUI) gameMenu.getUI()).setNorthPane(null);
         desktopPane.add(gameMenu);
@@ -42,8 +42,7 @@ public class GameFrame extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                setVisible(false);
-                MainFrame.getInstance().setVisible(true);
+                closeWindow();
             }
         });
     }
@@ -52,6 +51,12 @@ public class GameFrame extends JFrame {
     public void setVisible(boolean b) {
         gameMenu.setVisible(b);
         super.setVisible(b);
+    }
+
+    private void closeWindow() {
+        setVisible(false);
+        MainFrame main = MainFrame.getInstance();
+        main.setVisible(true);
     }
 
 }

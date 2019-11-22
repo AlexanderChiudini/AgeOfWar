@@ -322,6 +322,12 @@ public class GameController implements GameControllerInterface {
         }
     }
 
+    private void notifyPlayersScore(String message, String title) {
+        for (GameControllerObservers obs : observers) {
+            obs.informationAlert(message, title);
+        }
+    }
+
     private void createDiceList() {
         Dice dice = new Dice("image/dados/dado_artilharia.png");
         dice.addBattleLine("archery");
@@ -354,7 +360,6 @@ public class GameController implements GameControllerInterface {
     private void initComponents() {
         player1.setPlayerClan(initClanList());
         player2.setPlayerClan(initClanList());
-//        clanGlobalList = initClanList();
     }
 
     private List<Clan> initClanList() {
@@ -577,7 +582,7 @@ public class GameController implements GameControllerInterface {
             makeItHappen(player, indices);
             this.subtract = false;
         } else {
-            notifyWarningAlert("Não foi possivel dominar as linhas de batalhas com os dados selecionados", "Falha em conquistar linhas de batalhas");
+            notifyWarningAlert("N\u00E3o foi possivel dominar as linhas de batalhas com os dados selecionados", "Falha em conquistar linhas de batalhas");
         }
     }
 
@@ -596,7 +601,7 @@ public class GameController implements GameControllerInterface {
         if (!player.getConqueredCastle().contains(cardCastle)) {
             player.getConqueredCastle().add(cardCastle);
         } else {
-            for (int i = 0; i < player.getConqueredCastle().size();i++) {
+            for (int i = 0; i < player.getConqueredCastle().size(); i++) {
                 if (player.getConqueredCastle().get(i).getCastleName().equals(cardCastle.getCastleName())) {
                     player.getConqueredCastle().set(i, cardCastle);
                 }
@@ -697,19 +702,23 @@ public class GameController implements GameControllerInterface {
         Player player = (player1.getState().toString() == "Aguardando") ? player1 : player2;
         Castle castle = player.getCastle(cardCastle.getCastleName());
         if (castle != null) {
-            player.setPoints(player.getPoints() - castle.getPoints());
-            player.getCastle(castle.getCastleName()).remakeBattleLines();
-            player.removeConqueredCastle(castle);
+            if (castle.isConquered()) {
+                player.setPoints(player.getPoints() - castle.getPoints());
+                player.getCastle(castle.getCastleName()).setIsConquered(false);
+                player.getCastle(castle.getCastleName()).remakeBattleLines();
+            }
+                player.removeConqueredCastle(castle);
         }
     }
 
     @Override
     public void thisIsTheEndOfTheGame() {
-//        verifica em clanGlobalList se todos os castelos estão dominados
+//        verifica em clanGlobalList se todos os castelos estao dominados
 //        caso todos os castelos (14 castelos) estajam dominados, o jogo termina
-//        não importa quem esteja com o(s) castelos
+//        nao importa quem esteja com o(s) castelos
         notifyTheEndOfTheGame("O jogo acabou!!!\nTodos os castelos foram dominados.", "Acabou o jogo");
         victory();
+        playersScore();
         notifyCloseWindow();
 
     }
@@ -719,12 +728,12 @@ public class GameController implements GameControllerInterface {
         if (player1.getPoints() > player2.getPoints()) {
             player1.setState(new Vitoria(player1));
             player2.setState(new Derrota(player1));
-            notifyInformationAlert("Parabens " + player1.getName() + " você ganhou!!!", player1.getName() + " venceu!!!");
+            notifyInformationAlert("Parab\u00E9ns " + player1.getName() + " voc\u00EA ganhou!!!", player1.getName() + " venceu!!!");
         }
         if (player1.getPoints() < player2.getPoints()) {
             player2.setState(new Vitoria(player1));
             player1.setState(new Derrota(player1));
-            notifyInformationAlert("Parabens " + player2.getName() + " você ganhou!!!", player2.getName() + " venceu!!!");
+            notifyInformationAlert("Parab\u00E9ns " + player2.getName() + " voc\u00EA ganhou!!!", player2.getName() + " venceu!!!");
         }
         if (player1.getPoints() == player2.getPoints()) {
             notifyInformationAlert("Houve um empate", "Empate");
@@ -744,13 +753,88 @@ public class GameController implements GameControllerInterface {
         Player winner = (player1.getState().toString() == "Jogando") ? player1 : player2;
         Player loser = (player1.getState().toString() == "Aguardando") ? player1 : player2;
 
-        winner.setPoints(winnerClan.getPointsIsConquered());
+        int points = winner.getPoints() - winnerClan.getPoints() + winnerClan.getPointsIsConquered();
+        winner.setPoints(points);
 
         Clan loserClan = loser.getClanWithName(winnerClan.getClanName());
         for (Castle castle : loserClan.getCastles()) {
-            castle.remakeBattleLines();
+            if (loser.getConqueredCastle().contains(castle)) {
+                loser.getConqueredCastle().remove(castle);
+            }
         }
         loser.setPoints(loser.getPoints() - loserClan.getPoints());
+    }
+
+    private void playersScore() {
+        int castleConquist = 0;
+        for (Castle castle : player1.getConqueredCastle()) {
+            if (castle.isConquered()) {
+                castleConquist++;
+            }
+        }
+        int clanConquist = 0;
+        for (Clan clan : player1.getPlayerClan()) {
+            if (clan.isIsConquered()) {
+                clanConquist++;
+            }
+        }
+
+        String message = "Dados de cada jogador:\n\n"
+                + "Jogador : " + player1.getName() + "\n"
+                + "Castelos dominados : " + castleConquist + "\n"
+                + "Castelo                          Pontos\n";
+        if (castleConquist > 0) {
+            for (Castle castle : player1.getConqueredCastle()) {
+                if (castle.isConquered()) {
+                    message += castle.getCastleName() + " :          " + castle.getPoints() + "\n";
+                }
+            }
+        }
+        message += "\nClans dominados : " + clanConquist + "\n";
+        if (castleConquist > 0) {
+            for (Clan clan : player1.getPlayerClan()) {
+                if (clan.isIsConquered()) {
+                    message += clan.getClanName() + " :              " + clan.getClanPoints() + "\n";
+                }
+            }
+        }
+        message += "\nTotal de Pontos :               " + player1.getPoints() + "\n";
+        message += "\n------------------------------------------------------------------------------------------------\n\n";
+
+        castleConquist = 0;
+        for (Castle castle : player2.getConqueredCastle()) {
+            if (castle.isConquered()) {
+                castleConquist++;
+            }
+        }
+        clanConquist = 0;
+        for (Clan clan : player2.getPlayerClan()) {
+            if (clan.isIsConquered()) {
+                clanConquist++;
+            }
+        }
+
+        message += "Jogador : " + player2.getName() + "\n"
+                + "Castelos dominados : " + castleConquist + "\n"
+                + "Castelo                          Pontos\n";
+        if (castleConquist > 0) {
+            for (Castle castle : player2.getConqueredCastle()) {
+                if (castle.isConquered()) {
+                    message += castle.getCastleName() + " :          " + castle.getPoints() + "\n";
+                }
+            }
+        }
+        message += "\nClans dominados : " + clanConquist + "\n";
+        if (castleConquist > 0) {
+            for (Clan clan : player2.getPlayerClan()) {
+                if (clan.isIsConquered()) {
+                    message += clan.getClanName() + " :              " + clan.getClanPoints() + "\n";
+                }
+            }
+        }
+        message += "\nTotal de Pontos :               " + player2.getPoints() + "\n";
+
+        notifyPlayersScore(message, "Score da Partida:");
     }
 
 }

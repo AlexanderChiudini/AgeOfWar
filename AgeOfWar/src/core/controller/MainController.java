@@ -26,14 +26,13 @@ public class MainController implements MainControllerInterface {
 
     private MainController() {
         observers = new ArrayList<>();
-        player1 = new Player("Jogador 1", 0);
-        player1.setState(new Jogando(player1));
-        player2 = new Player("Jogador 2", 0);
-        player2.setState(new Aguardando(player2));
     }
     
     @Override
     public void setPlayer1(String name){
+        player1 = new Player("Jogador 1", 0);
+        player1.setState(new Jogando(player1));
+        
         if(name != "" || !name.isEmpty()){
             this.player1.setName(name);
         }
@@ -41,6 +40,9 @@ public class MainController implements MainControllerInterface {
     
     @Override
     public void setPlayer2(String name){
+        player2 = new Player("Jogador 2", 0);
+        player2.setState(new Aguardando(player2));
+        
         if(name != "" || !name.isEmpty()){
             this.player2.setName(name);
         }

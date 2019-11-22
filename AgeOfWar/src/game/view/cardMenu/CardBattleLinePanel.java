@@ -3,9 +3,7 @@ package game.view.cardMenu;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import game.controller.GameControllerInterface;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -13,7 +11,6 @@ import javax.swing.JLabel;
 public class CardBattleLinePanel extends JPanel {
 
     private GameControllerInterface gameController;
-    private ButtonGroup buttonGroup;
     private List<JCheckBox> buttonList;
     private JCheckBox battleButton;
 
@@ -38,7 +35,6 @@ public class CardBattleLinePanel extends JPanel {
         battleLine = new ArrayList<>();
         battleLine = gameController.getCastleBL();
 
-        buttonGroup = new ButtonGroup();
         buttonList = new ArrayList<>();
 
     }

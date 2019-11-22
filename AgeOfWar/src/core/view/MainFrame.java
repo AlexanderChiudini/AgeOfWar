@@ -104,14 +104,14 @@ public class MainFrame extends JFrame implements MainControllerObserver {
 
     @Override
     public void developerInfo() {
-        informationAlert = new InformationAlert("Este sistema foi desenvolvido para a disciplina de Padrões de Projeto (PPR55) pela supervisão do Professor Adilson Vahldick\n"
+        informationAlert = new InformationAlert("Este sistema foi desenvolvido para a disciplina de Padr\u00F5es de Projeto (PPR55) pela supervis\u00E3o do Professor Adilson Vahldick\n"
                 + "\n\n"
                 + "Desenvolvedor : Alexander Felipe Chiudini Ristow\n"
                 + "Desenvolvedor : Lucas Eduardo Nogueira\n"
                 + "\n"
-                + "Somos acadêmicos do curso de Engenharia de Software (ESO)\n"
+                + "Somos acad\u00EAmicos do curso de Engenharia de Software (ESO)\n"
                 + "controlado pelo Departamento de Engenharia de Software (DESO)\n"
-                + "no Centro de Educação Superior do Alto Vale do Itajaí\n"
+                + "no Centro de Educa\u00E7U+00E3o Superior do Alto Vale do Itaja\u00ED\n"
                 + "\n\n"
                 + "                                                                                                                                                                                                                       21/11/2019"
                 , "Desenvolvedores");

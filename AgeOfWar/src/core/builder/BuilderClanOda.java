@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 import core.factory.ClassicCastle;
 import core.model.Castle;
 import core.model.Clan;
-import core.visitor.Visitor;
 
 public class BuilderClanOda extends AbstractBuilderClan{
 
@@ -55,7 +54,7 @@ public class BuilderClanOda extends AbstractBuilderClan{
         castle.setCastlePoints(1);
         castle.setDaimyoBattleLine("especialDaimyo");
         castle.addList(0, "daimyo");
-        castle.addList(1, "cavalry");
+        castle.addList(1, "archery");
         castle.addList(2, "cavalry");
         imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_gifu.png"));
         imageList.add(new ImageIcon("image/cartas/cla_oda/carta_oda_castelo.png"));
@@ -119,8 +118,4 @@ public class BuilderClanOda extends AbstractBuilderClan{
     public int sizeCastleList() {
         return this.castles.size();
     }
-    
-//    public void accept(Visitor visitor) throws Exception {
-//        visitor.visit(this);
-//    }
 }

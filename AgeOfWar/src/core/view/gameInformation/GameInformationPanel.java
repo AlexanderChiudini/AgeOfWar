@@ -46,7 +46,6 @@ public class GameInformationPanel extends BackgroundPanel{
     }
 
     private void addComponents() {
-        int y = 0;
         add(backButton);
     }
     
